@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+
+import logo from "./src/assets/logo_header.png";
+---
+
+<div class="footer">
+    <div class="content">
+        <div>
+            <a href="/">
+                <div class="logo">
+                    <Image
+                        src={logo}
+                        alt="CACTUS logo"
+                        width={210}
+                        height={60}
+                    />
+                </div>
+            </a>
+        </div>
+        <div>
+            <p>情報研究会 CACTUS</p>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2024 情報研究会 CACTUS</p>
+    </div>
+</div>
+
+<style>
+    .footer {
+        background-color: #f1f1f1;
+        height: 20vh;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: grid;
+        grid-template-rows: 80% 20%;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        height: 100%;
+        margin-left: 50px;
+    }
+
+    .content {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        text-align: center;
+    }
+
+    .copyright {
+        text-align: center;
+    }
+</style>

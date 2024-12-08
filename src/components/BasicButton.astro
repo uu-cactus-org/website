@@ -1,0 +1,28 @@
+---
+const { buttonText, link } = Astro.props;
+---
+
+<div class="content">
+    <a href={link} class="button">
+        {buttonText}
+        <img src="src/assets/arrow-right-solid.svg" alt="" />
+    </a>
+</div>
+
+<style>
+    .content {
+        text-align: center;
+        font-size: 1em;
+        margin: 10px;
+    }
+    .button {
+        background-color: #f1f1f1;
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #111827;
+    }
+    img {
+        height: 1em;
+    }
+</style>

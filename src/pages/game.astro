@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/features/header/Header.astro";
+import Footer from "../components/features/footer/Footer.astro";
+---
+
+<Layout>
+    <Fragment slot="head">
+        <title>制作したゲーム | 情報研究会 CACTUS</title>
+    </Fragment>
+    <!-- <Welcome slot="content" /> -->
+    <Header slot="header" />
+    <div slot="content">
+        <div class="content">This is game page.</div>
+    </div>
+    <Footer slot="footer" />
+</Layout>
+
+<style>
+    .content {
+        text-align: center;
+        height: 100vh;
+    }
+</style>

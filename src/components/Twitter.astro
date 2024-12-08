@@ -1,0 +1,31 @@
+---
+interface Props {
+    url: string;
+}
+const { url } = Astro.props;
+
+const base = "https://publish.twitter.com/oembed";
+const baseUrl = new URL(base);
+baseUrl.searchParams.set("url", url);
+baseUrl.searchParams.set("omit_script", "true");
+baseUrl.searchParams.set("maxwidth", "500");
+baseUrl.searchParams.set("maxheight", "750");
+
+const tweet = await fetch(baseUrl.toString())
+    .then<{ html: string }>((res) => res.json())
+    .catch((err) => null);
+---
+
+{
+    tweet && (
+        <>
+            <div set:html={tweet.html} />
+            <script
+                async
+                src="https://platform.twitter.com/widgets.js"
+                charset="utf-8"
+                crossorigin="anonymous"
+            />
+        </>
+    )
+}
