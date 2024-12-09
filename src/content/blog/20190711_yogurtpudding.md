@@ -1,7 +1,7 @@
 ---
 title: "メンバーのヨーグルトプリン"
 pubdate: 2019-07-11
-authers: ["ヨーグルトプリン"] 
+authors: ["ヨーグルトプリン"] 
 categories: "雑談"
 tags: ["自己紹介"] 
 coverImage: ""

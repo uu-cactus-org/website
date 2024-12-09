@@ -1,7 +1,7 @@
 ---
 title: "フォントを考える話"
 pubdate: 2019-12-13
-authers: ["higu"]
+authors: ["higu"]
 categories: "雑談"
 tags: ["フォント"]
 coverImage: ""

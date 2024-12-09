@@ -1,7 +1,7 @@
 ---
 title: "夏の予定＆最近の出来事"
 pubdate: 2019-07-30
-authers: ["ヨーグルトプリン"] 
+authors: ["ヨーグルトプリン"] 
 categories: "雑談"
 tags: ["ゲーム","夏"] 
 coverImage: ""

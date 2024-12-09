@@ -1,7 +1,7 @@
 ---
 title: "VS Codeのススメ"
 pubdate: 2019-11-07
-authers: ["higu"]
+authors: ["higu"]
 categories: "雑談"
 tags: [""]
 coverImage: "../../assets/post/20191107/vscode_logo-1.png"

@@ -9,7 +9,7 @@ const baseUrl = new URL(base);
 baseUrl.searchParams.set("url", url);
 baseUrl.searchParams.set("omit_script", "true");
 baseUrl.searchParams.set("maxwidth", "500");
-baseUrl.searchParams.set("maxheight", "750");
+baseUrl.searchParams.set("maxheight", "500");
 
 const tweet = await fetch(baseUrl.toString())
     .then<{ html: string }>((res) => res.json())
