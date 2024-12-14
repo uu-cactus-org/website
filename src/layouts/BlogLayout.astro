@@ -1,0 +1,126 @@
+---
+const { frontmatter } = Astro.props;
+const pubDate = new Date(frontmatter.pubdate);
+
+const pubDateYear = pubDate.getFullYear();
+const pubDateMonth = pubDate.getMonth() + 1;
+const pubDateDay = pubDate.getDate();
+
+const formattedYear = String(pubDateYear).padStart(4, "0");
+const formattedMonth = String(pubDateMonth).padStart(2, "0");
+const formattedDay = String(pubDateDay).padStart(2, "0");
+const formattedDate = `${formattedYear}${formattedMonth}${formattedDay}`;
+
+const coverImage: string = `@/assets/post/` + frontmatter.coverImage;
+const authors: string[] = frontmatter.authors;
+const category: string = frontmatter.categories;
+const tags: string[] = frontmatter.tags;
+---
+
+<div>
+    <!-- COVERIMAGE -->
+    <img src=`${coverImage}` alt="cover" />
+    <!-- {coverImage} -->
+
+    <!-- TITLE -->
+    <h1>{frontmatter.title}</h1>
+
+    <div>
+        <!-- DATEINFO -->
+        <div>
+            {pubDateYear}年{pubDateMonth}月{pubDateDay}日
+        </div>
+
+        <!-- AUTHOR -->
+        <div class="author-container">
+            <p>筆者</p>
+            <div class="author-list">
+                {
+                    authors.map((author: string) => (
+                        <a href={`/blog/tag/${author}`}>
+                            <div class="author-content">{author}</div>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- CATEGORY -->
+        <div class="category-content">
+            <a href={`/blog/category/${category}`}>
+                {category}
+            </a>
+        </div>
+
+        <!-- TAGS -->
+        <div>
+            <div class="tag-container">
+                {
+                    tags.map((tag: string) => (
+                        <a href={`/blog/tag/${tag}`}>
+                            <div class="tag-content">#{tag}</div>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div>
+        <slot />
+    </div>
+    <p>この記事は{formattedDate}に公開されました。</p>
+</div>
+
+<style>
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    div {
+        margin-bottom: 1rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .author-list {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .author-content {
+        background-color: #f0f0f0;
+        padding: 0.5rem 1.5rem;
+        border-radius: 100px;
+    }
+
+    .category-content {
+        background-color: #f0f0f0;
+        padding: 0.5rem 1.5rem;
+        border-radius: 100px;
+    }
+
+    .tag-container {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .tag-content {
+        background-color: #ffffff;
+        padding: 0.5rem 1.5rem;
+        border: 2px solid;
+        border-color: #4b8061;
+        border-radius: 20px;
+    }
+
+    .tag-content:hover {
+        background-color: #80a492;
+        border-color: #80a492;
+        color: #ffffff;
+    }
+</style>

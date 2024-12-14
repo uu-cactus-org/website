@@ -1,16 +1,17 @@
 ---
+layout: ../../layouts/BlogLayout.astro
 title: "大学生必見！君はTablacus Explorerを知っているか"
 pubdate: 2023-03-14
-authors: ["tk"]
+authors: ["tk", "tk2"]
 categories: "雑談"
-tags: [""]
-coverImage: "../../assets/20230314/EyeCatch.png"
+tags: ["hoge","huga","piyo"]
+coverImage: "20230314/EyeCatch.png"
 draft: false
 ---
 
 こんちゃす！CACTUS副会長です。
 
-宇大生諸氏に関しましては後期成績も公開され、悠々自適ゆうゆうじてき・愉快適悦ゆかいてきえつ・快活倶楽部かいかつくらぶな春休みを送っていることでしょう。
+宇大生諸氏に関しましては後期成績も公開され、<ruby>悠々自適<rp>（</rp><rt>ゆうゆうじてき</rt><rp>）</rp></ruby>・<ruby>愉快適悦<rp>(</rp><rt>ゆかいてきえつ</rt><rp>)</rp></ruby>・<ruby>快活倶楽部<rp>(</rp><rt>かいかつくらぶ</rt><rp>)</rp>な春休みを送っていることでしょう。
 
   
 さて、パソコンだいすきクラブのCACTUSメンバーに限らず、パソコンは大学生の必需品です。毎日のレポートやスライドの作成に欠かせない生命機関ライフラインとなってきたパソコンですが、そのパソコン、**十全に使えてますか？**
