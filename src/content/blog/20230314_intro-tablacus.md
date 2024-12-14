@@ -5,7 +5,7 @@ pubdate: 2023-03-14
 authors: ["tk", "tk2"]
 categories: "雑談"
 tags: ["hoge","huga","piyo"]
-coverImage: "20230314/EyeCatch.png"
+coverImage: "@assets/post/20230314/EyeCatch.png"
 draft: false
 ---
 

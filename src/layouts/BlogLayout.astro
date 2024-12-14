@@ -11,7 +11,7 @@ const formattedMonth = String(pubDateMonth).padStart(2, "0");
 const formattedDay = String(pubDateDay).padStart(2, "0");
 const formattedDate = `${formattedYear}${formattedMonth}${formattedDay}`;
 
-const coverImage: string = `@/assets/post/` + frontmatter.coverImage;
+const coverImage: string = frontmatter.coverImage;
 const authors: string[] = frontmatter.authors;
 const category: string = frontmatter.categories;
 const tags: string[] = frontmatter.tags;
