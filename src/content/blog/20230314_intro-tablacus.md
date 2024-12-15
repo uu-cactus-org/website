@@ -2,10 +2,10 @@
 layout: ../../layouts/BlogLayout.astro
 title: "大学生必見！君はTablacus Explorerを知っているか"
 pubdate: 2023-03-14
-authors: ["tk", "tk2"]
+authors: ["tk"]
 categories: "雑談"
 tags: ["hoge","huga","piyo"]
-coverImage: "@assets/post/20230314/EyeCatch.png"
+coverImage: "../../../src/assets/post/20230314/EyeCatch.png"
 draft: false
 ---
 
@@ -127,7 +127,7 @@ Tablacus Explorerはその名の通り「タブ型のファイルエクスプロ
 > 
 > [「分かりそう」で「分からない」でも「分かった」気になれるIT用語辞典](https://wa3.i-3-i.info/index.html)
 
-要は、**「ソフトをもっと便利にする機能を追加できる！」**ということです。た、ただでさえタブ型で便利なのに……更に機能追加を……？
+要は、**「ソフトをもっと便利にする機能を追加できる！」** ということです。た、ただでさえタブ型で便利なのに……更に機能追加を……？
 
 <figure>
 

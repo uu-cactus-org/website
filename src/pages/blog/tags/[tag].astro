@@ -1,0 +1,60 @@
+---
+import Footer from "@components/features/footer/Footer.astro";
+import Header from "@components/features/header/Header.astro";
+import Layout from "../../../layouts/Layout.astro";
+
+import { getCollection } from "astro:content";
+
+import { sortedblogEntriesList } from "@components/features/blog/getBlogAscendingOrder.ts";
+import { string } from "astro:schema";
+
+export async function getStaticPaths() {
+    const sortedBlogEntries = sortedblogEntriesList;
+
+    const uniqueTags = [
+        ...new Set(sortedBlogEntries.map((blog) => blog.data.tags).flat()),
+    ];
+
+    return uniqueTags.map((tag) => {
+        const filteredBlog = sortedBlogEntries.filter((blog) =>
+            blog.data.tags.includes(tag),
+        );
+        return {
+            params: { tag },
+            props: { blog: filteredBlog },
+        };
+    });
+}
+
+// 記事の中にタグが含まれていないとから文字列を渡してしまい，エラーになるので，その対策が必要
+
+const { tag } = Astro.params;
+const { blog } = Astro.props;
+---
+
+<Layout>
+    <Fragment slot="head">
+        <title>{tag}の記事 | 情報研究会 CACTUS</title>
+        <meta property="og:type" content="article" />
+    </Fragment>
+    <Header slot="header" />
+    <div slot="content">
+        <h1>Blog</h1>
+
+        <p>#{tag} のタグが付いた記事</p>
+        <div>
+            {
+                blog.map((blogEntry) => (
+                    <div>
+                        <a href={`/blog/${blogEntry.slug}`}>
+                            <div>
+                                <h2>{blogEntry.data.title}</h2>
+                            </div>
+                        </a>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+    <Footer slot="footer" />
+</Layout>
