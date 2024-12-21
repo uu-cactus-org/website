@@ -1,1 +1,85 @@
-a
+---
+import Footer from "@components/features/footer/Footer.astro";
+import Header from "@components/features/header/Header.astro";
+import Layout from "../../../layouts/Layout.astro";
+
+import { sortedblogEntriesList } from "@components/features/blog/getBlogAscendingOrder.ts";
+
+const sortedBlogEntries = sortedblogEntriesList;
+
+const tags = sortedBlogEntries.map((blog) => blog.data.tags).flat();
+
+// タグの重複を削除した配列を作成
+const tagCountArray = tags.reduce((acc: [string, number][], tag: string) => {
+    const existingTag = acc.find(([t]) => t === tag);
+    if (existingTag) {
+        existingTag[1] += 1;
+    } else {
+        acc.push([tag, 1]);
+    }
+    return acc;
+}, []);
+
+console.log(tagCountArray);
+---
+
+<Layout>
+    <Fragment slot="head">
+        <title>タグ一覧 | 情報研究会 CACTUS</title>
+        <meta property="og:type" content="article" />
+    </Fragment>
+    <Header slot="header" />
+    <div slot="content">
+        <div class="body">
+            <h1>タグ一覧</h1>
+            <div class="tag-container">
+                {
+                    tagCountArray.map((tag) => (
+                        <a href={`/blog/tags/${tag[0]}`}>
+                            <div class="tag-content">
+                                <p>
+                                    {tag[0]} ({tag[1]})
+                                </p>
+                            </div>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+    <Footer slot="footer" />
+</Layout>
+
+<style>
+    .body {
+        margin: 0 auto;
+        max-width: 800px;
+        min-height: 100vh;
+        padding: 1rem;
+    }
+    .tag-content {
+        margin: 4px;
+        background-color: #ffffff;
+        padding: 0 2rem;
+        border: 2px solid;
+        border-color: #4b8061;
+        border-radius: 40px;
+    }
+
+    .tag-content:hover {
+        background-color: #80a492;
+        border-color: #80a492;
+        color: #ffffff;
+    }
+
+    .tag-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tag-container a {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>

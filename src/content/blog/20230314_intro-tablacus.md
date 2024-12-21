@@ -1,10 +1,10 @@
 ---
-layout: ../../layouts/BlogLayout.astro
+# layout: ../../layouts/BlogLayout.astro
 title: "大学生必見！君はTablacus Explorerを知っているか"
 pubdate: 2023-03-14
 authors: ["tk"]
 categories: "雑談"
-tags: ["hoge","huga","piyo"]
+tags: ["便利ツール"]
 coverImage: "../../../src/assets/post/20230314/EyeCatch.png"
 draft: false
 ---

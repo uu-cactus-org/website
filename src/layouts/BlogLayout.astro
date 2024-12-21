@@ -20,6 +20,13 @@ const tags: string[] = frontmatter.tags;
 ---
 
 <div class="content">
+    <!-- BACKBUTTON -->
+    <div class="back-button">
+        <a href="/blog">
+            <p>ブログ一覧へ</p>
+        </a>
+    </div>
+
     <!-- COVERIMAGE -->
     <div class="cover-image">
         <img src=`${coverImage}` alt="cover" />
@@ -29,44 +36,43 @@ const tags: string[] = frontmatter.tags;
     <div class="blog-title">
         <h1>{frontmatter.title}</h1>
     </div>
+
+    <!-- DATEINFO -->
+    <div class="pub-date">
+        {pubDateYear}年{pubDateMonth}月{pubDateDay}日
+    </div>
+
+    <!-- AUTHOR -->
+    <div class="author-container">
+        <p>筆者</p>
+        <div class="author-list">
+            {
+                authors.map((author: string) => (
+                    <a href={`/blog/tag/${author}`}>
+                        <div class="author-content">{author}</div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+
+    <!-- CATEGORY -->
+    <div class="category-content">
+        <a href={`/blog/category/${category}`}>
+            {category}
+        </a>
+    </div>
+
+    <!-- TAGS -->
     <div>
-        <!-- DATEINFO -->
-        <div>
-            {pubDateYear}年{pubDateMonth}月{pubDateDay}日
-        </div>
-
-        <!-- AUTHOR -->
-        <div class="author-container">
-            <p>筆者</p>
-            <div class="author-list">
-                {
-                    authors.map((author: string) => (
-                        <a href={`/blog/tag/${author}`}>
-                            <div class="author-content">{author}</div>
-                        </a>
-                    ))
-                }
-            </div>
-        </div>
-
-        <!-- CATEGORY -->
-        <div class="category-content">
-            <a href={`/blog/category/${category}`}>
-                {category}
-            </a>
-        </div>
-
-        <!-- TAGS -->
-        <div>
-            <div class="tag-container">
-                {
-                    tags.map((tag: string) => (
-                        <a href={`/blog/tags/${tag}`}>
-                            <div class="tag-content">#{tag}</div>
-                        </a>
-                    ))
-                }
-            </div>
+        <div class="tag-container">
+            {
+                tags.map((tag: string) => (
+                    <a href={`/blog/tags/${tag}`}>
+                        <div class="tag-content">#{tag}</div>
+                    </a>
+                ))
+            }
         </div>
     </div>
 
@@ -74,6 +80,8 @@ const tags: string[] = frontmatter.tags;
     <div>
         <slot />
     </div>
+
+    <!-- AUTHOR -->
     <div class="author-container">
         <div class="author-list">
             {
@@ -85,23 +93,48 @@ const tags: string[] = frontmatter.tags;
             }
         </div>
     </div>
+
+    <!-- BACKBUTTON -->
+    <div class="back-button">
+        <a href="/blog">
+            <p>ブログ一覧へ</p>
+        </a>
+    </div>
 </div>
 
 <style>
     .content {
         margin: 0 auto;
         max-width: 800px;
+        min-height: 100vh;
         padding: 1rem;
     }
 
     .cover-image {
-        /* text-align: center; */
+        position: relative;
+        max-width: 100%;
+        height: auto;
     }
 
-    img {
+    .cover-image::before {
+        content: ""; /* 疑似要素に必須 */
+        width: 100%; /* 幅いっぱい */
+        height: 100%; /* 高さいっぱい */
+        display: block; /* 高さを指定するためにブロック要素にする */
+        background: linear-gradient(
+            rgba(255, 255, 255, 0) 0,
+            #fff 80%
+        ); /* 徐々に透明にする */
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .content img {
         text-align: center;
-        max-width: 800px;
+        max-width: 100%;
         height: auto;
+        /* max-width: 800px; */
     }
     .blog-title {
     }

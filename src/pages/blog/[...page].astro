@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPathsOptions, Page } from "astro";
+
+import Footer from "@components/features/footer/Footer.astro";
+import Header from "@components/features/header/Header.astro";
+import Layout from "src/layouts/Layout.astro";
+import BlogCard from "@components/features/blog/BlogCard.astro";
+
+// 1ページに表示する件数を設定
+export const postsPerPage = 16;
+
+// getStaticPaths()で動的なルートを設定
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    // 投稿を呼び出し
+    const allPosts = await getCollection("blog");
+    const nonDraftPostEntries = allPosts.filter((entry) => !entry.data.draft);
+
+    // 投稿を新しい順に並び替え
+    const sortedPosts = nonDraftPostEntries.sort((a, b) => {
+        const aDate = new Date(a.data.pubdate);
+        const bDate = new Date(b.data.pubdate);
+        return bDate.getTime() - aDate.getTime();
+    });
+
+    // 並び替えた投稿の配列から、1ページにX記事づつ入るようにページを生成
+    return paginate(sortedPosts, { pageSize: postsPerPage });
+}
+
+// paginate()関数を使用すると、各ページのデータはpageプロパティとして渡される
+console.log(Astro.props.page.currentPage);
+const { page } = Astro.props;
+---
+
+<Layout>
+    <Fragment slot="head">
+        <title>
+            {Astro.props.page.currentPage}ページ目 | 情報研究会 CACTUS
+        </title>
+    </Fragment>
+    <Header slot="header" />
+    <div slot="content">
+        <div class="body">
+            <h1>Blog</h1>
+            <h2>{page.currentPage}ページ</h2>
+            {
+                page.data.map(({ data, slug }) => (
+                    <>
+                        <BlogCard data={data} slug={slug} />
+                        {slug}
+                    </>
+                ))
+            }
+            <div class="pagination-nav">
+                {page.url.prev ? <a href={page.url.prev}>＜</a> : null}
+                {page.url.next ? <a href={page.url.next}>＞</a> : null}
+            </div>
+        </div>
+    </div>
+    <Footer slot="footer" />
+</Layout>
+
+<style>
+    .body {
+        margin: 0 auto;
+        max-width: 800px;
+        min-height: 100vh;
+        padding: 1rem;
+    }
+
+    .pagination-nav {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0;
+    }
+</style>

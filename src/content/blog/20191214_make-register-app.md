@@ -1,9 +1,10 @@
 ---
+layout: ../../layouts/BlogLayout.astro
 title: "レジアプリを作ってみた①"
 pubdate: 2019-12-14
 authors: ["higu"]
 categories: "制作物紹介"
-tags: ["unity", "学祭"]
+tags: ["Unity", "学祭"]
 coverImage: ""
 draft: false
 ---

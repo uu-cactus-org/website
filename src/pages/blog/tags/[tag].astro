@@ -7,6 +7,7 @@ import { getCollection } from "astro:content";
 
 import { sortedblogEntriesList } from "@components/features/blog/getBlogAscendingOrder.ts";
 import { string } from "astro:schema";
+import BlogCard from "@components/features/blog/BlogCard.astro";
 
 export async function getStaticPaths() {
     const sortedBlogEntries = sortedblogEntriesList;
@@ -39,22 +40,46 @@ const { blog } = Astro.props;
     </Fragment>
     <Header slot="header" />
     <div slot="content">
-        <h1>Blog</h1>
-
-        <p>#{tag} のタグが付いた記事</p>
-        <div>
-            {
-                blog.map((blogEntry) => (
-                    <div>
-                        <a href={`/blog/${blogEntry.slug}`}>
-                            <div>
-                                <h2>{blogEntry.data.title}</h2>
-                            </div>
-                        </a>
-                    </div>
-                ))
-            }
+        <div class="body">
+            <h1>Blog</h1>
+            <a href="/blog/tags">タグ一覧へ</a>
+            <p>#{tag} のタグが付いた記事</p>
+            <div>
+                {
+                    blog.map((blogEntry) => (
+                        <div>
+                            <a href={`/blog/${blogEntry.slug}`}>
+                                <div>
+                                    <BlogCard
+                                        title={blogEntry.data.title}
+                                        coverImage={blogEntry.data.coverImage}
+                                        link={`/blog/${blogEntry.slug}`}
+                                        buttonText="記事を読む"
+                                    />
+                                </div>
+                            </a>
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     </div>
     <Footer slot="footer" />
 </Layout>
+
+<style>
+    .body {
+        margin: 0 auto;
+        max-width: 800px;
+        min-height: 100vh;
+        padding: 1rem;
+    }
+
+    svg {
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+    }
+</style>
