@@ -4,7 +4,7 @@ pubdate: 2019-07-23
 authors: ["higu"] 
 categories: "雑談"
 tags: ["プログラミング"] 
-coverImage: ""
+coverImage: "../../../src/assets/noimage.png"
 draft: false
 ---
 

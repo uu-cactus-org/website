@@ -4,7 +4,7 @@ pubdate: 2020-08-19
 authors: ["higu"]
 categories: "雑談"
 tags: ["Discord"]
-coverImage: "../../assets/post/20200819/images.jpeg"
+coverImage: "../../../src/assets/post/20200819/images.jpeg"
 draft: false
 ---
 

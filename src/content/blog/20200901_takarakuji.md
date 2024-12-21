@@ -4,7 +4,7 @@ pubdate: 2020-09-01
 authors: ["Yuineko"]
 categories: "制作物紹介"
 tags: ["ゲーム"]
-coverImage: "../../assets/post/20200901/aa.png"
+coverImage: "../../../src/assets/post/20200901/aa.png"
 draft: false
 ---
 

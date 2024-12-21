@@ -4,7 +4,7 @@ pubdate: 2019-12-13
 authors: ["higu"]
 categories: "雑談"
 tags: ["フォント"]
-coverImage: ""
+coverImage: "../../../src/assets/noimage.png"
 draft: false
 ---
 

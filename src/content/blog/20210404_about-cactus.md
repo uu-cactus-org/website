@@ -4,7 +4,7 @@ pubdate: 2021-04-04
 authors: ["higu"] 
 categories: "雑談"
 tags: ["新歓"]
-coverImage: "../../assets/post/20210404/icon.png"
+coverImage: "../../../src/assets/post/20210404/icon.png"
 draft: false
 ---
 

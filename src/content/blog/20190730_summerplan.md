@@ -4,7 +4,7 @@ pubdate: 2019-07-30
 authors: ["ヨーグルトプリン"] 
 categories: "雑談"
 tags: ["ゲーム","夏"] 
-coverImage: ""
+coverImage: "../../../src/assets/noimage.png"
 draft: false
 ---
 

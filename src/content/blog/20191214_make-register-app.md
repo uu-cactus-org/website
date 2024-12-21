@@ -5,7 +5,7 @@ pubdate: 2019-12-14
 authors: ["higu"]
 categories: "制作物紹介"
 tags: ["Unity", "学祭"]
-coverImage: ""
+coverImage: "../../../src/assets/noimage.png"
 draft: false
 ---
 

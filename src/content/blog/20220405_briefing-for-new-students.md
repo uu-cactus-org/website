@@ -4,7 +4,7 @@ pubdate: 2022-04-05
 authors: ["uji"]
 categories: "未分類"
 tags: ["新歓"]
-coverImage: ""
+coverImage: "../../../src/assets/noimage.png"
 draft: false
 ---
 

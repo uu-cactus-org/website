@@ -1,9 +1,11 @@
 ---
 const { data, slug } = Astro.props;
 
-console.log(data);
 const coverImage: string = data.coverImage;
 const title: string = data.title;
+
+console.log(slug);
+// console.log(data);
 ---
 
 <div class="card">
@@ -16,6 +18,7 @@ const title: string = data.title;
         </div>
     </a>
 </div>
+
 <style>
     .card {
         display: flex;
