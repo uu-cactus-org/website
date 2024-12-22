@@ -1,17 +1,18 @@
 ---
-const { data, slug } = Astro.props;
+const { title, coverImage, slug } = Astro.props;
 
-const coverImage: string = data.coverImage;
-const title: string = data.title;
+// const coverImage: string = data.coverImage;
+// const title: string = data.title;
 
-console.log(slug);
-// console.log(data);
+// console.log(slug);
+// console.log(data.coverImage);
+// console.log(Astro.props);
 ---
 
 <div class="card">
     <a href={`/blog/${slug}`}>
         <div class="card-image">
-            <img src={coverImage} alt="cover" />
+            <img src={coverImage ?? "../../../assets/noimage.png"} />
         </div>
         <div class="card-content">
             <h2>{title}</h2>
@@ -41,8 +42,9 @@ console.log(slug);
     h2 {
         margin: 0;
     }
-    p {
-        margin: 0;
+    a {
+        text-decoration: none;
+        color: #111827;
     }
     .button {
         background-color: #f1f1f1;

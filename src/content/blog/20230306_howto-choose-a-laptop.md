@@ -4,7 +4,7 @@ pubdate: 2023-03-06
 authors: ["shirai"]
 categories: "未分類"
 tags: ["ノートパソコン"]
-coverImage: "../../../src/assets/noimage.png"
+coverImage: ""
 draft: false
 ---
 
