@@ -53,8 +53,7 @@ const { blog } = Astro.props;
                                     <BlogCard
                                         title={blogEntry.data.title}
                                         coverImage={blogEntry.data.coverImage}
-                                        link={`/blog/${blogEntry.slug}`}
-                                        buttonText="記事を読む"
+                                        slug={blogEntry.slug}
                                     />
                                 </div>
                             </a>
