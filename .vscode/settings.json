@@ -1,0 +1,10 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/src/content/authors/**"
+      ],
+      "url": "/.astro/collections/authors.schema.json"
+    }
+  ]
+}

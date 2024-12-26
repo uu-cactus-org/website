@@ -13,7 +13,7 @@ const blogCollection = defineCollection({
 });
 
 const authors = defineCollection({
-    type: 'content',
+    type: 'data',
     schema: z.object({
         id: z.string(),
         name: z.string(),
@@ -21,6 +21,7 @@ const authors = defineCollection({
         social: z.object({
             twitter: z.string(),
             github: z.string(),
+            website: z.optional(z.string())
         }),
         status: z.string(),
     }),
