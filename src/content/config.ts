@@ -24,6 +24,7 @@ const authors = defineCollection({
             website: z.optional(z.string())
         }),
         status: z.string(),
+        profileImage: z.optional(z.string()),
     }),
 })
 

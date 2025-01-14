@@ -42,6 +42,7 @@ const { page } = Astro.props;
     <div slot="content">
         <div class="body">
             <h1>Blog</h1>
+            <a href="/blog/authors"><h2>[test] authors</h2></a>
             <h2>{page.currentPage}ページ</h2>
             {
                 page.data.map(({ data, slug }) => (

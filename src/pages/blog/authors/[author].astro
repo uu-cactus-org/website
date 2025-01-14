@@ -1,0 +1,42 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+
+import Footer from '@components/features/footer/Footer.astro';
+import Header from '@components/features/header/Header.astro';
+import Layout from '../../../layouts/Layout.astro';
+import ProfileCard from '@components/features/blog/ProfileCard.astro';
+
+export async function getStaticPaths() {
+    const authors = await getCollection("authors");
+    return authors.map(author => ({
+        params: { author: author.id }
+    }))
+}
+
+const { author: authorId } = Astro.params;
+const authorEntry = await getEntry('authors', authorId);
+const author = authorEntry.data;
+---
+
+<Layout>
+  <Fragment slot="head">
+    <title>{author.name} のプロフィール | 情報研究会 CACTUS</title>
+    <meta property="og:type" content="article" />
+  </Fragment>
+  <Header slot="header" />
+  <div slot="content">
+    <div class="body">
+      <ProfileCard author={author} />
+    </div>
+  </div>
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .body {
+        margin: 0 auto;
+        max-width: 800px;
+        min-height: 100vh;
+        padding: 1rem;
+    }
+</style>

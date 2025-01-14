@@ -1,5 +1,10 @@
 ---
 import { Image } from "astro:assets";
+import type { InferEntrySchema } from 'astro:content';
+
+interface Props {
+    frontmatter: InferEntrySchema<'blog'>;
+}
 
 const { frontmatter } = Astro.props;
 const pubDate = new Date(frontmatter.pubdate);
@@ -48,7 +53,7 @@ const tags: string[] = frontmatter.tags;
         <div class="author-list">
             {
                 authors.map((author: string) => (
-                    <a href={`/blog/tag/${author}`}>
+                    <a href={`/blog/authors/${author}`}>
                         <div class="author-content">{author}</div>
                     </a>
                 ))

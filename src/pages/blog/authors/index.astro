@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+
+import Footer from "@components/features/footer/Footer.astro";
+import Header from "@components/features/header/Header.astro";
+import Layout from "../../../layouts/Layout.astro";
+
+//TODO - ページ分けが必要??
+const authors = await getCollection("authors");
+---
+
+<Layout>
+  <Fragment slot="head">
+      <title>執筆者一覧 | 情報研究会 CACTUS</title>
+      <meta property="og:type" content="article" />
+  </Fragment>
+  <Header slot="header" />
+  <div slot="content">
+      <div class="body">
+          <h1>執筆者一覧</h1>
+          <div class="author-container">
+              {
+                  authors.map(author => (
+                    <p>
+                        <a href={`/blog/authors/${author.id}`}>{author.data.name} ({author.data.id})</a>
+                    </p>
+                  ))
+              }
+          </div>
+      </div>
+  </div>
+  <Footer slot="footer" />
+</Layout>
