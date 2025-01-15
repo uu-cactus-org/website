@@ -1,6 +1,6 @@
 ---
 import type { InferEntrySchema } from 'astro:content';
-import { getCollection } from 'astro:content';
+import { getBlogs } from './getBlogAscendingOrder';
 
 const MAX_ARTICLES = 5;
 // const MAX_PROJECTS = 5;
@@ -10,9 +10,10 @@ interface Props {
 }
 
 const { author } = Astro.props;
-const articles = (await getCollection('blog')).filter((article) =>
-  article.data.authors.includes(author.id)
-).slice(0, MAX_ARTICLES);
+const articles = await getBlogs({
+  authorId: author.id,
+  limit: MAX_ARTICLES,
+});
 ---
 
 <div class="profile">
