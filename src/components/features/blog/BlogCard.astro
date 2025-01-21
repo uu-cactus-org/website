@@ -12,7 +12,7 @@ const { title, coverImage, slug } = Astro.props;
 <div class="card">
     <a href={`/blog/${slug}`}>
         <div class="card-image">
-            <img src={coverImage ?? "../../../assets/noimage.png"} />
+            <img src={coverImage || "/src/assets/noimage.png"} />
         </div>
         <div class="card-content">
             <h2>{title}</h2>
