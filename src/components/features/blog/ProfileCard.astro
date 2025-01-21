@@ -1,6 +1,7 @@
 ---
 import type { InferEntrySchema } from 'astro:content';
 import { getBlogs } from './getBlogAscendingOrder';
+import BlogCard from './BlogCard.astro';
 
 const MAX_ARTICLES = 5;
 // const MAX_PROJECTS = 5;
@@ -14,41 +15,96 @@ const articles = await getBlogs({
   authorId: author.id,
   limit: MAX_ARTICLES,
 });
+const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
 ---
 
 <div class="profile">
-  <div class="profile-image">
-    <img src={author.profileImage} alt="profile image" />
-  </div>
-  <div class="profile-content">
-    <h1>{author.name}</h1>
-    <p>@{author.id}</p>
-    <p>{author.bio}</p>
-    <div class="social-links">
-      <p>
-        Twitter(X): <a href={`https://x.com/${author.social.twitter}`}>@{author.social.twitter}</a>
-      </p>
-      <p>
-        Github: <a href={`https://github.com/${author.social.github}`}>{author.social.github}</a>
-      </p>
+  
+  <div class="profile-info">
+    <div class="profile-image">
+      <img src={profileImage} alt="profile image" />
+    </div>
+    <div class="profile-details">
+      <span class="profile-name">{author.name}</span><br />
+      <span class="profile-id">@{author.id}</span><br />
+      <span>{author.bio}</span><br />
+      <div class="social-links">
+        <p>
+          Twitter(X): <a href={`https://x.com/${author.social.twitter}`}>@{author.social.twitter}</a>
+        </p>
+        <p>
+          GitHub: <a href={`https://github.com/${author.social.github}`}>{author.social.github}</a>
+        </p>
+      </div>
     </div>
   </div>
-  <div class="articles">
-    <h2>書いた記事</h2>
-    <ul>
+
+  <div class="profile-content">
+    <div class="articles">
+      <h2>書いた記事</h2>
       {
         articles.map((article) => (
-          <li>
-            <a href={`/blog/${article.slug}`}>{article.data.title}</a>
-          </li>
+          <BlogCard title={article.data.title} coverImage={article.data.coverImage} slug={article.slug} />
         ))
       }
-    </ul>
+    </div>
+    <div class="projects">
+      <h2>作ったもの</h2>
+      ...
+    </div>
   </div>
-  <div class="projects">
-    <h2>作ったもの</h2>
-    ...
-  </div>
-  <br />
-  <a href="/blog/authors">一覧に戻る</a>
 </div>
+
+<style>
+  .profile {
+    display: flex;
+    border: 2px;
+  }
+
+  .profile-image {
+    width: 100px; /* サイズを小さくする */
+    height: 100px; /* サイズを小さくする */
+    border-radius: 50%; /* 丸くする */
+    border: 2px solid #ccc; /* 外枠 */
+    overflow: hidden; /* コンテンツが丸に収まるようにする */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 影を追加 */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 中のコンテンツを中央揃え */
+    background-color: #f9f9f9; /* 背景色 */
+  }
+
+  .profile-image img {
+    width: 90%; /* 丸い枠に収まるよう調整 */
+    height: 90%; /* 高さも枠にフィット */
+    object-fit: cover; /* 画像を中央で切り抜きながらフィット */
+    border-radius: 50%; /* 画像自体も丸くする */
+  }
+
+  .profile-info {
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 2rem;
+    width: 30%;
+    height: auto;
+    min-height: 0;
+    display: block;
+  }
+
+  .profile-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .profile-id {
+    font-size: 1rem;
+    color: #5f5f5f;
+    margin: 1rem 0;
+  }
+
+  .profile-content {
+    flex: 1;
+    justify-content: right;
+    margin-left: 5%;
+  }
+</style>

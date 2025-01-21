@@ -7,10 +7,10 @@ import Layout from '../../../layouts/Layout.astro';
 import ProfileCard from '@components/features/blog/ProfileCard.astro';
 
 export async function getStaticPaths() {
-    const authors = await getCollection("authors");
-    return authors.map(author => ({
-        params: { author: author.id }
-    }))
+  const authors = await getCollection('authors');
+  return authors.map((author) => ({
+    params: { author: author.id },
+  }));
 }
 
 const { author: authorId } = Astro.params;
@@ -26,7 +26,9 @@ const author = authorEntry.data;
   <Header slot="header" />
   <div slot="content">
     <div class="body">
-      <ProfileCard author={author} />
+      <ProfileCard {author} />
+      <br />
+      <a href="/blog/authors">一覧に戻る</a>
     </div>
   </div>
   <Footer slot="footer" />
@@ -34,9 +36,9 @@ const author = authorEntry.data;
 
 <style>
   .body {
-        margin: 0 auto;
-        max-width: 800px;
-        min-height: 100vh;
-        padding: 1rem;
-    }
+    margin: 0 5em;
+    max-width: 800px;
+    min-height: 100vh;
+    padding: 1rem;
+  }
 </style>
