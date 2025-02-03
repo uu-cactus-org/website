@@ -63,6 +63,8 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
 <style>
   .profile {
     display: flex;
+    align-items: flex-start;
+    width: 100%;
   }
 
   .profile-info {
@@ -73,7 +75,8 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
   }
 
   .profile-info-wrapper {
-    width: 30%;
+    width: 400px;
+    min-width: 300px;
   }
 
   .profile-image {
@@ -110,10 +113,29 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
   .profile-content {
     /* justify-content: right; */
     margin-left: 2rem;
+    flex-grow: 1;
   }
 
   .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
+
+
+  /* スマホ画面（768px以下）では縦並びに */
+@media screen and (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+  }
+
+  .profile-info-wrapper {
+    width: 100%;
+  }
+
+  .profile-content {
+    width: 100%;
+    margin-left: 0; /* PC用の余白をリセット */
+    margin-top: 2rem; /* 上に余白を追加 */
+  }
+}
 </style>
