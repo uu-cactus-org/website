@@ -20,21 +20,23 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
 
 <div class="profile">
   
-  <div class="profile-info">
-    <div class="profile-image">
-      <img src={profileImage} alt="profile image" />
-    </div>
-    <div class="profile-details">
-      <span class="profile-name">{author.name}</span><br />
-      <span class="profile-id">@{author.id}</span><br />
-      <span>{author.bio}</span><br />
-      <div class="social-links">
-        <p>
-          Twitter(X): <a href={`https://x.com/${author.social.twitter}`}>@{author.social.twitter}</a>
-        </p>
-        <p>
-          GitHub: <a href={`https://github.com/${author.social.github}`}>{author.social.github}</a>
-        </p>
+  <div class="profile-info-wrapper">
+    <div class="profile-info">
+      <div class="profile-image">
+        <img src={profileImage} alt="profile image" />
+      </div>
+      <div class="profile-details">
+        <span class="profile-name">{author.name}</span><br />
+        <span class="profile-id">@{author.id}</span><br />
+        <span>{author.bio}</span><br />
+        <div class="social-links">
+          <p>
+            Twitter(X): <a href={`https://x.com/${author.social.twitter}`}>@{author.social.twitter}</a>
+          </p>
+          <p>
+            GitHub: <a href={`https://github.com/${author.social.github}`}>{author.social.github}</a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -42,11 +44,14 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
   <div class="profile-content">
     <div class="articles">
       <h2>書いた記事</h2>
+      <hr />
+      <div class="articles-grid">
       {
         articles.map((article) => (
           <BlogCard title={article.data.title} coverImage={article.data.coverImage} slug={article.slug} />
         ))
       }
+      </div>
     </div>
     <div class="projects">
       <h2>作ったもの</h2>
@@ -58,7 +63,17 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
 <style>
   .profile {
     display: flex;
-    border: 2px;
+  }
+
+  .profile-info {
+    border: 2px solid;
+    border-radius: 8px;
+    border-color: #c1c1c1;
+    padding: 1.5rem
+  }
+
+  .profile-info-wrapper {
+    width: 30%;
   }
 
   .profile-image {
@@ -81,16 +96,6 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
     border-radius: 50%; /* 画像自体も丸くする */
   }
 
-  .profile-info {
-    border: 2px solid;
-    border-radius: 5px;
-    padding: 2rem;
-    width: 30%;
-    height: auto;
-    min-height: 0;
-    display: block;
-  }
-
   .profile-name {
     font-size: 1.5rem;
     font-weight: bold;
@@ -99,12 +104,16 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
   .profile-id {
     font-size: 1rem;
     color: #5f5f5f;
-    margin: 1rem 0;
+    margin: 2em 0;
   }
 
   .profile-content {
-    flex: 1;
-    justify-content: right;
-    margin-left: 5%;
+    /* justify-content: right; */
+    margin-left: 2rem;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 </style>

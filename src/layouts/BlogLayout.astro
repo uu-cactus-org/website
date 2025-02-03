@@ -86,18 +86,6 @@ const tags: string[] = frontmatter.tags;
         <slot />
     </div>
 
-    <!-- AUTHOR -->
-    <div class="author-container">
-        <div class="author-list">
-            {
-                authors.map((author: string) => (
-                    <a href={`/blog/author/${author}`}>
-                        <div class="author-content">{author}</div>
-                    </a>
-                ))
-            }
-        </div>
-    </div>
 
     <!-- BACKBUTTON -->
     <div class="back-button">
