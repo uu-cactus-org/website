@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import type { InferEntrySchema } from 'astro:content';
+
 import { getBlogs } from './getBlogAscendingOrder';
 import BlogCard from './BlogCard.astro';
 
@@ -15,7 +17,6 @@ const articles = await getBlogs({
   authorId: author.id,
   limit: MAX_ARTICLES,
 });
-const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
 ---
 
 <div class="profile">
@@ -23,19 +24,33 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
   <div class="profile-info-wrapper">
     <div class="profile-info">
       <div class="profile-image">
-        <img src={profileImage} alt="profile image" />
+        <Image src={author.profileImage} alt="profile icon" width="100" height="100" />
       </div>
       <div class="profile-details">
         <span class="profile-name">{author.name}</span><br />
         <span class="profile-id">@{author.id}</span><br />
-        <span>{author.bio}</span><br />
-        <div class="social-links">
-          <p>
-            Twitter(X): <a href={`https://x.com/${author.social.twitter}`}>@{author.social.twitter}</a>
-          </p>
-          <p>
-            GitHub: <a href={`https://github.com/${author.social.github}`}>{author.social.github}</a>
-          </p>
+        <span class="profile-bio">{author.bio}</span><br />
+        <div class="socials">
+          {author.social.twitter && (
+            <a
+              href={`https://x.com/${author.social.twitter}`}
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="social-icon-wrapper"
+            >
+              <Image src="/src/assets/x_logo_black.svg" alt="X" width="25" height="25" class="social-icon" />
+            </a>
+          )}
+          {author.social.github && (
+            <a
+              href={`https://github.com/${author.social.github}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon-wrapper"
+            >
+              <Image src="/src/assets/github_logo.svg" alt="GitHub" width="25" height="25" class="social-icon" />
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -55,6 +70,7 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
     </div>
     <div class="projects">
       <h2>作ったもの</h2>
+      <hr />
       ...
     </div>
   </div>
@@ -68,7 +84,7 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
   }
 
   .profile-info {
-    border: 2px solid;
+    border: 1.5px solid;
     border-radius: 8px;
     border-color: #c1c1c1;
     padding: 1.5rem
@@ -100,18 +116,21 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
   }
 
   .profile-name {
-    font-size: 1.5rem;
+    font-size: 1.5em;
     font-weight: bold;
   }
 
   .profile-id {
-    font-size: 1rem;
     color: #5f5f5f;
     margin: 2em 0;
   }
 
+  .profile-bio {
+    margin-top: 1em;
+    display: block;
+  }
+
   .profile-content {
-    /* justify-content: right; */
     margin-left: 2rem;
     flex-grow: 1;
   }
@@ -119,6 +138,35 @@ const profileImage = author.profileImage || '/src/assets/cactakun_noimage.webp';
   .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .socials {
+    justify-content: center;
+    display: flex;
+    gap: 1em;
+  }
+
+  .social-icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.2s;
+    border-radius: 50%;
+  }
+  
+  .social-icon-wrapper:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+  }
+
+  .social-icon {
+    margin: 10px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
   }
 
 

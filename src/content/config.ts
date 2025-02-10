@@ -24,7 +24,7 @@ const authors = defineCollection({
             website: z.optional(z.string())
         }),
         status: z.string(),
-        profileImage: z.optional(z.string()),
+        profileImage: z.optional(z.string()).default('/src/assets/cactakun_noimage.webp'),
     }),
 })
 
