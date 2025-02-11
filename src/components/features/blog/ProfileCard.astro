@@ -5,8 +5,8 @@ import type { InferEntrySchema } from 'astro:content';
 import { getBlogs } from './getBlogAscendingOrder';
 import BlogCard from './BlogCard.astro';
 
-const MAX_ARTICLES = 5;
-// const MAX_PROJECTS = 5;
+const MAX_ARTICLES = 6;
+// const MAX_PROJECTS = 6;
 
 interface Props {
   author: InferEntrySchema<'authors'>;
@@ -31,6 +31,7 @@ const articles = await getBlogs({
         <span class="profile-id">@{author.id}</span><br />
         <span class="profile-bio">{author.bio}</span><br />
         <div class="socials">
+          <!-- //TODO - implement tooltips -->
           {author.social.twitter && (
             <a
               href={`https://x.com/${author.social.twitter}`}
@@ -51,6 +52,26 @@ const articles = await getBlogs({
               <Image src="/src/assets/github_logo.svg" alt="GitHub" width="25" height="25" class="social-icon" />
             </a>
           )}
+          {author.social.website && (
+            <a
+              href={author.social.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon-wrapper"
+            >
+              <Image src="/src/assets/globe2.svg" alt="Website" width="25" height="25" class="social-icon" />
+            </a>
+          )}
+          {author.social.custom?.map(custom => (
+            <a
+              href={custom.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon-wrapper"
+            >
+              <Image src={custom.icon} alt={custom.label} width="25" height="25" class="social-icon" />
+            </a>
+          ))}
         </div>
       </div>
     </div>

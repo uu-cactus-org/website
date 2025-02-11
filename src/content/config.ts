@@ -19,9 +19,16 @@ const authors = defineCollection({
         name: z.string(),
         bio: z.string(),
         social: z.object({
-            twitter: z.string(),
-            github: z.string(),
-            website: z.optional(z.string())
+            twitter: z.optional(z.string()),
+            github:  z.optional(z.string()),
+            website: z.optional(z.string().url()),
+            custom: z.optional(
+                z.object({
+                    label: z.string(),
+                    url: z.string().url(),
+                    icon: z.string(),
+                }).array().max(3)
+            )
         }),
         status: z.string(),
         profileImage: z.optional(z.string()).default('/src/assets/cactakun_noimage.webp'),
