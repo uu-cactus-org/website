@@ -1,30 +1,22 @@
 ---
 import { getCollection } from "astro:content";
-import type { GetStaticPathsOptions, Page } from "astro";
+import type { GetStaticPathsOptions } from "astro";
 
+import Layout from "@layouts/Layout.astro";
 import Footer from "@components/features/footer/Footer.astro";
 import Header from "@components/features/header/Header.astro";
-import Layout from "src/layouts/Layout.astro";
 import BlogCard from "@components/features/blog/BlogCard.astro";
+import { queryBlogs } from '@utils';
 
 // 1ページに表示する件数を設定
 export const postsPerPage = 16;
 
 // getStaticPaths()で動的なルートを設定
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-    // 投稿を呼び出し
-    const allPosts = await getCollection("blog");
-    const nonDraftPostEntries = allPosts.filter((entry) => !entry.data.draft);
-
-    // 投稿を新しい順に並び替え
-    const sortedPosts = nonDraftPostEntries.sort((a, b) => {
-        const aDate = new Date(a.data.pubdate);
-        const bDate = new Date(b.data.pubdate);
-        return bDate.getTime() - aDate.getTime();
-    });
+    const blogs = await queryBlogs({ sortBy: 'date' });
 
     // 並び替えた投稿の配列から、1ページにX記事づつ入るようにページを生成
-    return paginate(sortedPosts, { pageSize: postsPerPage });
+    return paginate(blogs, { pageSize: postsPerPage });
 }
 
 // paginate()関数を使用すると、各ページのデータはpageプロパティとして渡される

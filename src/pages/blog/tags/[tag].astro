@@ -1,19 +1,16 @@
 ---
-import Footer from "@components/features/footer/Footer.astro";
+import Layout from "@layouts/Layout.astro";
 import Header from "@components/features/header/Header.astro";
-import Layout from "../../../layouts/Layout.astro";
+import Footer from "@components/features/footer/Footer.astro";
 
-import { getCollection } from "astro:content";
-
-import { sortedblogEntriesList } from "@components/features/blog/getBlogAscendingOrder.ts";
-import { string } from "astro:schema";
+import { sortedblogEntriesList } from "@utils";
 import BlogCard from "@components/features/blog/BlogCard.astro";
 
 export async function getStaticPaths() {
     const sortedBlogEntries = sortedblogEntriesList;
 
-    const uniqueTags = [
-        ...new Set(sortedBlogEntries.map((blog) => blog.data.tags).flat()),
+    const uniqueTags: string[] = [
+        ...new Set(sortedBlogEntries.flatMap((blog) => blog.data.tags)),
     ];
 
     return uniqueTags.map((tag) => {

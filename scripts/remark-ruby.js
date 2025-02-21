@@ -43,7 +43,7 @@ const rubyRegexMapList = rubyRegexList.map(({ pattern, replacement }) => ({
  * @param {string} str - ルビタグを置換する対象の文字列。
  * @returns {string} - ルビタグが置換された文字列。
  */
-const replaceRubyTags = (str: string) => {
+const replaceRubyTags = (str) => {
     return rubyRegexMapList.reduce((acc, { pattern, replacement }) => {
         return acc.replace(pattern, replacement);
     }, str);
@@ -54,7 +54,7 @@ const replaceRubyTags = (str: string) => {
  *
  * @param {HTMLElement} el - 更新する記事のHTML要素。
  */
-const updateArticle = (el: HTMLElement) => {
+const updateArticle = (el) => {
     const replacedHtml = replaceRubyTags(el.innerHTML);
     el.innerHTML = replacedHtml;
 }

@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import type { InferEntrySchema } from 'astro:content';
 
-import { getBlogs } from './getBlogAscendingOrder';
+import { queryBlogs } from '@utils';
 import BlogCard from './BlogCard.astro';
 
 const MAX_ARTICLES = 6;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { author } = Astro.props;
-const articles = await getBlogs({
+const articles = await queryBlogs({
   authorId: author.id,
   limit: MAX_ARTICLES,
 });

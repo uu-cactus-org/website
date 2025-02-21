@@ -17,6 +17,12 @@
       ],
       "@assets/*": [
         "src/assets/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@utils": [
+        "src/utils/index.ts"
       ]
     },
   }

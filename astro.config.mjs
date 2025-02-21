@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 
-import updateArticle from './remark-ruby';
+// import updateArticle from './scripts/remark-ruby';
 
 // https://astro.build/config
 export default defineConfig({

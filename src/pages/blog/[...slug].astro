@@ -1,8 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import Header from "../../components/features/header/Header.astro";
-import Footer from "../../components/features/footer/Footer.astro";
-import Layout from "../../layouts/Layout.astro";
+
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/features/header/Header.astro";
+import Footer from "@components/features/footer/Footer.astro";
 
 export async function getStaticPaths() {
     const blogEntries = await getCollection("blog");
