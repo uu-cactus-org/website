@@ -5,6 +5,11 @@ import type { InferEntrySchema } from 'astro:content';
 import { queryBlogs } from '@utils';
 import BlogCard from './BlogCard.astro';
 
+import twitterIcon from '@assets/logos/x_logo_black.svg';
+import githubIcon from '@assets/logos/github_logo.svg';
+import globeIcon from '@assets/logos/globe2.svg';
+
+
 const MAX_ARTICLES = 6;
 // const MAX_PROJECTS = 6;
 
@@ -39,7 +44,7 @@ const articles = await queryBlogs({
               rel="noopener noreferrer" 
               class="social-icon-wrapper"
             >
-              <Image src="/src/assets/x_logo_black.svg" alt="X" width="25" height="25" class="social-icon" />
+              <Image src={twitterIcon} alt="X" width="25" height="25" class="social-icon" />
             </a>
           )}
           {author.social.github && (
@@ -49,7 +54,7 @@ const articles = await queryBlogs({
               rel="noopener noreferrer"
               class="social-icon-wrapper"
             >
-              <Image src="/src/assets/github_logo.svg" alt="GitHub" width="25" height="25" class="social-icon" />
+              <Image src={githubIcon} alt="GitHub" width="25" height="25" class="social-icon" />
             </a>
           )}
           {author.social.website && (
@@ -59,7 +64,7 @@ const articles = await queryBlogs({
               rel="noopener noreferrer"
               class="social-icon-wrapper"
             >
-              <Image src="/src/assets/globe2.svg" alt="Website" width="25" height="25" class="social-icon" />
+              <Image src={globeIcon} alt="Website" width="25" height="25" class="social-icon" />
             </a>
           )}
           {author.social.custom?.map(custom => (

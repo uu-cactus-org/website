@@ -31,7 +31,7 @@ const authors = defineCollection({
             )
         }),
         status: z.string(),
-        profileImage: z.optional(z.string()).default('/src/assets/cactakun_noimage.webp'),
+        profileImage: z.optional(z.string()).default('/src/assets/logos/cactus/cactakun_noimage.webp'),
     }),
 })
 
