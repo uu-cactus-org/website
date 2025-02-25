@@ -1,7 +1,5 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Header from "@components/features/header/Header.astro";
-import Footer from "@components/features/footer/Footer.astro";
 
 import { sortedblogEntriesList } from "@utils";
 import BlogCard from "@components/features/blog/BlogCard.astro";
@@ -35,32 +33,28 @@ const { blog } = Astro.props;
         <title>{tag}の記事 | 情報研究会 CACTUS</title>
         <meta property="og:type" content="article" />
     </Fragment>
-    <Header slot="header" />
-    <div slot="content">
-        <div class="body">
-            <h1>Blog</h1>
-            <a href="/blog/tags">タグ一覧へ</a>
-            <p>#{tag} のタグが付いた記事</p>
-            <div>
-                {
-                    blog.map((blogEntry) => (
-                        <div>
-                            <a href={`/blog/${blogEntry.slug}`}>
-                                <div>
-                                    <BlogCard
-                                        title={blogEntry.data.title}
-                                        coverImage={blogEntry.data.coverImage}
-                                        slug={blogEntry.slug}
-                                    />
-                                </div>
-                            </a>
-                        </div>
-                    ))
-                }
-            </div>
+    <div class="body">
+        <h1>Blog</h1>
+        <a href="/blog/tags">タグ一覧へ</a>
+        <p>#{tag} のタグが付いた記事</p>
+        <div>
+            {
+                blog.map((blogEntry) => (
+                    <div>
+                        <a href={`/blog/${blogEntry.slug}`}>
+                            <div>
+                                <BlogCard
+                                    title={blogEntry.data.title}
+                                    coverImage={blogEntry.data.coverImage}
+                                    slug={blogEntry.slug}
+                                />
+                            </div>
+                        </a>
+                    </div>
+                ))
+            }
         </div>
     </div>
-    <Footer slot="footer" />
 </Layout>
 
 <style>

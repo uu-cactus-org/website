@@ -1,7 +1,5 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Header from "@components/features/header/Header.astro";
-import Footer from "@components/features/footer/Footer.astro";
 
 import { sortedblogEntriesList } from "@utils";
 
@@ -28,26 +26,22 @@ console.log(tagCountArray);
         <title>タグ一覧 | 情報研究会 CACTUS</title>
         <meta property="og:type" content="article" />
     </Fragment>
-    <Header slot="header" />
-    <div slot="content">
-        <div class="body">
-            <h1>タグ一覧</h1>
-            <div class="tag-container">
-                {
-                    tagCountArray.map((tag) => (
-                        <a href={`/blog/tags/${tag[0]}`}>
-                            <div class="tag-content">
-                                <p>
-                                    {tag[0]} ({tag[1]})
-                                </p>
-                            </div>
-                        </a>
-                    ))
-                }
-            </div>
+    <div class="body">
+        <h1>タグ一覧</h1>
+        <div class="tag-container">
+            {
+                tagCountArray.map((tag) => (
+                    <a href={`/blog/tags/${tag[0]}`}>
+                        <div class="tag-content">
+                            <p>
+                                {tag[0]} ({tag[1]})
+                            </p>
+                        </div>
+                    </a>
+                ))
+            }
         </div>
     </div>
-    <Footer slot="footer" />
 </Layout>
 
 <style>

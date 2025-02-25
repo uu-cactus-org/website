@@ -2,8 +2,6 @@
 import { getCollection, getEntry } from 'astro:content';
 
 import Layout from '@layouts/Layout.astro';
-import Header from '@components/features/header/Header.astro';
-import Footer from '@components/features/footer/Footer.astro';
 import ProfileCard from '@components/features/blog/ProfileCard.astro';
 
 export async function getStaticPaths() {
@@ -23,15 +21,11 @@ const author = authorEntry.data;
     <title>{author.name} のプロフィール | 情報研究会 CACTUS</title>
     <meta property="og:type" content="article" />
   </Fragment>
-  <Header slot="header" />
-  <div slot="content">
-    <div class="body">
-      <ProfileCard {author} />
-      <br />
-      <a href="/blog/authors">一覧に戻る</a>
-    </div>
+  <div class="body">
+    <ProfileCard {author} />
+    <br />
+    <a href="/blog/authors">一覧に戻る</a>
   </div>
-  <Footer slot="footer" />
 </Layout>
 
 <style>

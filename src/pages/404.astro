@@ -1,7 +1,5 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Header from "@components/features/header/Header.astro";
-import Footer from "@components/features/footer/Footer.astro";
 import Twitter from "@components/Twitter.astro";
 import BasicButton from "@components/BasicButton.astro";
 ---
@@ -10,13 +8,9 @@ import BasicButton from "@components/BasicButton.astro";
     <Fragment slot="head">
         <title>404 | 情報研究会 CACTUS</title>
     </Fragment>
-    <Header slot="header" />
-    <div slot="content">
-        <div class="body">
-            <p>ページがないよ</p>
-        </div>
+    <div class="body">
+        <p>ページがないよ</p>
     </div>
-    <Footer slot="footer" />
 </Layout>
 
 <style>

@@ -2,8 +2,6 @@
 import { getCollection } from 'astro:content';
 
 import Layout from '@layouts/Layout.astro';
-import Header from '@components/features/header/Header.astro';
-import Footer from '@components/features/footer/Footer.astro';
 
 //TODO - ページ分けが必要??
 const authors = await getCollection('authors');
@@ -14,28 +12,24 @@ const authors = await getCollection('authors');
     <title>投稿メンバー | 情報研究会 CACTUS</title>
     <meta property="og:type" content="article" />
   </Fragment>
-  <Header slot="header" />
-  <div slot="content">
-    <div class="body">
-      <h1>投稿メンバー</h1>
-      <div class="author-container">
-        {
-          authors.map((author) => (
-            <a href={`/blog/authors/${author.id}`} class="author-card">
-              <div class="author-image">
-                <img src={author.data.profileImage} alt="profile icon" width="50" height="50" />
-              </div>
-              <div>
-                <span class="author-name">{author.data.name}</span><br />
-                <span class="author-bio">{author.data.bio}</span>
-              </div>
-            </a>
-          ))
-        }
-      </div>
+  <div class="body">
+    <h1>投稿メンバー</h1>
+    <div class="author-container">
+      {
+        authors.map((author) => (
+          <a href={`/blog/authors/${author.id}`} class="author-card">
+            <div class="author-image">
+              <img src={author.data.profileImage} alt="profile icon" width="50" height="50" />
+            </div>
+            <div>
+              <span class="author-name">{author.data.name}</span><br />
+              <span class="author-bio">{author.data.bio}</span>
+            </div>
+          </a>
+        ))
+      }
     </div>
   </div>
-  <Footer slot="footer" />
 </Layout>
 
 <style>

@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 import logo from "../../../assets/logo_header.png";
 ---
 
-<div class="footer">
+<footer>
     <div class="content">
         <div>
             <a href="/">
@@ -23,16 +23,16 @@ import logo from "../../../assets/logo_header.png";
         </div>
     </div>
     <div class="copyright">
-        <p>© 2024 情報研究会 CACTUS</p>
+        <p>© 2025 情報研究会 CACTUS</p>
     </div>
-</div>
+</footer>
 
 <style>
-    .footer {
+    footer {
         background-color: #31a33d;
         height: 20vh;
         padding-top: 10px;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
         display: grid;
         grid-template-rows: 80% 20%;
     }
@@ -53,5 +53,9 @@ import logo from "../../../assets/logo_header.png";
 
     .copyright {
         text-align: center;
+    }
+
+    .copyright p {
+        font-weight: bold;
     }
 </style>

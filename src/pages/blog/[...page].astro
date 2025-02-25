@@ -3,8 +3,6 @@ import { getCollection } from "astro:content";
 import type { GetStaticPathsOptions } from "astro";
 
 import Layout from "@layouts/Layout.astro";
-import Footer from "@components/features/footer/Footer.astro";
-import Header from "@components/features/header/Header.astro";
 import BlogCard from "@components/features/blog/BlogCard.astro";
 import { queryBlogs } from '@utils';
 
@@ -30,30 +28,26 @@ const { page } = Astro.props;
             {Astro.props.page.currentPage}ページ目 | 情報研究会 CACTUS
         </title>
     </Fragment>
-    <Header slot="header" />
-    <div slot="content">
-        <div class="body">
-            <h1>Blog</h1>
-            <a href="/blog/authors"><h2>[test] authors</h2></a>
-            <h2>{page.currentPage}ページ</h2>
-            {
-                page.data.map(({ data, slug }) => (
-                    <>
-                        <BlogCard
-                            title={data.title}
-                            coverImage={data.coverImage}
-                            slug={slug}
-                        />
-                    </>
-                ))
-            }
-            <div class="pagination-nav">
-                {page.url.prev ? <a href={page.url.prev}>＜</a> : null}
-                {page.url.next ? <a href={page.url.next}>＞</a> : null}
-            </div>
+    <div class="body">
+        <h1>Blog</h1>
+        <a href="/blog/authors"><h2>[test] authors</h2></a>
+        <h2>{page.currentPage}ページ</h2>
+        {
+            page.data.map(({ data, slug }) => (
+                <>
+                    <BlogCard
+                        title={data.title}
+                        coverImage={data.coverImage}
+                        slug={slug}
+                    />
+                </>
+            ))
+        }
+        <div class="pagination-nav">
+            {page.url.prev ? <a href={page.url.prev}>＜</a> : null}
+            {page.url.next ? <a href={page.url.next}>＞</a> : null}
         </div>
     </div>
-    <Footer slot="footer" />
 </Layout>
 
 <style>

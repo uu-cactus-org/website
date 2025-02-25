@@ -1,7 +1,5 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Header from "@components/features/header/Header.astro";
-import Footer from "@components/features/footer/Footer.astro";
 import Twitter from "@components/Twitter.astro";
 import BasicButton from "@components/BasicButton.astro";
 ---
@@ -10,20 +8,15 @@ import BasicButton from "@components/BasicButton.astro";
 	<Fragment slot="head">
 		<title>情報研究会 CACTUS</title>
 	</Fragment>
-	<!-- <Welcome slot="content" /> -->
-	<Header slot="header" />
-	<div slot="content">
-		<div class="body">
-			<h1>CACTUS Demo site</h1>
-			<p>情報研究会 CACTUSへようこそ！</p>
-			<p>このサイトは、CACTUS公式サイトのデモバージョンです。</p>
-			<BasicButton buttonText="もっと知る" link="/about" />
-			<div class="twitter">
-				<Twitter url="https://twitter.com/uu_cactus" />
-			</div>
+	<div class="body">
+		<h1>CACTUS Demo site</h1>
+		<p>情報研究会 CACTUSへようこそ！</p>
+		<p>このサイトは、CACTUS公式サイトのデモバージョンです。</p>
+		<BasicButton buttonText="もっと知る" link="/about" />
+		<div class="twitter">
+			<Twitter url="https://twitter.com/uu_cactus" />
 		</div>
 	</div>
-	<Footer slot="footer" />
 </Layout>
 
 <style>

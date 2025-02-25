@@ -4,5 +4,7 @@
       "name": "Repository",
       "path": "."
     }
-  ]
+  ],
+  "settings": {
+  }
 }

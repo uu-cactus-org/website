@@ -1,19 +1,21 @@
 ---
 import Base from "./Base.astro";
+import Header from '@components/features/header/Header.astro';
+import Footer from '@components/features/footer/Footer.astro';
 ---
 
 <Base>
 	<slot name="head" slot="head" />
-	<div>
-		<slot name="header" />
-	</div>
-	<div>
-		<slot name="content" />
-	</div>
-	<div>
-		<slot name="footer" />
-	</div>
+
+	<Header />
+
+	<main>
+		<slot />
+	</main>
+
+	<Footer />
 </Base>
+
 <style>
 	html,
 	body {
