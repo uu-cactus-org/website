@@ -15,7 +15,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout title={entry.data.title}>
+<Layout>
     <Fragment slot="head">
         <title>{entry.data.title} | 情報研究会 CACTUS</title>
         <meta property="og:type" content="article" />

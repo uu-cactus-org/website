@@ -1,21 +1,69 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Twitter from "@components/Twitter.astro";
-import BasicButton from "@components/BasicButton.astro";
+import Layout from '@layouts/Layout.astro';
 ---
 
 <Layout>
-    <Fragment slot="head">
-        <title>404 | 情報研究会 CACTUS</title>
-    </Fragment>
-    <div class="body">
-        <p>ページがないよ</p>
+  <Fragment slot="head">
+    <title>404 | 情報研究会 CACTUS</title>
+  </Fragment>
+  <div class="container">
+    <div>
+      <h1>ページがないよ</h1>
     </div>
+    <div>
+      <img
+        src="/src/assets/logos/cactus/cactakun.png"
+        width={350}
+        height={350}
+        alt="cactakun"
+        class="img"
+      />
+    </div>
+  </div>
+  <div class="top-wrapper">
+    <a href="/" class="top">トップに戻る </a>
+  </div>
 </Layout>
 
 <style>
-    .body {
-        text-align: center;
-        height: 100vh;
+  .container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .img {
+    width: 200px;
+    height: 200px;
+    image-rendering: pixelated;
+    animation: rotate-image 10s infinite;
+    animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    animation-delay: 5s;
+  }
+
+  @keyframes rotate-image {
+    0% {
+      transform: rotate(0deg);
     }
+    20% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .top-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    margin-top: 20px;
+  }
+
+  .top {
+    color: #3e8de8;
+  }
 </style>
