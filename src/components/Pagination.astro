@@ -1,0 +1,138 @@
+---
+import { Image } from 'astro:assets';
+import type { Page } from 'astro';
+
+import threeDots from '@assets/icons/three-dots.svg'
+
+interface Props {
+  page: Page;
+  baseUrl: string;
+}
+
+const { page, baseUrl } = Astro.props;
+
+const getPageUrl = (pageNumber: number) => (
+  pageNumber === 1 ? page.url.first : `${baseUrl}/${pageNumber}`
+);
+
+const maxVisibleButtons = 6;
+const totalPages = page.lastPage;
+const currentPage = page.currentPage;
+
+const getPageNumbers = () => {
+  const visiblePages: (number | "...")[] = [];
+
+  if (totalPages <= maxVisibleButtons) {
+    // 総ページ数が少ない場合はすべて表示
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  // 先頭ページ (1) は必ず表示
+  visiblePages.push(1);
+
+  // 2ページ目以降が遠いなら「...」を追加
+  if (currentPage > 3) {
+    visiblePages.push("...");
+  }
+
+  // 現在のページの前後を計算
+  let startPage = Math.max(2, currentPage - 1);
+  let endPage = Math.min(totalPages - 1, currentPage + 1);
+
+  if (currentPage <= 3) {
+    // 先頭付近（1,2,3ページ目）なら最初の数ページを優先的に表示
+    startPage = 2;
+    endPage = maxVisibleButtons - 2;
+  } else if (currentPage >= totalPages - 2) {
+    // 最後付近（8,9,10ページ目など）は最後の数ページを優先
+    startPage = totalPages - (maxVisibleButtons - 3);
+    endPage = totalPages - 1;
+  }
+
+  for (let i = startPage; i <= endPage; i++) {
+    visiblePages.push(i);
+  }
+
+  // 最終ページの手前が遠いなら「...」を追加
+  if (currentPage < totalPages - 2) {
+    visiblePages.push("...");
+  }
+
+  // 最終ページ（lastPage）は必ず表示
+  visiblePages.push(totalPages);
+
+  return visiblePages;
+};
+
+const pageNumbers = getPageNumbers();
+---
+<nav>
+  <ul>
+
+    {
+      pageNumbers.map((pageNumber) => (
+        <li>
+          {
+            pageNumber === '...' 
+            //FIXME - 画像の表示位置を中央にしたい
+              ? <span class="dots-container"><Image class="dots" src={threeDots} alt="..." /></span>
+              : page.currentPage === pageNumber
+                ? <span class="link current">{pageNumber}</span>
+                : <a class="link" href={getPageUrl(pageNumber as number)}>{pageNumber}</a>
+          }
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+
+<style>
+  nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-inline-start: 0;
+    gap: 1rem;
+  }
+
+  .link {
+    /* remove default styles*/
+    box-sizing: border-box;
+    text-decoration: none;
+      
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #333;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 10%;
+    
+    &.current {
+      background-color: #d5f5d1;
+      font-weight: bold;
+      border: 1.5px solid rgb(90, 90, 90);
+    }
+
+    .dots {
+      object-fit: contain; /* 画像の比率を崩さない */
+      vertical-align: middle;
+    }
+
+    .dots-container {
+      display: inline-flex;
+      align-items: center;
+    }
+
+  }

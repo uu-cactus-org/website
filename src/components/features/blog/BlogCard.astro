@@ -1,21 +1,22 @@
 ---
-const { title, coverImage, slug } = Astro.props;
+import type { BlogSchema } from 'src/content/config';
 
-// const coverImage: string = data.coverImage;
-// const title: string = data.title;
+interface Props {
+    slug: string;
+    blog: BlogSchema;
+}
 
-// console.log(slug);
-// console.log(data.coverImage);
-// console.log(Astro.props);
+const { blog, slug } = Astro.props;
 ---
 
 <div class="card">
     <a href={`/blog/${slug}`}>
+        <!-- //TODO - show tags -->
         <div class="card-image">
-            <img src={coverImage || "/src/assets/noimage.png"} />
+            <img src={blog.coverImage || "/src/assets/noimage.png"} />
         </div>
         <div class="card-content">
-            <h2>{title}</h2>
+            <h2>{blog.title}</h2>
         </div>
     </a>
 </div>
@@ -26,7 +27,6 @@ const { title, coverImage, slug } = Astro.props;
         flex-direction: column;
         border: 1px solid #e5e7eb;
         border-radius: 1rem;
-        margin: 10px;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
     .card-image {
@@ -35,7 +35,7 @@ const { title, coverImage, slug } = Astro.props;
     .card-image img {
         width: 100%;
         height: 200px;
-        object-fit: cover;
+        object-fit: contain;
     }
     .card-content {
         padding: 10px;

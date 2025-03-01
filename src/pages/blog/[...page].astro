@@ -1,10 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import type { GetStaticPathsOptions } from "astro";
 
 import Layout from "@layouts/Layout.astro";
-import BlogCard from "@components/features/blog/BlogCard.astro";
 import { queryBlogs } from '@utils';
+import BlogCard from "@components/features/blog/BlogCard.astro";
+import Pagination from '@components/Pagination.astro';
 
 // 1ページに表示する件数を設定
 export const postsPerPage = 16;
@@ -18,7 +18,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 }
 
 // paginate()関数を使用すると、各ページのデータはpageプロパティとして渡される
-// console.log(Astro.props.page.currentPage);
 const { page } = Astro.props;
 ---
 
@@ -30,36 +29,28 @@ const { page } = Astro.props;
     </Fragment>
     <div class="body">
         <h1>Blog</h1>
-        <a href="/blog/authors"><h2>[test] authors</h2></a>
         <h2>{page.currentPage}ページ</h2>
-        {
-            page.data.map(({ data, slug }) => (
-                <>
-                    <BlogCard
-                        title={data.title}
-                        coverImage={data.coverImage}
-                        slug={slug}
-                    />
-                </>
-            ))
-        }
-        <div class="pagination-nav">
-            {page.url.prev ? <a href={page.url.prev}>＜</a> : null}
-            {page.url.next ? <a href={page.url.next}>＞</a> : null}
+        <div class="card-container">
+            {
+                page.data.map(({ data, slug }) => (
+                    <BlogCard slug={slug} blog={data} />
+                ))
+            }
         </div>
+        <Pagination page={page} baseUrl="/blog" />
     </div>
 </Layout>
 
 <style>
     .body {
         margin: 0 auto;
-        max-width: 800px;
-        padding: 1rem;
+        max-width: 950px;
+        padding: 0 0.5rem;
     }
 
-    .pagination-nav {
-        display: flex;
-        justify-content: center;
-        margin: 1rem 0;
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1rem;
     }
 </style>

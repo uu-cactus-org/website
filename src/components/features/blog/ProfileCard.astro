@@ -7,7 +7,7 @@ import BlogCard from './BlogCard.astro';
 
 import twitterIcon from '@assets/logos/x_logo_black.svg';
 import githubIcon from '@assets/logos/github_logo.svg';
-import globeIcon from '@assets/logos/globe2.svg';
+import globeIcon from '@assets/icons/globe2.svg';
 
 
 const MAX_ARTICLES = 6;
@@ -89,7 +89,7 @@ const articles = await queryBlogs({
       <div class="articles-grid">
       {
         articles.map((article) => (
-          <BlogCard title={article.data.title} coverImage={article.data.coverImage} slug={article.slug} />
+          <BlogCard slug={article.slug} blog={article.data} />
         ))
       }
       </div>
