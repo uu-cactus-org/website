@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/BlogLayout.astro
 title: "レジアプリを作ってみた①"
 pubdate: 2019-12-14
 authors: ["higu"]

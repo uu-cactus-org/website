@@ -1,5 +1,4 @@
 ---
-# layout: ../../layouts/BlogLayout.astro
 title: "大学生必見！君はTablacus Explorerを知っているか"
 pubdate: 2023-03-14
 authors: ["tk"]

@@ -36,7 +36,7 @@ const { blog } = Astro.props;
     <div class="body">
         <h1>Blog</h1>
         <a href="/blog/tags">タグ一覧へ</a>
-        <p>#{tag} のタグが付いた記事</p>
+        <p>#{tag} のタグが付いた記事一覧</p>
         <div>
             {
                 blog.map((blogEntry) => (
@@ -44,9 +44,8 @@ const { blog } = Astro.props;
                         <a href={`/blog/${blogEntry.slug}`}>
                             <div>
                                 <BlogCard
-                                    title={blogEntry.data.title}
-                                    coverImage={blogEntry.data.coverImage}
                                     slug={blogEntry.slug}
+                                    blog={blogEntry.data}
                                 />
                             </div>
                         </a>
@@ -61,7 +60,6 @@ const { blog } = Astro.props;
     .body {
         margin: 0 auto;
         max-width: 800px;
-        padding: 1rem;
     }
 
     svg {

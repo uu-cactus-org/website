@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-import Layout from "@layouts/Layout.astro";
+import BlogLayout from '@layouts/BlogLayout.astro';
 
 export async function getStaticPaths() {
     const blogEntries = await getCollection("blog");
@@ -15,10 +15,10 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout>
+<BlogLayout frontmatter={entry.data}>
     <Fragment slot="head">
         <title>{entry.data.title} | 情報研究会 CACTUS</title>
         <meta property="og:type" content="article" />
     </Fragment>
     <Content />
-</Layout>
+</BlogLayout>
