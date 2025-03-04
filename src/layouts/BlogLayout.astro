@@ -8,16 +8,17 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props;
-const pubDate = new Date(frontmatter.pubdate);
 
+const pubDate = new Date(frontmatter.pubdate);
 const pubDateYear = pubDate.getFullYear();
 const pubDateMonth = pubDate.getMonth() + 1;
 const pubDateDay = pubDate.getDate();
 
 const { authors, categories, coverImage, tags } = frontmatter;
+//TODO - BlogHeaderとして分割する
 ---
 
-<Layout class="body">
+<Layout>
 	<slot name="head" slot="head" />
 
     <article>
@@ -37,7 +38,7 @@ const { authors, categories, coverImage, tags } = frontmatter;
             </div>
 
             <div class="pub-date">
-                {pubDateYear}年{pubDateMonth}月{pubDateDay}日
+                公開日: {pubDateYear}年{pubDateMonth}月{pubDateDay}日
             </div>
 
             <div class="author-container">
@@ -72,7 +73,7 @@ const { authors, categories, coverImage, tags } = frontmatter;
             </div>
         </div>
 
-        <div>
+        <div class="markdown-content">
             <slot />
         </div>
 
@@ -105,7 +106,7 @@ const { authors, categories, coverImage, tags } = frontmatter;
         display: block; /* 高さを指定するためにブロック要素にする */
         background: linear-gradient(
             rgba(255, 255, 255, 0) 0,
-            #fff 80%
+            #fff 90%
         ); /* 徐々に透明にする */
         position: absolute;
         top: 0;
@@ -169,5 +170,14 @@ const { authors, categories, coverImage, tags } = frontmatter;
 
     figcaption {
         text-align: center;
+    }
+</style>
+
+<style is:global>
+    .markdown-content h1 {
+        margin: .8em 0;
+        font-size: 1.65em;
+        padding-bottom: .2em;
+        border-bottom: 1px solid #d3d3d3;
     }
 </style>
