@@ -1,5 +1,7 @@
 ---
 import Layout from './Layout.astro';
+import BlogHeader from '@components/features/header/BlogHeader.astro';
+import ReturnButton from '@components/ReturnButton.astro';
 
 import type { BlogSchema } from 'src/content/config';
 
@@ -9,13 +11,6 @@ interface Props {
 
 const { frontmatter } = Astro.props;
 
-const pubDate = new Date(frontmatter.pubdate);
-const pubDateYear = pubDate.getFullYear();
-const pubDateMonth = pubDate.getMonth() + 1;
-const pubDateDay = pubDate.getDate();
-
-const { authors, categories, coverImage, tags } = frontmatter;
-//TODO - BlogHeaderとして分割する
 ---
 
 <Layout>
@@ -23,66 +18,15 @@ const { authors, categories, coverImage, tags } = frontmatter;
 
     <article>
         <div class="header">
-            <div class="back-button">
-                <a href="/blog">
-                    <p>&lt; ブログ一覧へ</p>
-                </a>
-            </div>
-
-            <div class="cover-image">
-                <img src={coverImage || "/src/assets/noimage.png"} alt="cover"/>
-            </div>
-
-            <div class="blog-title">
-                <h1>{frontmatter.title}</h1>
-            </div>
-
-            <div class="pub-date">
-                公開日: {pubDateYear}年{pubDateMonth}月{pubDateDay}日
-            </div>
-
-            <div class="author-container">
-                <p>筆者</p>
-                <div class="author-list">
-                    {
-                        authors.map((author: string) => (
-                            <a href={`/blog/authors/${author}`}>
-                                <div class="author-content">{author}</div>
-                            </a>
-                        ))
-                    }
-                </div>
-            </div>
-
-            <div class="category-content">
-                <a href={`/blog/category/${categories}`}>
-                    {categories}
-                </a>
-            </div>
-
-            <div>
-                <div class="tag-container">
-                    {
-                        tags.map((tag: string) => (
-                            <a href={`/blog/tags/${tag}`}>
-                                <div class="tag-content">#{tag}</div>
-                            </a>
-                        ))
-                    }
-                </div>
-            </div>
+            <BlogHeader frontmatter={frontmatter} />
         </div>
 
-        <div class="markdown-content">
+        <div class="content">
             <slot />
         </div>
 
         <div class="footer">
-            <div class="back-button">
-                <a href="/blog">
-                    <p>&lt; ブログ一覧へ</p>
-                </a>
-            </div>
+            <ReturnButton href="/blog">ブログ一覧へ</ReturnButton>
         </div>
     </article>
 </Layout>
@@ -93,91 +37,40 @@ const { authors, categories, coverImage, tags } = frontmatter;
         max-width: 800px;
     }
 
-    .cover-image {
-        position: relative;
-        max-width: 100%;
-        height: auto;
-    }
-
-    .cover-image::before {
-        content: ""; /* 疑似要素に必須 */
-        width: 100%; /* 幅いっぱい */
-        height: 100%; /* 高さいっぱい */
-        display: block; /* 高さを指定するためにブロック要素にする */
-        background: linear-gradient(
-            rgba(255, 255, 255, 0) 0,
-            #fff 90%
-        ); /* 徐々に透明にする */
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-
-    .content img {
-        text-align: center;
-        max-width: 100%;
-        height: auto;
-        max-width: 800px;
-    }
-
-    .blog-title {
-    }
-
-    div {
+    .header {
         margin-bottom: 1rem;
     }
 
-    a {
-        text-decoration: none;
-        color: inherit;
+    .footer {
+        margin-top: 3rem;
+        margin-bottom: 1rem;
     }
 
-    .author-list {
-        display: flex;
-        gap: 0.5rem;
-    }
 
-    .author-content {
-        background-color: #f0f0f0;
-        padding: 0.5rem 1.5rem;
-        border-radius: 100px;
-    }
-
-    .category-content {
-        background-color: #f0f0f0;
-        padding: 0.5rem 1.5rem;
-        border-radius: 100px;
-    }
-
-    .tag-container {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .tag-content {
-        background-color: #ffffff;
-        padding: 0.5rem 1.5rem;
-        border: 2px solid;
-        border-color: #4b8061;
-        border-radius: 20px;
-    }
-
-    .tag-content:hover {
-        background-color: #80a492;
-        border-color: #80a492;
-        color: #ffffff;
-    }
-
-    figcaption {
-        text-align: center;
-    }
-</style>
-
-<style is:global>
-    .markdown-content h1 {
+    /* markdownの中身のスタイル */
+    
+    .content :global(h1) {
         margin: .8em 0;
         font-size: 1.65em;
-        padding-bottom: .2em;
+        padding-bottom: .3em;
         border-bottom: 1px solid #d3d3d3;
+    }
+
+    .content :global(img) {
+        max-width: 100%;
+        height: auto;
+        max-height: 600px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .content :global(figcaption) {
+        text-align: center;
+        margin-top: -0.5rem;
+    }
+
+    .content :global(code) {
+        /* padding: 10px; */
     }
 </style>

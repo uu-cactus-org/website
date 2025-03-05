@@ -1,0 +1,182 @@
+---
+import { getEntry } from 'astro:content';
+import type { BlogSchema } from 'src/content/config';
+
+interface Props {
+  frontmatter: BlogSchema;
+}
+
+const { frontmatter } = Astro.props;
+
+const pubDate = new Date(frontmatter.pubdate);
+const pubDateYear = pubDate.getFullYear();
+const pubDateMonth = pubDate.getMonth() + 1;
+const pubDateDay = pubDate.getDate();
+
+const { categories, coverImage, tags } = frontmatter;
+
+interface AuthorLike {
+  name: string;
+  icon: string;
+  slug?: string;
+}
+
+const authors: AuthorLike[] = await Promise.all(
+  frontmatter.authors.map(async authorId => {
+    const author = await getEntry('authors', authorId);
+    return {
+      name: author?.data.name ?? authorId,
+      icon: author?.data.profileImage ?? '/src/assets/logos/cactus/cactakun_noimage.webp',
+      slug: author ? authorId : undefined,
+    };
+  })
+);
+---
+
+<div class="cover-image">
+  <img src={coverImage || '/src/assets/noimage.png'} alt="cover" />
+</div>
+
+<div class="blog-title">
+  <h1>{frontmatter.title}</h1>
+</div>
+
+<div class="category-content">
+  <a href={`/blog/category/${categories}`}>
+    {categories}
+  </a>
+</div>
+
+<div class="pub-date">
+  公開日: {pubDateYear}年{pubDateMonth}月{pubDateDay}日
+</div>
+
+<div class="tag-container">
+  {
+    tags.map((tag: string) => (
+      <a href={`/blog/tags/${tag}`}>
+        <div class="tag-content">#{tag}</div>
+      </a>
+    ))
+  }
+</div>
+
+<div class="author-container">
+  <div class="author-list">
+    {
+      authors.map(author => (
+        author.slug
+          ? <a href={`/blog/authors/${author.slug}`}>
+              <div class="author-content">
+                <img src={author.icon} alt="author icon" width="30" height="30" />
+                {author.name}
+              </div>
+            </a>
+          : <span>
+              <div class="author-content">
+                <img src={author.icon} alt="author icon" width="30" height="30" />
+                {author.name}
+              </div>
+            </span>
+      ))
+    }
+  </div>
+</div>  
+
+<style>
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  div {
+    margin: 0.25rem 0;
+  }
+
+  .cover-image {
+    margin-top: 2rem;
+    position: relative;
+    max-width: 100%;
+  }
+
+  .cover-image img {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+  }
+
+  .cover-image::before {
+    content: ''; /* 疑似要素に必須 */
+    width: 100%; /* 幅いっぱい */
+    height: 100%; /* 高さいっぱい */
+    display: block; /* 高さを指定するためにブロック要素にする */
+    background: linear-gradient(
+      rgba(255, 255, 255, 0) 0,
+      #fff 90%
+    ); /* 徐々に透明にする */
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .blog-title h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding-bottom: 0.3rem;
+    border-bottom: 3px #5ca746 solid;
+    margin-bottom: 1rem;
+  }
+
+  .category-content {
+    background-color: #f0f0f0;
+    border: 2px solid #dddddd;
+    border-radius: 8px;
+    padding: 0.4rem 1.2rem;
+    display: inline-block;
+  }
+
+  .pub-date {
+    font-size: small;
+    text-align: right;
+    float: right;
+  }
+
+  .author-list {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .author-content {
+    background-color: #f0f0f0;
+    padding: 0.5rem .9rem;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+  }
+
+  .author-content img {
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+
+  .tag-container {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tag-content {
+    background-color: #ffffff;
+    padding: 0.3rem 1.0rem;
+    border: 2px solid;
+    border-color: #4b8061;
+    border-radius: 20px;
+    font-size: small;
+  }
+
+  .tag-content:hover {
+    background-color: #80a492;
+    border-color: #80a492;
+    color: #ffffff;
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+import leftArrow from '@assets/icons/caret-left-fill.svg';
+import { Image } from 'astro:assets';
+
+interface Props {
+  href: string;
+}
+const { href } = Astro.props;
+---
+
+<div>
+  <a {href}>
+    <Image src={leftArrow} alt="Back" />
+    <span>
+      <slot />
+    </span>
+  </a>
+</div>
+
+<style>
+  div {
+    display: flex;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    align-items: center;
+    background-color: #e6f3e0;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #dae9d8;
+  }
+
+  span {
+    margin-left: 5px;
+  }
+</style>
