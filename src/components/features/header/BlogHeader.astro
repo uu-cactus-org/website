@@ -8,12 +8,14 @@ interface Props {
 
 const { frontmatter } = Astro.props;
 
-const pubDate = new Date(frontmatter.pubdate);
-const pubDateYear = pubDate.getFullYear();
-const pubDateMonth = pubDate.getMonth() + 1;
-const pubDateDay = pubDate.getDate();
+const formatDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${year}年${month}月${day}日`;
+};
 
-const { categories, coverImage, tags } = frontmatter;
+const { category, coverImage, tags } = frontmatter;
 
 interface AuthorLike {
   name: string;
@@ -42,13 +44,21 @@ const authors: AuthorLike[] = await Promise.all(
 </div>
 
 <div class="category-content">
-  <a href={`/blog/category/${categories}`}>
-    {categories}
+  <a href={`/blog/category/${category}`}>
+    {category}
   </a>
 </div>
 
 <div class="pub-date">
-  公開日: {pubDateYear}年{pubDateMonth}月{pubDateDay}日
+  <span>
+    公開日: {formatDate(frontmatter.pubdate)}
+  </span>
+  {frontmatter.updated && (
+    <br />
+    <span>
+      最終更新日: {formatDate(frontmatter.updated)}
+    </span>
+  )}
 </div>
 
 <div class="tag-container">

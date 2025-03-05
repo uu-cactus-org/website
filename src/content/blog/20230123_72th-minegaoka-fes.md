@@ -2,7 +2,7 @@
 title: "第72回峰が丘祭！"
 pubdate: 2023-01-23
 authors: ["uji"]
-categories: "活動報告"
+category: "活動報告"
 tags: ["学祭"]
 coverImage: "../../../src/assets/noimage.png"
 draft: false

@@ -2,7 +2,7 @@
 title: "[新入生編]大学で使うノートPCの選び方"
 pubdate: 2023-03-06
 authors: ["shirai"]
-categories: "未分類"
+category: "未分類"
 tags: ["ノートパソコン"]
 coverImage: ""
 draft: false

@@ -2,7 +2,7 @@
 title: "ゲームでプログラミング！？"
 pubdate: 2019-12-20
 authors: ["higu"]
-categories: "雑談"
+category: "雑談"
 tags: ["ゲーム"]
 coverImage: "../../../src/assets/post/20191220/netgame_chudoku_haijin.png"
 draft: false

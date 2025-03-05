@@ -2,7 +2,7 @@
 title: "新入生向け説明会！"
 pubdate: 2022-04-05
 authors: ["uji"]
-categories: "未分類"
+category: "未分類"
 tags: ["新歓"]
 coverImage: "../../../src/assets/noimage.png"
 draft: false

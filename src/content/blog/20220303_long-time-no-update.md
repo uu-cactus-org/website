@@ -2,7 +2,7 @@
 title: "気が付いたら1年近く更新していなかった…！"
 pubdate: 2022-03-03
 authors: ["uji"]
-categories: "雑談"
+category: "雑談"
 tags: ["自己紹介"]
 coverImage: "../../../src/assets/noimage.png"
 draft: false

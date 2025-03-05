@@ -2,7 +2,7 @@
 title: "プログラミングってどう調べるの？方法は？やり方は？調べてみた！"
 pubdate: 2019-07-23
 authors: ["higu"] 
-categories: "雑談"
+category: "雑談"
 tags: ["プログラミング"] 
 coverImage: "../../../src/assets/noimage.png"
 draft: false

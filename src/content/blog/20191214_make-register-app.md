@@ -2,7 +2,7 @@
 title: "レジアプリを作ってみた①"
 pubdate: 2019-12-14
 authors: ["higu"]
-categories: "制作物紹介"
+category: "制作物紹介"
 tags: ["Unity", "学祭"]
 coverImage: "../../../src/assets/noimage.png"
 draft: false

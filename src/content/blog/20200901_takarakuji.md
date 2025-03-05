@@ -2,7 +2,7 @@
 title: "CACTUS制作のゲームで遊ぼう! 【宝くじクリッカー】"
 pubdate: 2020-09-01
 authors: ["Yuineko"]
-categories: "制作物紹介"
+category: "制作物紹介"
 tags: ["ゲーム"]
 coverImage: "../../../src/assets/post/20200901/aa.png"
 draft: false

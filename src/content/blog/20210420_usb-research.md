@@ -2,7 +2,7 @@
 title: "もらったUSBを調査してみた"
 pubdate: 2021-04-20
 authors: ["TOMI"]
-categories: "雑談"
+category: "雑談"
 tags: ["USB"]
 coverImage: "../../../src/assets/post/20210420/computer_usb_memory.png"
 draft: false

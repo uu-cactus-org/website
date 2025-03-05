@@ -2,7 +2,7 @@
 title: "Visual Studio覚書"
 pubdate: 2021-01-19
 authors: ["higu"]
-categories: "雑談"
+category: "雑談"
 tags: ["プログラミング"]
 coverImage: "../../../src/assets/noimage.png"
 draft: false
