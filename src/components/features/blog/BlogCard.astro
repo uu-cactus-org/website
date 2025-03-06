@@ -1,5 +1,8 @@
 ---
-import type { BlogSchema } from 'src/content/config';
+import { Image } from 'astro:assets';
+import type { BlogSchema } from '@config';
+
+import noimage from '@assets/noimage.png';
 
 interface Props {
     slug: string;
@@ -7,13 +10,15 @@ interface Props {
 }
 
 const { blog, slug } = Astro.props;
+
+const coverImage = blog.coverImage ?? noimage;
 ---
 
 <div class="card">
     <a href={`/blog/${slug}`}>
         <!-- //TODO - show tags -->
         <div class="card-image">
-            <img src={blog.coverImage || "/src/assets/noimage.png"} />
+            <Image src={coverImage} alt="cover image" />
         </div>
         <div class="card-content">
             <h2>{blog.title}</h2>

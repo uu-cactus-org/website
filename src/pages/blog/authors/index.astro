@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-
+import { Image } from 'astro:assets';
 import Layout from '@layouts/Layout.astro';
+import { getProfileImage } from '@utils';
 
 //TODO - ページ分けが必要??
 const authors = await getCollection('authors');
@@ -19,7 +20,12 @@ const authors = await getCollection('authors');
         authors.map((author) => (
           <a href={`/blog/authors/${author.id}`} class="author-card">
             <div class="author-image">
-              <img src={author.data.profileImage} alt="profile icon" width="50" height="50" />
+              <Image
+                src={getProfileImage(author.data.profileImage)}
+                alt="profile icon"
+                width="50"
+                height="50"
+              />
             </div>
             <div>
               <span class="author-name">{author.data.name}</span><br />

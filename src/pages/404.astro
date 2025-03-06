@@ -1,5 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '@layouts/Layout.astro';
+
+import cactakun from '@assets/logos/cactus/cactakun.png';
 ---
 
 <Layout>
@@ -11,8 +14,8 @@ import Layout from '@layouts/Layout.astro';
       <h1>ページがないよ</h1>
     </div>
     <div>
-      <img
-        src="/src/assets/logos/cactus/cactakun.png"
+      <Image
+        src={cactakun}
         width={350}
         height={350}
         alt="cactakun"

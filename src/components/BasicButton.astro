@@ -1,19 +1,37 @@
 ---
+import { Image } from 'astro:assets';
+import arrowRight from '@assets/icons/arrow-right-solid.svg';
+
+interface Props {
+    buttonText: string;
+    link: string;
+}
+
 const { buttonText, link } = Astro.props;
 ---
 
 <div class="content">
     <a href={link} class="button">
-        {buttonText}
-        <img src="src/assets/icons/arrow-right-solid.svg" alt="" />
+        <div class="text">
+            {buttonText}
+        </div>
+        <div class="img-container">
+            <Image src={arrowRight} alt="right arrow" class="img" width={30} height={30} />
+        </div>
     </a>
 </div>
 
 <style>
     .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+    .text {
+        display: inline-block;
         text-align: center;
         font-size: 1em;
-        margin: 10px;
     }
     .button {
         background-color: #f1f1f1;
@@ -22,7 +40,10 @@ const { buttonText, link } = Astro.props;
         text-decoration: none;
         color: #111827;
     }
-    img {
+    .img-container {
+        display: inline-block;
+    }
+    .img {
         height: 1em;
     }
 </style>
