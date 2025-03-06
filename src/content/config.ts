@@ -29,15 +29,18 @@ const authors = defineCollection({
                 z.object({
                     label: z.string(),
                     url: z.string().url(),
-                    icon: image(),
+                    icon: z.union([
+                        image(),
+                        z.string()
+                    ])
                 }).array().max(3)
             )
         }),
         status: z.string(),
         profileImage: z.union([
             image(),
-            z.string().url()
-        ]).optional(),
+            z.string()
+        ]).optional()
     }),
 });
 export type AuthorSchema = InferEntrySchema<'authors'>;

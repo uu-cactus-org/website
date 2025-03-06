@@ -20,7 +20,7 @@ const authors = await getCollection('authors');
         authors.map((author) => (
           <a href={`/blog/authors/${author.id}`} class="author-card">
             <div class="author-image">
-              <Image
+              <img
                 src={getProfileImage(author.data.profileImage)}
                 alt="profile icon"
                 width="50"
