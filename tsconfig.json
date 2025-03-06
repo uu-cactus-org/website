@@ -23,7 +23,10 @@
       ],
       "@utils": [
         "src/utils/index.ts"
-      ]
+      ],
+      "@config": [
+        "src/content/config"
+      ],
     },
   }
 }

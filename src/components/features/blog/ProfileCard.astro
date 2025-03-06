@@ -1,9 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import type { InferEntrySchema } from 'astro:content';
 
 import { queryBlogs } from '@utils';
 import BlogCard from './BlogCard.astro';
+import type { AuthorSchema } from '@config';
 
 import twitterIcon from '@assets/logos/x_logo_black.svg';
 import githubIcon from '@assets/logos/github_logo.svg';
@@ -14,7 +14,7 @@ const MAX_ARTICLES = 6;
 // const MAX_PROJECTS = 6;
 
 interface Props {
-  author: InferEntrySchema<'authors'>;
+  author: AuthorSchema;
 }
 
 const { author } = Astro.props;
