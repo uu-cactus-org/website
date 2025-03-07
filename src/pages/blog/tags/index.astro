@@ -8,7 +8,7 @@ const sortedBlogEntries = sortedblogEntriesList;
 const tags = sortedBlogEntries.map((blog) => blog.data.tags).flat();
 
 // タグの重複を削除した配列を作成
-const tagCountArray = tags.reduce((acc: [string, number][], tag: string) => {
+const tagCountArray: [string, number][] = tags.reduce((acc: [string, number][], tag: string) => {
     const existingTag = acc.find(([t]) => t === tag);
     if (existingTag) {
         existingTag[1] += 1;
@@ -18,7 +18,7 @@ const tagCountArray = tags.reduce((acc: [string, number][], tag: string) => {
     return acc;
 }, []);
 
-console.log(tagCountArray);
+tagCountArray.sort((a, b) => b[1] - a[1]); // 記事数が多い順にソート
 ---
 
 <Layout>
@@ -34,7 +34,7 @@ console.log(tagCountArray);
                     <a href={`/blog/tags/${tag[0]}`}>
                         <div class="tag-content">
                             <p>
-                                {tag[0]} ({tag[1]})
+                                #{tag[0]} ({tag[1]})
                             </p>
                         </div>
                     </a>

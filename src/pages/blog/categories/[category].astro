@@ -4,38 +4,35 @@ import { sortedblogEntriesList } from '@utils';
 import BlogCard from '@components/features/blog/BlogCard.astro';
 
 export async function getStaticPaths() {
-  const sortedBlogEntries = sortedblogEntriesList;
-
-  const uniqueTags: string[] = [
-    ...new Set(sortedBlogEntries.flatMap((blog) => blog.data.tags)),
+  const uniqueCategories: string[] = [
+    ...new Set(sortedblogEntriesList.map((blog) => blog.data.category)),
   ];
 
-  return uniqueTags.map((tag) => {
-    const filteredBlog = sortedBlogEntries.filter((blog) =>
-      blog.data.tags.includes(tag)
+  return uniqueCategories.map((category) => {
+    const filteredBlog = sortedblogEntriesList.filter(
+      (blog) => blog.data.category === category
     );
+    
     return {
-      params: { tag },
+      params: { category: category },
       props: { blog: filteredBlog },
     };
   });
 }
 
-// 記事の中にタグが含まれていないとから文字列を渡してしまい，エラーになるので，その対策が必要
-
-const { tag } = Astro.params;
+const { category } = Astro.params;
 const { blog } = Astro.props;
 ---
 
 <Layout>
   <Fragment slot="head">
-    <title>#{tag}の記事 | 情報研究会 CACTUS</title>
+    <title>カテゴリ: {category}の記事 | 情報研究会 CACTUS</title>
     <meta property="og:type" content="article" />
   </Fragment>
   <div class="body">
     <h1>Blog</h1>
-    <a href="/blog/tags">タグ一覧へ</a>
-    <p>#{tag} のタグが付いた記事一覧</p>
+    <!-- <a href="/blog/categories">カテゴリ一覧へ</a> -->
+    <p>カテゴリ: {category} の記事一覧</p>
     <div class="container">
       {
         blog.map((blogEntry) => (
