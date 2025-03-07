@@ -1,40 +1,118 @@
 <div class="nav-container">
-    <div class="header-content">
-        <a href="/about">ABOUT</a>
-    </div>
-    <div class="header-content">
-        <a href="/blog">BLOG</a>
-    </div>
-    <div class="header-content">
-        <a href="/game">GAME</a>
-    </div>
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <nav class="menu">
+    <div class="header-content"><a href="/about">ABOUT</a></div>
+    <div class="header-content"><a href="/blog">BLOG</a></div>
+    <div class="header-content"><a href="/game">GAME</a></div>
+  </nav>
 </div>
 
 <style>
+  .nav-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #31a33d;
+    padding-right: 1.5rem;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.5rem;
+  }
+
+  .header-content a {
+    text-decoration: none;
+    color: #0c2509;
+    font-weight: bold;
+    font-size: 1.15rem;
+    margin: 1rem;
+  }
+
+  .header-content:hover {
+    background-color: #369e40;
+    border-radius: 8px;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    margin-right: 0.7rem;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 30px;
+    height: 4px;
+    background: #0c2509;
+    transition: 0.3s;
+  }
+
+  .menu {
+    display: flex;
+  }
+
+  input#menu-toggle {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+      position: relative;
+      z-index: 101;
+    }
+
+    /* hide menu by default */
+    .menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(49, 163, 61, 0.95);
+      padding-top: 6rem;
+      transition: 0.3s;
+      flex-direction: column;
+      z-index: 100;
+    }
+
+    input#menu-toggle:checked ~ .menu {
+      left: 0;
+    }
+
+    /* hamburger animations */
+    input#menu-toggle:checked ~ .hamburger span:nth-child(1) {
+      transform: rotate(45deg) translate(6.2px, 6.2px);
+    }
+
+    input#menu-toggle:checked ~ .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    input#menu-toggle:checked ~ .hamburger span:nth-child(3) {
+      transform: rotate(-45deg) translate(6.2px, -6.2px);
+    }
+
+    /* hide nav bar */
     .nav-container {
-        display: flex;
-        justify-content: space-around;
-        background-color: #31a33d;
-        padding-right: 1.5rem;
+      justify-content: flex-end;
+      padding: 0.6rem;
     }
 
-    .nav-container a {
-        text-decoration: none;
-        color: #0c2509;
-        font-weight: bold;
-        font-size: 1.15rem;
-        margin: 1rem;
+    .menu .header-content {
+      display: block;
+      text-align: center;
+      padding: 15px;
     }
-
-    .header-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 1.5rem;
-    }
-
-    .header-content:hover {
-        background-color: #369e40;
-        border-radius: 8px;
-    }
+  }
 </style>
