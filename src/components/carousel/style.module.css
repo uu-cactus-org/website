@@ -25,7 +25,7 @@
 .embla__slide__image {
   width: 100%;
   object-fit: contain;
-  border-radius: 1.3rem;
+  border-radius: 10px;
 }
 .embla__controls {
   display: grid;

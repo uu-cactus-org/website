@@ -169,6 +169,11 @@ const profileImage = getProfileImage(author.profileImage);
     flex-grow: 1;
   }
 
+  .profile-content hr {
+    margin-top: -0.8rem;
+    margin-bottom: 2rem;
+  }
+
   .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -218,7 +223,10 @@ const profileImage = getProfileImage(author.profileImage);
   .profile-content {
     width: 100%;
     margin-left: 0; /* PC用の余白をリセット */
-    margin-top: 2rem; /* 上に余白を追加 */
+  }
+
+  .profile-content hr {
+    margin-bottom: 1.5rem;
   }
 }
 </style>
