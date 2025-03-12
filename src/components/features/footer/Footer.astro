@@ -1,27 +1,54 @@
 ---
 import { Image } from "astro:assets";
+import { links } from "../header/HeaderNav.astro";
 
 import logo from "@assets/logos/cactus/header.webp";
+import github from "@assets/logos/github_logo.svg";
+import twitter from "@assets/logos/x_logo_black.svg";
 ---
 
 <footer>
     <div class="content">
-        <div>
+        <div class="logo">
             <a href="/">
-                <div class="logo">
-                    <Image
-                        src={logo}
-                        alt="CACTUS logo"
-                        width={210}
-                        height={60}
-                    />
-                </div>
+                <Image src={logo} alt="CACTUS logo" width={210} height={60} />
             </a>
         </div>
-        <div>
-            <p>情報研究会 CACTUS</p>
+        <div class="nav">
+            <div class="links">
+                {
+                    links.map((link) => (
+                        <div class="link">
+                            <a href={link.href}>{link.label}</a>
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="socials">
+                <div class="link">
+                    <a href="https://github.com/uu-cactus-org/website">
+                        <Image
+                            src={github}
+                            alt="GitHub logo"
+                            width={30}
+                            height={30}
+                        />
+                    </a>
+                </div>
+                <div class="link">
+                    <a href="https://x.com/uu_cactus">
+                        <Image
+                            src={twitter}
+                            alt="Twitter logo"
+                            width={30}
+                            height={30}
+                        />
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="copyright">
         <p>© 2025 情報研究会 CACTUS</p>
     </div>
@@ -30,32 +57,99 @@ import logo from "@assets/logos/cactus/header.webp";
 <style>
     footer {
         background-color: #31a33d;
-        height: 20vh;
-        padding-top: 10px;
-        padding-bottom: 20px;
         display: grid;
-        grid-template-rows: 80% 20%;
-    }
-
-    .logo {
-        display: flex;
-        justify-content: left;
-        align-items: center;
-        height: 100%;
-        margin-left: 50px;
+        padding: 30px 50px;
     }
 
     .content {
         display: grid;
-        grid-template-columns: 50% 50%;
-        text-align: center;
+        grid-template-columns: 20% 20% 20% 40%;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+    }
+
+    .logo img {
+        display: block;
+    }
+
+    .nav {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        grid-column: 4;
+    }
+    
+    .links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .link a {
+        text-decoration: none;
+        color: #0c2509;
+        margin: 0.5rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .links .link:hover {
+        background-color: #369e40;
+        border-radius: 5px;
+    }
+
+    .socials {
+        margin-top: 1rem;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-column: 4;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .copyright {
-        text-align: center;
+        margin-top: 2rem;
     }
 
     .copyright p {
-        font-weight: bold;
+        text-align: center;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        footer {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .links {
+            grid-column: 1;
+            grid-template-columns: repeat(3, 1fr);
+            margin: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        .link a {
+            font-size: 1rem;
+        }
+
+        .copyright p {
+            font-size: 0.8rem;
+        }
     }
 </style>

@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 
 import styles from "./hamburger.module.css";
 import hanburgerIcon from '@assets/icons/list.svg';
