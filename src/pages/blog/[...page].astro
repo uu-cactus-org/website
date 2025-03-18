@@ -21,12 +21,11 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 const { page } = Astro.props;
 ---
 
-<Layout>
+<Layout title={`${page.currentPage}ページ目 | 情報研究会 CACTUS`}>
     <Fragment slot="head">
-        <title>
-            {Astro.props.page.currentPage}ページ目 | 情報研究会 CACTUS
-        </title>
+        <meta property="og:type" content="article" />
     </Fragment>
+    
     <div class="body">
         <h1>Blog</h1>
         <h2>{page.currentPage}ページ</h2>

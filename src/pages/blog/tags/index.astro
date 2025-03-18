@@ -21,11 +21,11 @@ const tagCountArray: [string, number][] = tags.reduce((acc: [string, number][], 
 tagCountArray.sort((a, b) => b[1] - a[1]); // 記事数が多い順にソート
 ---
 
-<Layout>
+<Layout title="タグ一覧 | 情報研究会 CACTUS">
     <Fragment slot="head">
-        <title>タグ一覧 | 情報研究会 CACTUS</title>
         <meta property="og:type" content="article" />
     </Fragment>
+    
     <div class="body">
         <h1>タグ一覧</h1>
         <div class="tag-container">

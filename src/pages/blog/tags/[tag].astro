@@ -27,11 +27,11 @@ const { tag } = Astro.params;
 const { blog } = Astro.props;
 ---
 
-<Layout>
+<Layout title={`${tag}の記事 | 情報研究会 CACTUS`}>
   <Fragment slot="head">
-    <title>#{tag}の記事 | 情報研究会 CACTUS</title>
     <meta property="og:type" content="article" />
   </Fragment>
+
   <div class="body">
     <h1>Blog</h1>
     <a href="/blog/tags">タグ一覧へ</a>

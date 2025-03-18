@@ -24,11 +24,11 @@ const { category } = Astro.params;
 const { blog } = Astro.props;
 ---
 
-<Layout>
+<Layout title={`カテゴリ: ${category}の記事 | 情報研究会 CACTUS`}>
   <Fragment slot="head">
-    <title>カテゴリ: {category}の記事 | 情報研究会 CACTUS</title>
     <meta property="og:type" content="article" />
   </Fragment>
+  
   <div class="body">
     <h1>Blog</h1>
     <!-- <a href="/blog/categories">カテゴリ一覧へ</a> -->

@@ -16,9 +16,5 @@ const { Content } = await entry.render();
 ---
 
 <BlogLayout frontmatter={entry.data}>
-    <Fragment slot="head">
-        <title>{entry.data.title} | 情報研究会 CACTUS</title>
-        <meta property="og:type" content="article" />
-    </Fragment>
     <Content />
 </BlogLayout>

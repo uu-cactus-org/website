@@ -3,10 +3,14 @@ import Base from "./Base.astro";
 import Header from '@components/features/header/Header.astro';
 import Footer from '@components/features/footer/Footer.astro';
 
-//TODO - propsでタイトルを受け取る 他のheaderはslotから
+interface Props {
+	title?: string;
+}
+
+const { title } = Astro.props;
 ---
 
-<Base>
+<Base {title}>
 	<slot name="head" slot="head" />
 
 	<Header />

@@ -16,11 +16,11 @@ const authorEntry = await getEntry('authors', authorId);
 const author = authorEntry.data;
 ---
 
-<Layout>
+<Layout title={`${author.name} のプロフィール | 情報研究会 CACTUS`}>
   <Fragment slot="head">
-    <title>{author.name} のプロフィール | 情報研究会 CACTUS</title>
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="profile" />
   </Fragment>
+  
   <div class="body">
     <ProfileCard {author} />
     <br />
