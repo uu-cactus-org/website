@@ -3,15 +3,25 @@ import Layout from './Layout.astro';
 import BlogHeader from '@components/features/header/BlogHeader.astro';
 import ReturnButton from '@components/ReturnButton.astro';
 
+import type { MarkdownHeading } from 'astro';
 import type { BlogSchema } from '@config';
 
 import noimage from '@assets/noimage.png';
 
 interface Props {
     frontmatter: BlogSchema;
+    headings: MarkdownHeading[];
 }
 
 const { frontmatter } = Astro.props;
+
+const minHeadingDepth = Math.min(...Astro.props.headings.map((heading) => heading.depth));
+const headings = Astro.props.headings
+    .filter((heading) => heading.depth <= 3)
+    .map((heading) => ({
+        ...heading,
+        relativeDepth: heading.depth - minHeadingDepth, // ネストの深さを調節
+    }));
 ---
 
 <Layout title={`${frontmatter.title} | 情報研究会 CACTUS`}>
@@ -19,31 +29,104 @@ const { frontmatter } = Astro.props;
         <meta property="og:type" content="article" />
         <meta property="og:title" content={frontmatter.title} />
         <meta property="og:image" content={frontmatter.coverImage?.src ?? noimage.src} />
-        
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={frontmatter.title} />
         <meta name="twitter:image" content={frontmatter.coverImage?.src ?? noimage.src} />
     </Fragment>
     
     <article>
-        <div class="header">
-            <BlogHeader frontmatter={frontmatter} />
+        <div class="body" id="top">
+            <div class="header">
+                <BlogHeader frontmatter={frontmatter} />
+            </div>
+            
+            <div class="content">
+                <slot />
+            </div>
+            
+            <div class="footer">
+                <ReturnButton href="/blog">ブログ一覧へ</ReturnButton>
+            </div>
         </div>
 
-        <div class="content">
-            <slot />
-        </div>
-
-        <div class="footer">
-            <ReturnButton href="/blog">ブログ一覧へ</ReturnButton>
+        <div class="sidebar">
+            <a href="#top">
+                <span>目次</span>
+            </a>
+            <ul>
+                {headings.map((heading) => (
+                    <li class={`m${heading.relativeDepth}`}>
+                        <a href={`#${heading.slug}`}>{heading.text}</a>
+                    </li>
+                ))}
+            </ul>
         </div>
     </article>
 </Layout>
 
 <style>
+    body {
+        background-color: #f6f6f6;
+    }
+    
     article {
+        max-width: 1200px;
         margin: 0 auto;
-        max-width: 850px;
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    
+    .body {
+        flex-grow: 1;
+        max-width: 950px;
+        background-color: white;
+        padding: 32px 56px;
+        border-radius: 10px;
+    }
+    
+    .sidebar {
+        flex: 0 0 250px;
+        position: sticky;
+        top: 2rem;
+        height: fit-content;
+        padding: 32px 16px;
+    }
+
+    .sidebar span {
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+    .sidebar h2 {
+        font-size: 1.2rem;
+        margin: 0;
+        color: rgb(68, 68, 68);
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar li {
+        margin-bottom: 4px;
+    }
+    
+    .sidebar a {
+        display: block;
+        width: 100%;
+        color: rgb(95, 95, 95);
+        text-decoration: none;
+        padding: 3px 6px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+
+    .sidebar a:hover {
+        background-color: #f0f0f0;
     }
 
     .header {
@@ -81,5 +164,46 @@ const { frontmatter } = Astro.props;
 
     .content :global(code) {
         /* padding: 10px; */
+    }
+
+    .content :global(a) {
+        color: #0070f3;
+        text-decoration: none;
+    }
+
+    .content :global(a:hover) {
+        text-decoration: underline;
+    }
+
+    .m1 { margin-left: 1em; }
+    .m2 { margin-left: 2em; }
+
+    @media (max-width: 1200px) {
+        .body {
+            padding: 24px;
+            box-sizing: border-box;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+    }
+
+    @media (max-width: 950px) {
+        body {
+            background-color: inherit;
+        }
+        
+        article {
+            flex-direction: column;
+            max-width: 100%;
+        }
+
+        .body {
+            width: 100%;
+            padding: 0;
+        }
+
+        .sidebar {
+            display: none;
+        }
     }
 </style>

@@ -177,6 +177,7 @@ const coverImage = frontmatter.coverImage ?? noimage;
   .tag-container {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
   .tag-content {
@@ -192,5 +193,15 @@ const coverImage = frontmatter.coverImage ?? noimage;
     background-color: #80a492;
     border-color: #80a492;
     color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .blog-title h1 {
+      font-size: 1.5rem;
+    }
+
+    .tag-content {
+      padding: 0.2rem 0.8rem;
+    }
   }
 </style>
