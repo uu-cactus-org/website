@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { BlogSchema } from '@config';
+import { formatDate } from '@utils';
 
 import noimage from '@assets/noimage.png';
 
@@ -15,13 +16,26 @@ const coverImage = blog.coverImage ?? noimage;
 ---
 
 <div class="card">
-    <a href={`/blog/${slug}`}>
-        <!-- //TODO - show tags -->
-        <div class="card-image">
+    <a href={`/blog/${slug}`} aria-label={blog.title} class="card-link">
+        <div class="cover-image">
             <Image src={coverImage} alt="cover image" />
         </div>
-        <div class="card-content">
-            <h2>{blog.title}</h2>
+        <div class="card-body">
+            <div class="title">
+                <h2>{blog.title}</h2>
+            </div>
+            <div class="meta">
+                <div class="tags">
+                    {blog.tags.map((tag) => (
+                        <span>#{tag}</span>
+                    ))}
+                </div>
+                <div class="date">
+                    <time>
+                        {formatDate(blog.updated ?? blog.pubdate)}
+                    </time>
+                </div>
+            </div>
         </div>
     </a>
 </div>
@@ -31,35 +45,84 @@ const coverImage = blog.coverImage ?? noimage;
         display: flex;
         flex-direction: column;
         border: 1px solid #e5e7eb;
-        border-radius: 1rem;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 1rem;
+        overflow: hidden; /* 画像がはみ出さないように */
     }
-    .card-image {
-        border-bottom: 1px solid #e5e7eb;
-    }
-    .card-image img {
-        width: 100%;
-        height: 200px;
-        object-fit: contain;
-    }
-    .card-content {
-        padding: 10px;
-    }
-    h2 {
-        margin: 0;
-    }
+
     a {
         text-decoration: none;
         color: #111827;
     }
-    .button {
-        background-color: #f1f1f1;
-        padding: 10px;
-        border-radius: 2rem;
-        text-decoration: none;
-        color: #111827;
+
+    .card-link {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
     }
-    img {
-        height: 1em;
+
+    .cover-image {
+        border-bottom: 1px solid #e5e7eb;
+        aspect-ratio: 16 / 9;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .cover-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        border-radius: inherit;
+    }
+    
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        flex-grow: 1;
+    }
+
+    .title h2 {
+        margin: 0;
+        font-size: 1.4em;
+    }
+
+    .meta {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-top: 0.3rem;
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        font-size: 0.9em;
+    }
+
+    .date {
+        font-size: 0.75em;
+        color: #6b7280;
+        text-align: right;
+    }
+
+    @media (max-width: 768px) {        
+        .title h2 {
+            font-size: 1.1em;
+        }
+
+        .tags {
+            font-size: 0.8em;
+        }
+
+        .date {
+            font-size: 0.7em;
+        }
     }
 </style>

@@ -1,2 +1,1 @@
-export * from './getProfileImage';
-export * from './queryBlogs';
+export * from './blogs';

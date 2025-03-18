@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
-import { getProfileImage } from '@utils';
+import { formatDate, getProfileImage } from '@utils';
 import type { BlogSchema } from '@config';
 
 import noimage from '@assets/noimage.png';
@@ -11,14 +11,6 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props;
-
-const formatDate = (date: Date) => {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return `${year}年${month}月${day}日`;
-};
-
 const { category, tags } = frontmatter;
 
 interface AuthorLike {
@@ -149,8 +141,13 @@ const coverImage = frontmatter.coverImage ?? noimage;
     background-color: #f0f0f0;
     border: 2px solid #dddddd;
     border-radius: 8px;
-    padding: 0.4rem 1.2rem;
     display: inline-block;
+    position: relative;
+  }
+
+  .category-content a {
+    display: block;
+    padding: 0.4rem 1.2rem;
   }
 
   .pub-date {
