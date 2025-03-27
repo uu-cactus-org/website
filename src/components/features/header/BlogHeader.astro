@@ -33,64 +33,63 @@ const authors: AuthorLike[] = await Promise.all(
 
 const coverImage = frontmatter.coverImage ?? noimage;
 ---
+<header>
+  <div class="cover-image">
+    <Image src={coverImage} alt="cover" />
+  </div>
 
-<div class="cover-image">
-  <Image src={coverImage} alt="cover" />
-</div>
-
-<div class="blog-title">
   <h1>{frontmatter.title}</h1>
-</div>
 
-<div class="category-content">
-  <a href={`/blog/categories/${category}`}>
-    {category}
-  </a>
-</div>
+  <div class="category-content">
+    <a href={`/blog/categories/${category}`}>
+      {category}
+    </a>
+  </div>
 
-<div class="pub-date">
-  <span>
-    公開日: {formatDate(frontmatter.pubdate)}
-  </span>
-  {frontmatter.updated && (
-    <br />
-    <span>
-      最終更新日: {formatDate(frontmatter.updated)}
-    </span>
-  )}
-</div>
+  <div class="date">
+    {frontmatter.updated && (
+      <time datetime={frontmatter.updated.toISOString()} itemprop="datemodified">
+        最終更新日: {formatDate(frontmatter.updated)}
+      </time>
+    )}
+    
+    <time datetime={frontmatter.pubdate.toISOString()} itemprop="datepublished">
+      投稿日: {formatDate(frontmatter.pubdate)}
+    </time>
+  </div>
 
-<div class="tag-container">
-  {
-    tags.map((tag: string) => (
-      <a href={`/blog/tags/${tag}`}>
-        <div class="tag-content">#{tag}</div>
-      </a>
-    ))
-  }
-</div>
-
-<div class="author-container">
-  <div class="author-list">
+  <div class="tag-container">
     {
-      authors.map(author => (
-        author.slug
-          ? <a href={`/blog/authors/${author.slug}`}>
-              <div class="author-content">
-                <img src={author.icon} alt="author icon" width="30" height="30" />
-                {author.name}
-              </div>
-            </a>
-          : <span>
-              <div class="author-content">
-                <img src={author.icon} alt="author icon" width="30" height="30" />
-                {author.name}
-              </div>
-            </span>
+      tags.map((tag: string) => (
+        <a href={`/blog/tags/${tag}`}>
+          <div class="tag-content">#{tag}</div>
+        </a>
       ))
     }
   </div>
-</div>  
+
+  <div class="author-container">
+    <div class="author-list">
+      {
+        authors.map(author => (
+          author.slug
+            ? <a href={`/blog/authors/${author.slug}`}>
+                <div class="author-content">
+                  <img src={author.icon} alt="author icon" width="30" height="30" />
+                  {author.name}
+                </div>
+              </a>
+            : <span>
+                <div class="author-content">
+                  <img src={author.icon} alt="author icon" width="30" height="30" />
+                  {author.name}
+                </div>
+              </span>
+        ))
+      }
+    </div>
+  </div>  
+</header>
 
 <style>
   a {
@@ -129,7 +128,7 @@ const coverImage = frontmatter.coverImage ?? noimage;
     left: 0;
   }
 
-  .blog-title h1 {
+  h1 {
     font-size: 1.8rem;
     font-weight: bold;
     padding-bottom: 0.3rem;
@@ -150,10 +149,14 @@ const coverImage = frontmatter.coverImage ?? noimage;
     padding: 0.4rem 1.2rem;
   }
 
-  .pub-date {
+  .date {
     font-size: small;
     text-align: right;
     float: right;
+  }
+  
+  time {
+    display: block;
   }
 
   .author-list {
@@ -196,7 +199,7 @@ const coverImage = frontmatter.coverImage ?? noimage;
   }
 
   @media (max-width: 768px) {
-    .blog-title h1 {
+    h1 {
       font-size: 1.5rem;
     }
 

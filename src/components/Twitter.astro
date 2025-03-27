@@ -8,7 +8,7 @@ const base = "https://publish.twitter.com/oembed";
 const baseUrl = new URL(base);
 baseUrl.searchParams.set("url", url);
 baseUrl.searchParams.set("omit_script", "true");
-baseUrl.searchParams.set("maxwidth", "500");
+baseUrl.searchParams.set("maxwidth", "600");
 baseUrl.searchParams.set("maxheight", "500");
 
 const tweet = await fetch(baseUrl.toString())
@@ -19,7 +19,9 @@ const tweet = await fetch(baseUrl.toString())
 {
     tweet && (
         <>
-            <div set:html={tweet.html} />
+            <div class="twitter-tweet-wrapper">
+                <div class="twitter-tweet" set:html={tweet.html} />
+            </div>
             <script
                 async
                 src="https://platform.twitter.com/widgets.js"
@@ -29,3 +31,30 @@ const tweet = await fetch(baseUrl.toString())
         </>
     )
 }
+
+<style is:global>
+    .twitter-tweet-wrapper {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        /* height: 50%; */
+        max-width: 800px;
+        margin: 0 auto;
+        margin: 2px;
+        box-sizing: border-box;
+    }
+
+    .twitter-tweet {
+        display: flex;
+        justify-content: center;
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .twitter-tweet-wrapper iframe {
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+</style>

@@ -13,6 +13,7 @@ interface Props {
 const { blog, slug } = Astro.props;
 
 const coverImage = blog.coverImage ?? noimage;
+const date = blog.updated ?? blog.pubdate;
 ---
 
 <div class="card">
@@ -31,8 +32,8 @@ const coverImage = blog.coverImage ?? noimage;
                     ))}
                 </div>
                 <div class="date">
-                    <time>
-                        {formatDate(blog.updated ?? blog.pubdate)}
+                    <time datetime={date.toISOString()}>
+                        {formatDate(date)}
                     </time>
                 </div>
             </div>
