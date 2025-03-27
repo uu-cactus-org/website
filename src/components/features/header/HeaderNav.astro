@@ -1,6 +1,8 @@
 ---
 import Hamburger from './Hamburger';
 
+import { variables } from '@styles/variables';
+
 export const links: { href: string, label: string }[] = [
   { href: '/about', label: 'ABOUT' },
   { href: '/blog', label: 'BLOG' },
@@ -21,11 +23,11 @@ export const links: { href: string, label: string }[] = [
   </nav>
 </div>
 
-<style>
+<style define:vars={{ ...variables }}>
   .nav-container {
     display: flex;
     justify-content: space-around;
-    background-color: #31a33d;
+    background-color: var(--cactus);
   }
 
   .hamburger {
@@ -53,7 +55,7 @@ export const links: { href: string, label: string }[] = [
     text-decoration: none;
     color: #0c2509;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     margin: 1rem;
   }
 

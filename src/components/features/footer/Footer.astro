@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { links } from "../header/HeaderNav.astro";
 
+import { variables } from "@styles/variables";
 import logo from "@assets/logos/cactus/header.webp";
 import github from "@assets/logos/github_logo.svg";
 import twitter from "@assets/logos/x_logo_black.svg";
@@ -11,16 +12,16 @@ import twitter from "@assets/logos/x_logo_black.svg";
     <div class="content">
         <div class="logo">
             <a href="/">
-                <Image src={logo} alt="CACTUS logo" width={210} height={60} />
+                <Image src={logo} alt="CACTUS logo" width={280} height={80} />
             </a>
         </div>
         <div class="nav">
             <div class="links">
                 {
                     links.map((link) => (
-                        <div class="link">
-                            <a href={link.href}>{link.label}</a>
-                        </div>
+                        <a href={link.href}>
+                            <span>{link.label}</span>
+                        </a>
                     ))
                 }
             </div>
@@ -54,9 +55,9 @@ import twitter from "@assets/logos/x_logo_black.svg";
     </div>
 </footer>
 
-<style>
+<style define:vars={{ ...variables }}>
     footer {
-        background-color: #31a33d;
+        background-color: var(--cactus);
         display: grid;
         padding: 30px 50px;
     }
@@ -75,6 +76,8 @@ import twitter from "@assets/logos/x_logo_black.svg";
 
     .logo img {
         display: block;
+        width: 280px;
+        height: 80px;
     }
 
     .nav {
@@ -83,33 +86,27 @@ import twitter from "@assets/logos/x_logo_black.svg";
         align-items: center;
         grid-column: 4;
     }
-    
+
     .links {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .link {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .link a {
+    .links a {
         text-decoration: none;
         color: #0c2509;
-        margin: 0.5rem;
+        padding: 0.5rem;
         font-weight: bold;
         font-size: 1.1rem;
     }
 
-    .links .link:hover {
-        background-color: #369e40;
+    .links a:hover {
+        background-color: var(--cactus-dark);
         border-radius: 5px;
     }
 
     .socials {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         display: grid;
         justify-content: center;
         align-items: center;
@@ -124,6 +121,13 @@ import twitter from "@assets/logos/x_logo_black.svg";
     .copyright p {
         text-align: center;
         margin: 0;
+    }
+
+    @media (max-width: 1200px) {
+        .logo img {
+            width: 245px;
+            height: 70px;
+        }
     }
 
     @media (max-width: 768px) {
@@ -144,12 +148,12 @@ import twitter from "@assets/logos/x_logo_black.svg";
             margin-top: 2rem;
         }
 
-        .link a {
+        .links a {
             font-size: 1rem;
         }
 
         .copyright p {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
     }
 </style>
