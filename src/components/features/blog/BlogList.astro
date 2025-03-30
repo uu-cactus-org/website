@@ -1,0 +1,52 @@
+---
+import { queryBlogs, type BlogQueryOptions } from '@utils';
+import BlogCard from './BlogCard.astro';
+
+/**
+ * Filter the blogs to display with the `filter` prop or use the `blogs` directly.  
+ * If no filter is provided, all blogs will be displayed.
+ */
+interface Props {
+  filter?: BlogQueryOptions;
+  blogs?: Awaited<ReturnType<typeof queryBlogs>>;
+  size?: 'small' | 'normal';
+}
+
+const blogs = Astro.props.blogs ?? await queryBlogs(Astro.props.filter);
+const cardWidth = Astro.props.size === 'small' ? '290px' : '320px';
+---
+
+<ul>
+  {blogs.map((blog) => (
+    <li>
+      <BlogCard slug={blog.slug} blog={blog.data} />
+    </li>
+  ))}
+</ul>
+
+<style define:vars={{ 'card-width': cardWidth }}>
+  ul {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(var(--card-width), 1fr)
+    );
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+  }
+
+  @media (max-width: 768px) {
+    ul {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+  }
+</style>

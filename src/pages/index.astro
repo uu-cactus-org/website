@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import Twitter from "@components/Twitter.astro";
 import BasicButton from "@components/BasicButton.astro";
+import BlogList from "@components/features/blog/BlogList.astro";
 ---
 
 <Layout title="情報研究会 CACTUS">
@@ -26,6 +27,12 @@ import BasicButton from "@components/BasicButton.astro";
 			</section>
 			-->
 			
+			<section class="blogs">
+				<h2>最近の記事</h2>
+				<div class="blog-container">
+					<BlogList filter={{ sortBy: 'date', limit: 2 }} size="small" />
+				</div>
+			</section>
 		</div>
 
 		<aside class="sidebar">
@@ -35,13 +42,10 @@ import BasicButton from "@components/BasicButton.astro";
 </Layout>
 
 <style>
-	body {
-		text-align: center;
-	}
-	
 	.container {
 		width: 100%;
 		display: flex;
+		justify-content: center;
 	}
 
 	.body {
@@ -52,6 +56,16 @@ import BasicButton from "@components/BasicButton.astro";
 		flex-direction: column;
 		align-items: center;
 		gap: 2rem;
+	}
+
+	.intro {
+		text-align: center;
+	}
+
+	.blog-container {
+		display: flex;
+		justify-content: center;
+		padding: 1rem;
 	}
 
 	.sidebar {
@@ -68,16 +82,20 @@ import BasicButton from "@components/BasicButton.astro";
 			width: 250px;
 			padding: 1rem;
 		}
+
+		.blog-container {
+			padding: 0;
+		}
 	}
 
 	@media (max-width: 1000px) {
 		.body {
 			min-width: 0;
+			margin: 1rem;
 		}
 		
 		.container {
 			flex-direction: column;
-			width: 100%;
 			justify-content: center;
 		}
 

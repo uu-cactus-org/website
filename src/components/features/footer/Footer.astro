@@ -26,26 +26,22 @@ import twitter from "@assets/logos/x_logo_black.svg";
                 }
             </div>
             <div class="socials">
-                <div class="link">
-                    <a href="https://github.com/uu-cactus-org/website">
-                        <Image
-                            src={github}
-                            alt="GitHub logo"
-                            width={30}
-                            height={30}
-                        />
-                    </a>
-                </div>
-                <div class="link">
-                    <a href="https://x.com/uu_cactus">
-                        <Image
-                            src={twitter}
-                            alt="Twitter logo"
-                            width={30}
-                            height={30}
-                        />
-                    </a>
-                </div>
+                <a href="https://github.com/uu-cactus-org/website">
+                    <Image
+                        src={github}
+                        alt="GitHub logo"
+                        width={40}
+                        height={40}
+                    />
+                </a>
+                <a href="https://x.com/uu_cactus">
+                    <Image
+                        src={twitter}
+                        alt="Twitter logo"
+                        width={40}
+                        height={40}
+                    />
+                </a>
             </div>
         </div>
     </div>
@@ -77,7 +73,7 @@ import twitter from "@assets/logos/x_logo_black.svg";
     .logo img {
         display: block;
         width: 280px;
-        height: 80px;
+        height: auto;
     }
 
     .nav {
@@ -92,15 +88,17 @@ import twitter from "@assets/logos/x_logo_black.svg";
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .links a {
+    .nav a {
+        display: flex;
+        justify-content: center;
         text-decoration: none;
         color: #0c2509;
         padding: 0.5rem;
         font-weight: bold;
-        font-size: 1.1rem;
+        font-size: 1.15rem;
     }
 
-    .links a:hover {
+    .nav a:hover {
         background-color: var(--cactus-dark);
         border-radius: 5px;
     }
@@ -126,7 +124,7 @@ import twitter from "@assets/logos/x_logo_black.svg";
     @media (max-width: 1200px) {
         .logo img {
             width: 245px;
-            height: 70px;
+            height: auto;
         }
     }
 

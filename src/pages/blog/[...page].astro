@@ -3,7 +3,7 @@ import type { GetStaticPathsOptions } from "astro";
 
 import Layout from "@layouts/Layout.astro";
 import { queryBlogs } from '@utils';
-import BlogCard from "@components/features/blog/BlogCard.astro";
+import BlogList from "@components/features/blog/BlogList.astro";
 import Pagination from '@components/Pagination.astro';
 
 // 1ページに表示する件数を設定
@@ -29,13 +29,9 @@ const { page } = Astro.props;
     <div class="body">
         <h1>Blog</h1>
         <h2>{page.currentPage}ページ</h2>
-        <div class="card-container">
-            {
-                page.data.map(({ data, slug }) => (
-                    <BlogCard slug={slug} blog={data} />
-                ))
-            }
-        </div>
+
+        <BlogList blogs={page.data} />
+
         <Pagination page={page} baseUrl="/blog" />
     </div>
 </Layout>

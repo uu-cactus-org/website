@@ -1,14 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 
-import { getProfileImage, queryBlogs } from '@utils';
-import BlogCard from './BlogCard.astro';
+import { getProfileImage } from '@utils';
+import BlogList from './BlogList.astro';
 import type { AuthorSchema } from '@config';
 
 import twitterIcon from '@assets/logos/x_logo_black.svg';
 import githubIcon from '@assets/logos/github_logo.svg';
 import globeIcon from '@assets/icons/globe2.svg';
-
 
 const MAX_ARTICLES = 6;
 // const MAX_PROJECTS = 6;
@@ -18,11 +17,6 @@ interface Props {
 }
 
 const { author } = Astro.props;
-const articles = await queryBlogs({
-  authorId: author.id,
-  limit: MAX_ARTICLES,
-});
-
 const profileImage = getProfileImage(author.profileImage);
 ---
 
@@ -94,12 +88,9 @@ const profileImage = getProfileImage(author.profileImage);
     <div class="articles">
       <h2>書いた記事</h2>
       <hr />
-      <div class="articles-grid">
-      {
-        articles.map((article) => (
-          <BlogCard slug={article.slug} blog={article.data} />
-        ))
-      }
+
+      <div class="blogs">
+        <BlogList filter={{ authorId: author.id, limit: MAX_ARTICLES }} />
       </div>
     </div>
     <div class="projects">
@@ -210,24 +201,22 @@ const profileImage = getProfileImage(author.profileImage);
     color: black;
   }
 
+  @media (max-width: 768px) {
+    .profile {
+      flex-direction: column;
+    }
 
-  /* スマホ画面（768px以下）では縦並びに */
-@media screen and (max-width: 768px) {
-  .profile {
-    flex-direction: column;
-  }
+    .profile-info-wrapper {
+      width: 100%;
+    }
 
-  .profile-info-wrapper {
-    width: 100%;
-  }
+    .profile-content {
+      width: 100%;
+      margin-left: 0; /* PC用の余白をリセット */
+    }
 
-  .profile-content {
-    width: 100%;
-    margin-left: 0; /* PC用の余白をリセット */
+    .profile-content hr {
+      margin-bottom: 1.5rem;
+    }
   }
-
-  .profile-content hr {
-    margin-bottom: 1.5rem;
-  }
-}
 </style>
