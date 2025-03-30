@@ -1,48 +1,44 @@
-# Astro Starter Kit: Basics
+# website
+宇都宮大学 情報研究会 CACTUS 公式サイトのリポジトリです  
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=936385377&skip_quickstart=true)
+
+## 環境構築
+### ローカル(PC上)で動かす場合
+#### 前提環境
+- VSCode
+- Git
+- Node.js (v22以上)
+- pnpm (インストール方法は後述)
+
+#### 開発環境の準備
+パッケージマネージャーにはpnpmを使います。インストールしていない場合はこちらでインストールしておいてください:  
 ```sh
-npm create astro@latest -- --template basics
+npm install -g pnpm
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+リポジトリをclone (CLIではなくGitHub Desktop等でもOK):  
+```sh
+git clone https://github.com/uu-cactus-org/website.git
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+cloneしたフォルダの中の`website.code-workspace`をVSCodeで開く  
+  
+VSCode内のターミナルを開き、依存関係をインストール:  
+```sh
+pnpm i
+```
 
-## 🧞 Commands
+これで開発環境の準備は完了。　　
 
-All commands are run from the root of the project, from a terminal:
+### GitHub Codespaces上で動かす場合
+上の`Open in GitHub Codespaces`をクリックすると、GitHub Codespaces上で開発環境が自動で立ち上がります。
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## 開発環境の起動
+VSCodeのターミナルを開き、以下のコマンドを実行:  
+```sh
+pnpm dev
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+ターミナル上に出てくるURLをCtrl + クリック or `http://localhost:4321`にアクセスすると、サイトのプレビューが表示されます。
