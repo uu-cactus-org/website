@@ -21,7 +21,7 @@ interface AuthorLike {
 
 const authors: AuthorLike[] = await Promise.all(
   frontmatter.authors.map(async authorId => {
-    // 古い記事の場合はプロフィールが存在しない
+    // プロフィールが存在しない場合も考慮
     const author = await getEntry('authors', authorId);
     return {
       name: author?.data.name ?? authorId,
@@ -149,6 +149,10 @@ const coverImage = frontmatter.coverImage ?? noimage;
     padding: 0.4rem 1.2rem;
   }
 
+  .category-content:hover {
+    background-color: #e5e5e5;
+  }
+
   .date {
     font-size: small;
     text-align: right;
@@ -166,10 +170,15 @@ const coverImage = frontmatter.coverImage ?? noimage;
 
   .author-content {
     background-color: #f0f0f0;
-    padding: 0.5rem .9rem;
+    border: 2px solid #dddddd;
     border-radius: 100px;
+    padding: 0.5rem .9rem;
     display: flex;
     align-items: center;
+  }
+
+  .author-content:hover {
+    background-color: #e5e5e5;
   }
 
   .author-content img {

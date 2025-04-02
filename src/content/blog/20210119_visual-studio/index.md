@@ -44,7 +44,7 @@ draft: false
 
 カーソルがある行を上下に移動できます。例えば……
 
-```
+```c
 for (int i = 0; i < n; i++) {
 	for (int j = 0; j < n; j++) {
 	}
@@ -54,7 +54,7 @@ for (int i = 0; i < n; i++) {
 
 「あっ、functionの位置間違えちゃった」みたいな時。forやifを複数個使ってたりするとよくありますよね。そんな時、だいたいfunctionの行にカーソルがあるので、Alt+↑を押すと……
 
-```
+```c
 for (int i = 0; i < n; i++) {
 	for (int j = 0; j < n; j++) {
 		function(i, j);
@@ -68,7 +68,7 @@ for (int i = 0; i < n; i++) {
 
 選択した部分をコメントアウトします。
 
-```
+```c
 for (int i = 0; i < n; i++) {
 	printf("%d:",i);
         for (int j = 0; j < n; j++) {
@@ -79,7 +79,7 @@ for (int i = 0; i < n; i++) {
 
 特定の部分だけコメントアウトしたいな～と思ったとき、選択してCtrl+Kを押した後、Ctrl+Cをしてみましょう。(Ctrl+Kを押してないと、コピーになってしまいます)
 
-```
+```c
 for (int i = 0; i < n; i++) {
 	printf("%d:",i);
       /*for (int j = 0; j < n; j++) {

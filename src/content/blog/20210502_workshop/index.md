@@ -23,14 +23,13 @@ draft: false
 
 やることは、「数字を入力してボタンを押すと下の方に出てくる」です。
 
-```
+```js
 function onClick() {
 	const input = document.getElementById("number1");
 	const target = document.getElementById("output");
 
 	target.innerHTML = input.value;
 }
-
 ```
 
 書き終わったらEnterボタンを押して、それから入力フォームに数字を入力してボタンを押してみましょう。入力した数字が下の方に出力されたと思います。
@@ -48,7 +47,7 @@ function onClick() {
 
 やることは、「2つの数字と算術記号から計算を行って出力する」です。
 
-```
+```js
 function onClick() {
 	const input1 = document.getElementById("number1");
 	const input2 = document.getElementById("number2");
@@ -102,7 +101,7 @@ function onClick() {
 
 やることは「それっぽい電卓の作成」です。というかぱっと見電卓ですね。
 
-```
+```js
 var numbers = [0, 0];
 var digit = "";
 var isInputDigit = false;

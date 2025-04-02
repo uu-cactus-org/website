@@ -7,11 +7,24 @@ import rlc from 'remark-link-card';
 import rehypeRaw from 'rehype-raw';
 import rehypeExternalLinks from 'rehype-external-links';
 
-// import updateArticle from './scripts/remark-ruby';
+import expressiveCode from 'astro-expressive-code';
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 
 // https://astro.build/config
 export default defineConfig({
-    integrations: [mdx(), react()],
+    integrations: [
+        expressiveCode({
+            themes: ['github-dark'],
+            plugins:[
+                pluginLineNumbers()
+            ],
+            frames: {
+                showCopyToClipboardButton: true,
+            },
+        }),
+        mdx(),
+        react(),
+    ],
     legacy: {
         collections: true
     },

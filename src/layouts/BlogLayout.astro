@@ -182,6 +182,58 @@ const headings = Astro.props.headings
         text-decoration: underline;
     }
 
+    .content :global(code:not(pre code)) {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        font-size: 0.9em;
+        background-color: #f1f1f1;
+        padding: 0.3em 0.5em;
+        margin: 0 0.2em;
+        border-radius: 4px;
+    }
+
+    .content :global(blockquote) {
+        padding: 1.2em 1.3em;
+        margin: 0.5em 0;
+        border-radius: 5px;
+        border-left: 4px solid #2fa131;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
+        background-color: #f6f6f6;
+        font-size: 1.05em;
+    }
+
+    .content :global(blockquote p) {
+        margin: 0;
+    }
+
+    .content :global(table) {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1em 0;
+        border: 1px solid #d5d5d5;
+    }
+
+    .content :global(table th),
+    .content :global(table td) {
+        padding: 0.5em 1em;
+        text-align: left;
+        border-bottom: 1px solid #e2e2e2;
+        border-right: 1px solid #d5d5d5;
+    }
+
+    .content :global(table th) {
+        background-color: #e8e8e8;
+        border-bottom: 2px solid #d5d5d5;
+    }
+
+    .content :global(table td:last-child),
+    .content :global(table th:last-child) {
+        border-right: none;
+    }
+
+    .content :global(table tr:nth-child(even)) {
+        background-color: #f6f6f6;
+    }
+
     .m1 { margin-left: 1em; }
     .m2 { margin-left: 2em; }
 
