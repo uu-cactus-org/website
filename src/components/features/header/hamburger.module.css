@@ -1,5 +1,4 @@
 .button {
-  /* display: none; */
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -28,19 +27,30 @@
   height: 100%;
   z-index: 99;
   transition: top 0.35s ease-in-out;
+  overflow: hidden;
 }
 
 .background.open {
   top: 0;
-  overflow: hidden;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 80%;
+  /* fallback */
+  height: 100vh;
+  overflow: hidden;
+}
+
+@supports (height: 100dvh) {
+  .container {
+    height: 100dvh;
+  }
+}
+
+.spacer {
+  margin-top: 150px;
 }
 
 .container hr {
@@ -58,7 +68,32 @@
   color: white;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #0c2509;
   margin: 1rem;
+}
+
+.socials {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  height: 10rem;
+  width: 100%;
+  background-color: rgb(29, 116, 33);
+  border-top: 5px solid rgb(29, 87, 35);
+  box-sizing: border-box;
+}
+
+.socials a {
+  background-color: rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+}
+
+.socials img {
+  display: block;
+  width: 35px;
+  height: auto;
+  margin: 13px;
 }

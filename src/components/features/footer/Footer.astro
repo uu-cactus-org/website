@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { links } from "../header/HeaderNav.astro";
 
 import { variables } from "@styles/variables";
+import { cactusTwitterUrl, cactusGitHubUrl } from "../../../constants";
 import logo from "@assets/logos/cactus/header.webp";
 import github from "@assets/logos/github_logo.svg";
 import twitter from "@assets/logos/x_logo_black.svg";
@@ -26,7 +27,7 @@ import twitter from "@assets/logos/x_logo_black.svg";
                 }
             </div>
             <div class="socials">
-                <a href="https://github.com/uu-cactus-org/website">
+                <a href={cactusGitHubUrl}>
                     <Image
                         src={github}
                         alt="GitHub logo"
@@ -34,7 +35,7 @@ import twitter from "@assets/logos/x_logo_black.svg";
                         height={40}
                     />
                 </a>
-                <a href="https://x.com/uu_cactus">
+                <a href={cactusTwitterUrl}>
                     <Image
                         src={twitter}
                         alt="Twitter logo"
