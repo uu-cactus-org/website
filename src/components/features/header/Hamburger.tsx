@@ -17,7 +17,7 @@ const bgOpacity = 0.98;
 const bgColor = `rgba(${variables.cactus.replace(/rgb\((\d+), (\d+), (\d+)\)/, '$1,$2,$3')}, ${bgOpacity})`;
 
 export default function Hamburger({ links }: HamburgerProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const onClick = () => {
     setIsOpen(!isOpen);
