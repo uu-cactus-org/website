@@ -169,10 +169,6 @@ const headings = Astro.props.headings
         margin-top: -0.5rem;
     }
 
-    .content :global(code) {
-        /* padding: 10px; */
-    }
-
     .content :global(a) {
         color: #0070f3;
         text-decoration: none;
@@ -182,6 +178,7 @@ const headings = Astro.props.headings
         text-decoration: underline;
     }
 
+    /* inline code */
     .content :global(code:not(pre code)) {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
         font-size: 0.9em;
@@ -192,13 +189,18 @@ const headings = Astro.props.headings
     }
 
     .content :global(blockquote) {
-        padding: 1.2em 1.3em;
-        margin: 0.5em 0;
+        padding: 1.3rem;
+        margin: 0;
+        margin-top: 0.6rem;
         border-radius: 5px;
         border-left: 4px solid #2fa131;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
-        background-color: #f6f6f6;
+        background-color: #fbfbfb;
         font-size: 1.05em;
+    }
+
+    .content :global(blockquote:not(blockquote blockquote)) {
+        margin-right: 4px;
     }
 
     .content :global(blockquote p) {
@@ -263,6 +265,12 @@ const headings = Astro.props.headings
 
         .sidebar {
             display: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .content :global(blockquote) {
+            padding: 0.8rem;
         }
     }
 </style>

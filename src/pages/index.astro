@@ -3,6 +3,9 @@ import Layout from "@layouts/Layout.astro";
 import Twitter from "@components/Twitter.astro";
 import BasicButton from "@components/BasicButton.astro";
 import BlogList from "@components/features/blog/BlogList.astro";
+import { Image } from "astro:assets";
+
+import sinkanImage from "@assets/images/sinkan2025.png"
 ---
 
 <Layout title="情報研究会 CACTUS">
@@ -13,22 +16,28 @@ import BlogList from "@components/features/blog/BlogList.astro";
 	<div class="container">
 		<div class="body">
 			<section class="intro">
-				<h1>CACTUS Demo site</h1>
+				<h1>🌵 CACTUSの部室 🌵</h1>
 				<p>情報研究会 CACTUSへようこそ！</p>
-				<p>このサイトは、CACTUS公式サイトのデモバージョンです。</p>
+
 				<BasicButton buttonText="もっと知る" link="/about" />
 			</section>
 
 			
 			<!-- 一時的なお知らせ(新歓等)用 -->
-			<!--
+			
 			<section class="news">
-				<h2>お知らせ</h2>
+				<h2>📢 2025年度 新歓のお知らせ</h2>
+				<p>
+					詳しい日程は
+					<a href="https://uu-circles.com/circle/page.php?c=cactus">uu-circlesのページ</a>
+					をご覧ください！
+				</p>
+				<Image src={sinkanImage} alt="新歓2025" class="sinkan-image" />
 			</section>
-			-->
+
 			
 			<section class="blogs">
-				<h2>最近の記事</h2>
+				<h2>📰 最近の記事</h2>
 				<div class="blog-container">
 					<BlogList filter={{ sortBy: 'date', limit: 2 }} size="small" />
 				</div>
@@ -49,12 +58,11 @@ import BlogList from "@components/features/blog/BlogList.astro";
 	}
 
 	.body {
-		margin: 2rem;
+		margin-right: 1.2rem;
 		flex: 1;
 		min-width: 600px;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		gap: 2rem;
 	}
 
@@ -62,10 +70,14 @@ import BlogList from "@components/features/blog/BlogList.astro";
 		text-align: center;
 	}
 
+	.intro h1 {
+		font-size: 2rem;
+	}
+
 	.blog-container {
 		display: flex;
 		justify-content: center;
-		padding: 1rem;
+		margin: 1rem;
 	}
 
 	.sidebar {
@@ -91,7 +103,7 @@ import BlogList from "@components/features/blog/BlogList.astro";
 	@media (max-width: 1000px) {
 		.body {
 			min-width: 0;
-			margin: 1rem;
+			margin: 0;
 		}
 		
 		.container {
@@ -105,5 +117,13 @@ import BlogList from "@components/features/blog/BlogList.astro";
 			margin: auto 0;
 			border-left: none;
 		}
+	}
+
+	.sinkan-image {
+		width: 100%;
+		height: auto;
+		max-height: 500px;
+		object-fit: contain;
+		margin: 0 auto;
 	}
 </style>
