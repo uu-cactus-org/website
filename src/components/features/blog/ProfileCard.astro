@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 
 import { getProfileImage } from '@utils';
 import BlogList from './BlogList.astro';
+import Tooltip from '@components/Tooltip.astro';
 import type { AuthorSchema } from '@config';
 
 import twitterIcon from '@assets/logos/x_logo_black.svg';
@@ -32,52 +33,59 @@ const profileImage = getProfileImage(author.profileImage);
         <span class="profile-id">@{author.id}</span><br />
         <span class="profile-bio">{author.bio}</span><br />
         <div class="socials">
-          <!-- //TODO - implement tooltips -->
           {author.social.twitter && (
-            <a
-              href={`https://x.com/${author.social.twitter}`}
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="social-icon-wrapper"
-            >
-              <Image src={twitterIcon} alt="X" width="25" height="25" class="social-icon" />
-            </a>
+            <Tooltip tip={`@${author.social.twitter}`}>
+              <a
+                href={`https://x.com/${author.social.twitter}`}
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="social-icon-wrapper"
+              >
+                <Image src={twitterIcon} alt="X" width="25" height="25" class="social-icon" />
+              </a>
+            </Tooltip>
           )}
           {author.social.github && (
-            <a
-              href={`https://github.com/${author.social.github}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-icon-wrapper"
-            >
-              <Image src={githubIcon} alt="GitHub" width="25" height="25" class="social-icon" />
-            </a>
+            <Tooltip tip={author.social.github}>
+              <a
+                href={`https://github.com/${author.social.github}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon-wrapper"
+                >
+                <Image src={githubIcon} alt="GitHub" width="25" height="25" class="social-icon" />
+              </a>
+            </Tooltip>
           )}
           {author.social.website && (
-            <a
-              href={author.social.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-icon-wrapper"
-            >
-              <Image src={globeIcon} alt="Website" width="25" height="25" class="social-icon" />
-            </a>
+            <Tooltip tip={author.social.website}>
+              <a
+                href={author.social.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon-wrapper"
+                >
+                <Image src={globeIcon} alt="Website" width="25" height="25" class="social-icon" />
+              </a>
+            </Tooltip>
           )}
           {author.social.custom?.map(custom => (
-            <a
-              href={custom.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-icon-wrapper"
-            >
-              <img
-                src={typeof custom.icon === 'string' ? custom.icon : custom.icon.src}
-                alt={custom.label}
-                width="25"
-                height="25"
-                class="social-icon"
-              />
-            </a>
+            <Tooltip tip={custom.label}>
+              <a
+                href={custom.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon-wrapper"
+              >
+                <img
+                  src={typeof custom.icon === 'string' ? custom.icon : custom.icon.src}
+                  alt={custom.label}
+                  width="25"
+                  height="25"
+                  class="social-icon"
+                />
+              </a>
+            </Tooltip>
           ))}
         </div>
       </div>
@@ -93,11 +101,10 @@ const profileImage = getProfileImage(author.profileImage);
         <BlogList filter={{ authorId: author.id, limit: MAX_ARTICLES }} />
       </div>
     </div>
-    <div class="projects">
+    <!-- <div class="projects">
       <h2>作ったもの</h2>
       <hr />
-      ...
-    </div>
+    </div> -->
   </div>
 </div>
 
