@@ -28,12 +28,9 @@ const headings = Astro.props.headings
 <Layout title={`${frontmatter.title} | 情報研究会 CACTUS`}>
     <Fragment slot="head">
         <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content={frontmatter.title} />
         <meta property="og:image" content={frontmatter.coverImage?.src ?? noimage.src} />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={frontmatter.title} />
-        <meta name="twitter:image" content={frontmatter.coverImage?.src ?? noimage.src} />
     </Fragment>
     
     <article>

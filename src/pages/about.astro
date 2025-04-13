@@ -2,6 +2,8 @@
 import Carousel, { type CarouselProps } from '@components/carousel/Carousel';
 import Layout from '@layouts/Layout.astro';
 
+import ogpImage from "@assets/noimage.png";
+
 const images: CarouselProps['images'] = Object.entries(
   import.meta.glob<{ default: ImageMetadata }>('/src/assets/carousel/*', {
     eager: true,
@@ -15,6 +17,9 @@ const images: CarouselProps['images'] = Object.entries(
 <Layout title="CACTUSについて | 情報研究会 CACTUS">
   <Fragment slot="head">
     <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+		<meta property="og:title" content="ABOUT | 情報研究会 CACTUS" />
+		<meta property="og:image" content={ogpImage.src} />
   </Fragment>
 
   <div class="content">

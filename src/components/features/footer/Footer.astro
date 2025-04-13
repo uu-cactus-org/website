@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { links } from "../header/HeaderNav.astro";
+import Tooltip from "@components/Tooltip.astro";
 
 import { variables } from "@styles/variables";
 import { cactusTwitterUrl, cactusGitHubUrl } from "../../../constants";
@@ -10,149 +11,143 @@ import twitter from "@assets/logos/x_logo_black.svg";
 ---
 
 <footer>
-    <div class="content">
-        <div class="logo">
-            <a href="/">
-                <Image src={logo} alt="CACTUS logo" width={280} height={80} />
+  <div class="content">
+    <div class="logo">
+      <a href="/">
+        <Image src={logo} alt="CACTUS logo" width={280} height={80} />
+      </a>
+    </div>
+    <div class="nav">
+      <div class="links">
+        {
+          links.map((link) => (
+            <a href={link.href}>
+              <span>{link.label}</span>
             </a>
-        </div>
-        <div class="nav">
-            <div class="links">
-                {
-                    links.map((link) => (
-                        <a href={link.href}>
-                            <span>{link.label}</span>
-                        </a>
-                    ))
-                }
-            </div>
-            <div class="socials">
-                <a href={cactusGitHubUrl}>
-                    <Image
-                        src={github}
-                        alt="GitHub logo"
-                        width={40}
-                        height={40}
-                    />
-                </a>
-                <a href={cactusTwitterUrl}>
-                    <Image
-                        src={twitter}
-                        alt="Twitter logo"
-                        width={40}
-                        height={40}
-                    />
-                </a>
-            </div>
-        </div>
+          ))
+        }
+      </div>
+      <div class="socials">
+        <Tooltip tip="GitHub">
+          <a href={cactusGitHubUrl}>
+            <Image src={github} alt="GitHub logo" width={35} height={35} />
+          </a>
+        </Tooltip>
+        <Tooltip tip="X (Twitter)">
+          <a href={cactusTwitterUrl}>
+            <Image src={twitter} alt="Twitter logo" width={35} height={35} />
+          </a>
+        </Tooltip>
+      </div>
     </div>
+  </div>
 
-    <div class="copyright">
-        <p>© 2025 情報研究会 CACTUS</p>
-    </div>
+  <div class="copyright">
+    <p>© 2025 情報研究会 CACTUS</p>
+  </div>
 </footer>
 
 <style define:vars={{ ...variables }}>
+  footer {
+    background-color: var(--cactus);
+    display: grid;
+    padding: 30px 50px;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 40%;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+  }
+
+  .logo img {
+    display: block;
+    width: 280px;
+    height: auto;
+  }
+
+  .nav {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-column: 4;
+  }
+
+  .links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nav a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #0c2509;
+    padding: 0.5rem;
+    font-weight: bold;
+    font-size: 1.15rem;
+  }
+
+  .nav a:hover {
+    background-color: var(--cactus-dark);
+    border-radius: 5px;
+  }
+
+  .socials {
+    margin-top: 1.5rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-column: 4;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .copyright {
+    margin-top: 2rem;
+  }
+
+  .copyright p {
+    text-align: center;
+    margin: 0;
+  }
+
+  @media (max-width: 1200px) {
+    .logo img {
+      width: 245px;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
     footer {
-        background-color: var(--cactus);
-        display: grid;
-        padding: 30px 50px;
+      display: flex;
+      flex-direction: column;
     }
 
     .content {
-        display: grid;
-        grid-template-columns: 20% 20% 20% 40%;
-    }
-
-    .logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 1rem;
-    }
-
-    .logo img {
-        display: block;
-        width: 280px;
-        height: auto;
-    }
-
-    .nav {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        grid-column: 4;
+      display: flex;
+      flex-direction: column;
     }
 
     .links {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+      grid-column: 1;
+      grid-template-columns: repeat(3, 1fr);
+      margin: 1rem 0;
+      margin-top: 2rem;
     }
 
-    .nav a {
-        display: flex;
-        justify-content: center;
-        text-decoration: none;
-        color: #0c2509;
-        padding: 0.5rem;
-        font-weight: bold;
-        font-size: 1.15rem;
-    }
-
-    .nav a:hover {
-        background-color: var(--cactus-dark);
-        border-radius: 5px;
-    }
-
-    .socials {
-        margin-top: 1.5rem;
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        grid-column: 4;
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .copyright {
-        margin-top: 2rem;
+    .links a {
+      font-size: 1rem;
     }
 
     .copyright p {
-        text-align: center;
-        margin: 0;
+      font-size: 0.75rem;
     }
-
-    @media (max-width: 1200px) {
-        .logo img {
-            width: 245px;
-            height: auto;
-        }
-    }
-
-    @media (max-width: 768px) {
-        footer {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .content {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .links {
-            grid-column: 1;
-            grid-template-columns: repeat(3, 1fr);
-            margin: 1rem 0;
-            margin-top: 2rem;
-        }
-
-        .links a {
-            font-size: 1rem;
-        }
-
-        .copyright p {
-            font-size: 0.75rem;
-        }
-    }
+  }
 </style>

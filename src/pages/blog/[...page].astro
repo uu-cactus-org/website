@@ -6,6 +6,8 @@ import { queryBlogs } from '@utils';
 import BlogList from "@components/features/blog/BlogList.astro";
 import Pagination from '@components/Pagination.astro';
 
+import ogpImage from "@assets/noimage.png";
+
 // 1ページに表示する件数を設定
 export const postsPerPage = 16;
 
@@ -24,6 +26,10 @@ const { page } = Astro.props;
 <Layout title={`${page.currentPage}ページ目 | 情報研究会 CACTUS`}>
     <Fragment slot="head">
         <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+		<meta property="og:title" content="記事一覧 | 情報研究会 CACTUS" />
+		<meta property="og:description" content="情報研究会 CACTUSのwebサイトです。" />
+		<meta property="og:image" content={ogpImage.src} />
     </Fragment>
     
     <div class="body">

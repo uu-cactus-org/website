@@ -19,6 +19,8 @@ const author = authorEntry.data;
 <Layout title={`${author.name} のプロフィール | 情報研究会 CACTUS`}>
   <Fragment slot="head">
     <meta property="og:type" content="profile" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content={`${author.name} のプロフィール | 情報研究会 CACTUS`} />
   </Fragment>
   
   <div class="body">
