@@ -10,7 +10,7 @@ const blog = defineCollection({
         category: z.string(),
         tags: z.array(z.string()),
         coverImage: z.optional(image()),
-        draft: z.boolean(),
+        draft: z.optional(z.boolean()),
     }),
 });
 export type BlogSchema = InferEntrySchema<'blog'>;
