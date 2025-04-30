@@ -3,7 +3,21 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=936385377&skip_quickstart=true)
 
+## 目次
+- [website](#website)
+  - [目次](#目次)
+  - [環境構築](#環境構築)
+    - [GitHub Codespaces上で動かす場合 (推奨)](#github-codespaces上で動かす場合-推奨)
+    - [ローカル(PC上)で動かす場合](#ローカルpc上で動かす場合)
+      - [前提環境](#前提環境)
+      - [開発環境の準備](#開発環境の準備)
+  - [開発環境の起動](#開発環境の起動)
+  - [記事の書き方](#記事の書き方)
+
 ## 環境構築
+### GitHub Codespaces上で動かす場合 (推奨)
+上の`Open in GitHub Codespaces`をクリックすると、GitHub Codespaces上で開発環境が自動で立ち上がります。
+
 ### ローカル(PC上)で動かす場合
 #### 前提環境
 - VSCode
@@ -31,10 +45,6 @@ pnpm i
 
 これで開発環境の準備は完了。　　
 
-### GitHub Codespaces上で動かす場合
-上の`Open in GitHub Codespaces`をクリックすると、GitHub Codespaces上で開発環境が自動で立ち上がります。
-
-
 ## 開発環境の起動
 VSCodeのターミナルを開き、以下のコマンドを実行:  
 ```sh
@@ -42,3 +52,6 @@ pnpm dev
 ```
 
 ターミナル上に出てくるURLをCtrl + クリック or `http://localhost:4321`にアクセスすると、サイトのプレビューが表示されます。
+
+## 記事の書き方
+[こちら](./docs/how-to-write.md)で詳しく説明しています。
