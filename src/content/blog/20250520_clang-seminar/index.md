@@ -102,7 +102,7 @@ int main(){
     a=2/3;
     printf("a = %d\n",a);
 
-    double b=2/3;
+    double b=2.0/3.;
     printf("b = %f\n",b);//小数が出力されるところに%fを入れる
     return 0;
 }
