@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import HeaderNav from "./HeaderNav.astro";
 
-import { variables } from '@styles/variables';
 import logo from "@assets/logos/cactus/header.webp";
 ---
 
@@ -25,9 +24,9 @@ import logo from "@assets/logos/cactus/header.webp";
     </div>
 </header>
 
-<style define:vars={{ ...variables }}>
+<style>
     header {
-        background-color: var(--cactus);
+        background-color: var(--color-cactus);
         padding-top: 10px;
         padding-bottom: 10px;
         display: grid;

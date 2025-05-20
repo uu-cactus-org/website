@@ -1,0 +1,7 @@
+:root {
+  --color-cactus-rgb: 70, 189, 76;
+  --color-cactus: rgb(var(--color-cactus-rgb));
+
+  --color-cactus-dark-rgb: 67, 184, 73;
+  --color-cactus-dark: rgb(var(--color-cactus-dark-rgb));
+}

@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import { links } from "../header/HeaderNav.astro";
 import Tooltip from "@components/Tooltip.astro";
 
-import { variables } from "@styles/variables";
 import { cactusTwitterUrl, cactusGitHubUrl } from "../../../constants";
 import logo from "@assets/logos/cactus/header.webp";
 import github from "@assets/logos/github_logo.svg";
@@ -47,9 +46,9 @@ import twitter from "@assets/logos/x_logo_black.svg";
   </div>
 </footer>
 
-<style define:vars={{ ...variables }}>
+<style>
   footer {
-    background-color: var(--cactus);
+    background-color: var(--color-cactus);
     display: grid;
     padding: 30px 50px;
   }
@@ -95,7 +94,7 @@ import twitter from "@assets/logos/x_logo_black.svg";
   }
 
   .nav a:hover {
-    background-color: var(--cactus-dark);
+    background-color: var(--color-cactus-dark);
     border-radius: 5px;
   }
 

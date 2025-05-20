@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { variables } from "@styles/variables";
 import { cactusGitHubUrl, cactusTwitterUrl } from "../../../constants";
 import styles from "./hamburger.module.css";
 import hanburgerIcon from '@assets/icons/list.svg';
@@ -11,10 +10,6 @@ import githubIcon from '@assets/logos/github_logo_white.svg';
 interface HamburgerProps {
   links: { href: string; label: string }[];
 }
-
-// convert rgba
-const bgOpacity = 0.98;
-const bgColor = `rgba(${variables.cactus.replace(/rgb\((\d+), (\d+), (\d+)\)/, '$1,$2,$3')}, ${bgOpacity})`;
 
 export default function Hamburger({ links }: HamburgerProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +44,6 @@ export default function Hamburger({ links }: HamburgerProps) {
       <div
         className={`${styles.background}
         ${isOpen ? styles.open : ''}`}
-        style={{ backgroundColor: bgColor }}
       >
         <div className={styles.container}>
           <div className={styles.spacer} />

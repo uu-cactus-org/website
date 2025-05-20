@@ -28,6 +28,7 @@
   z-index: 99;
   transition: top 0.35s ease-in-out;
   overflow: hidden;
+  background-color: rgba(var(--color-cactus-rgb), 0.98);
 }
 
 .background.open {
