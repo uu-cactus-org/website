@@ -130,7 +130,7 @@ int main(){
 ```c
 #include<stdio.h>
 int main(){
-    int a=10;
+    int a=9;
     if( a>10 ){
         printf("a は10より大きい");
     }
@@ -149,10 +149,10 @@ int main(){
 int main(){
     int a=10;
     if( a>0 ){
-        printf("a は0正の値");
+        printf("a は正の値");
     }
     else if( a<0 ){
-        printf("a は0負の値");
+        printf("a は負の値");
     }
     else{
         printf("a は0です");
