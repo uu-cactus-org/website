@@ -336,12 +336,12 @@ int main(){
     f=a*b;
 
     printf("%d %d %d\n",a,b,c);
-    printf("%d %d %d\n",a,b,c);
+    printf("%d %d %d\n",d,e,f);
 
     printf("\n\n");
 
     printf("%3d %3d %3d\n",a,b,c);
-    printf("%2d %3d %3d\n",a,b,c);//最初が2dになってることに注意
+    printf("%2d %3d %3d\n",d,e,f);//最初が2dになってることに注意
 
     return 0;
 }
