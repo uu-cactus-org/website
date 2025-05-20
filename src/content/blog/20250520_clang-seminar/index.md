@@ -28,7 +28,7 @@ tags: ["C言語", "プログラミング"]
 
 1-1 基本構造
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     return 0;
 }
@@ -61,7 +61,7 @@ int main(){
 
 1-3 簡単な文章の出力
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     printf("Hello world!");
     return 0;
@@ -71,7 +71,7 @@ int main(){
 
 1-4 整数値の出力
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int a=5;
 
@@ -87,7 +87,7 @@ int main(){
 
 1-5 整数型の計算と小数型の計算
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int a;
     a=2+3;
@@ -110,7 +110,7 @@ int main(){
 
 1-6 値の入力と出力
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int a;
 
@@ -128,7 +128,7 @@ int main(){
 
 2-1 条件分岐
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int a=10;
     if( a>10 ){
@@ -145,7 +145,7 @@ int main(){
 
 2-2 else文を利用した条件分岐
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int a=10;
     if( a>0 ){
@@ -164,7 +164,7 @@ int main(){
 
 2-3 条件分岐の演算子
 ```c
-#include<studio.h>
+#include<stdio.h>
 #include<bool.h>//bool型の変数を扱うときに必要
 int main(){
     
@@ -191,7 +191,7 @@ int main(){
 
 2-4 switch文
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int number =5;
 
@@ -227,7 +227,7 @@ int main(){
 
 3-1 while文
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int i=1;
     int n;
@@ -247,7 +247,7 @@ int main(){
 
 3-2 for文
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int n;
     int sum=0;
@@ -265,7 +265,7 @@ int main(){
 
 3-3 continueとbreak文
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int i=1;
     int n=10000;
@@ -325,7 +325,7 @@ int main() {
 
 4-1 変数の出力書式について
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int a,b,c,d,e,f;
     a=10;
@@ -349,7 +349,7 @@ int main(){
 
 4-2 配列
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int a[10];
 
@@ -367,7 +367,7 @@ int main(){
 
 4-3 多次元配列
 ```c
-#include<studio.h>
+#include<stdio.h>
 int main(){
     int a[3][5];
     int c=0;
@@ -397,7 +397,7 @@ int main(){
 # 第五回
 5-1 関数の例(1)
 ```c
-#include<studio.h>
+#include<stdio.h>
 
 int Add(int x,int y);
 
@@ -422,7 +422,7 @@ int Add(int x,int y){
 
 5-2 関数の例(2)
 ```c
-#include<studio.h>
+#include<stdio.h>
 
 int Add(int x,int y){
     int sum;
@@ -444,7 +444,7 @@ int main(){
 
 5-3 再帰関数の例(1)
 ```c
-#include<studio.h>
+#include<stdio.h>
 int sum(int x);
 
 int main(){
