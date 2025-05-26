@@ -9,13 +9,15 @@ import type { BlogSchema } from '@config';
 import '../styles/blog-link-card.css';
 import noimage from '@assets/noimage.png';
 import githubLogo from '@assets/logos/github_logo.svg';
+import { queryBlogs } from '@utils';
 
 interface Props {
+    id: string;
     frontmatter: BlogSchema;
     headings: MarkdownHeading[];
 }
 
-const { frontmatter } = Astro.props;
+const { frontmatter, id: blogId } = Astro.props;
 
 const minHeadingDepth = Math.min(...Astro.props.headings.map((heading) => heading.depth));
 const headings = Astro.props.headings
@@ -24,6 +26,11 @@ const headings = Astro.props.headings
         ...heading,
         relativeDepth: heading.depth - minHeadingDepth, // ネストの深さを調節
     }));
+
+const blogs = await queryBlogs({ sortBy: 'date' });
+const currentIndex = blogs.findIndex((blog) => blog.id === blogId);
+const nextBlog = blogs[currentIndex - 1];
+const prevBlog = blogs[currentIndex + 1];
 ---
 
 <Layout title={`${frontmatter.title} | 情報研究会 CACTUS`}>
@@ -43,7 +50,22 @@ const headings = Astro.props.headings
             <div class="content">
                 <slot />
             </div>
-              <div class="footer">
+
+            <div class="footer">
+                <div class="navigation">
+                    {prevBlog && (
+                        <div class="nav-item prev">
+                            <span class="nav-label">前の記事</span>
+                            <a href={`/blog/${prevBlog.slug}`} class="nav-link">{prevBlog.data.title}</a>
+                        </div>
+                    )}
+                    {nextBlog && (
+                        <div class="nav-item next">
+                            <span class="nav-label">次の記事</span>
+                            <a href={`/blog/${nextBlog.slug}`} class="nav-link">{nextBlog.data.title}</a>
+                        </div>
+                    )}
+                </div>
                 <div class="footer-buttons">
                     <ReturnButton href="/blog">記事一覧へ</ReturnButton>
                     <a href={`https://github.com/uu-cactus-org/website/edit/main/src/content/blog/${Astro.url.pathname.split('/').filter(Boolean).pop()}/index.md`} target="_blank" class="github-edit-button">
@@ -140,6 +162,49 @@ const headings = Astro.props.headings
     .footer {
         margin-top: 3rem;
         margin-bottom: 1rem;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 4rem;
+        margin-bottom: 3rem;
+        padding: 1.5rem 0;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .nav-item {
+        flex: 1;
+        max-width: 45%;
+    }
+
+    .nav-item.next {
+        text-align: right;
+    }
+
+    .nav-label {
+        display: block;
+        font-size: 0.8rem;
+        color: #666;
+        margin-bottom: 0.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .nav-link {
+        display: block;
+        color: #0070f3;
+        text-decoration: none;
+        font-weight: 500;
+        line-height: 1.4;
+        transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+        color: #0056b3;
+        text-decoration: underline;
     }
 
     .footer-buttons {
