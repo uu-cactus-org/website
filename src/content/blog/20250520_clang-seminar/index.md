@@ -464,7 +464,7 @@ int main(){
 int sum(int x);
 
 int main(){
-    int　num;
+    int num;
     printf("整数を入力してください\n");
     scanf("%d",&num);
     printf("1から%dまでの総和は%dです\n",num,sum(num));
