@@ -237,7 +237,7 @@ int main(){
     
     while(i<=n){
         sum=sum+i;
-        printf("i : %d sum : %d\n");
+        printf("i : %d sum : %d\n", i, sum);
         i++;//i=i+1;と同じ
     }
 
@@ -255,7 +255,7 @@ int main(){
     scanf("%d",&n);
     for(int i=1;i<=n;i++){
         sum=sum+i;
-        printf("i : %d sum : %d\n");
+        printf("i : %d sum : %d\n", i, sum);
     }
 
     return 0;
@@ -278,7 +278,7 @@ int main(){
             continue;
         }
         sum=sum+i;
-        printf("i : %d sum : %d\n");
+        printf("i : %d sum : %d\n", i, sum);
         if(sum>5000)//もし総和が5000より大きくなったらwhile文を抜ける
             break;
         i++;
