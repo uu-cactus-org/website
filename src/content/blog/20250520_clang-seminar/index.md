@@ -380,7 +380,7 @@ int main(){
 
     for(int i=0;i<3;i++){
         for(int j=0;j<5;j++){
-            printf("a[%d][%d] = %2d",a[i][j]);
+            printf("a[%d][%d] = %2d",i,j,a[i][j]);
         }
         printf("\n");
     }
@@ -441,8 +441,24 @@ int main(){
 }
 ```
 
+5-3 返り値を持たない関数
 
-5-3 再帰関数の例(1)
+```c
+#include<stdio.h>
+
+void Print(int x){
+    printf("あなたの入力した値は%dですね",x);
+    return;
+}
+
+int main(){
+    int a=5;
+    Print(a);
+    return 0;
+}
+```
+
+5-4 再帰関数の例(1)
 ```c
 #include<stdio.h>
 int sum(int x);
@@ -466,7 +482,7 @@ int sum(int x){
 
 ```
 
-5-4 再帰関数の例(2)
+5-5 再帰関数の例(2)
 ```c
 #include <stdio.h>
 
