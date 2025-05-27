@@ -1,7 +1,8 @@
 # website
 宇都宮大学 情報研究会 CACTUS 公式サイトのリポジトリです  
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=936385377&skip_quickstart=true)
+https://uucactus.com/  
+https://uucactus-website.pages.dev/  
 
 ## 目次
 - [website](#website)
@@ -16,7 +17,9 @@
 
 ## 環境構築
 ### GitHub Codespaces上で動かす場合 (推奨)
-上の`Open in GitHub Codespaces`をクリックすると、GitHub Codespaces上で開発環境が自動で立ち上がります。
+`Open in GitHub Codespaces`をクリックすると、GitHub Codespaces上で開発環境が自動で立ち上がります。  
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=936385377&skip_quickstart=true)
 
 ### ローカル(PC上)で動かす場合
 #### 前提環境
