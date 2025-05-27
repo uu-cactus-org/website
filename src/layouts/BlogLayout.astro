@@ -68,7 +68,7 @@ const prevBlog = blogs[currentIndex + 1];
                 </div>
                 <div class="footer-buttons">
                     <ReturnButton href="/blog">記事一覧へ</ReturnButton>
-                    <a href={`https://github.com/uu-cactus-org/website/edit/main/src/content/blog/${Astro.url.pathname.split('/').filter(Boolean).pop()}/index.md`} target="_blank" class="github-edit-button">
+                    <a href={`https://github.com/uu-cactus-org/website/edit/main/src/content/blog/${blogId}`} target="_blank" class="github-edit-button">
                         <img src={githubLogo.src} alt="GitHub Logo" />
                         GitHubで編集
                     </a>
@@ -337,10 +337,10 @@ const prevBlog = blogs[currentIndex + 1];
     }
 
     .content :global(details) {
-        margin: 1em 0;
+        margin: 1em 5px;
         padding: 0;
         background-color: #f9f9f9;
-        border-radius: 5px;
+        border-radius: 8px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         overflow: hidden;
     }
@@ -363,8 +363,12 @@ const prevBlog = blogs[currentIndex + 1];
         border-bottom: 1px solid #d0d0d0;
     }
 
+    .content :global(details p) {
+        margin: 0;
+    }
+    
     .content :global(details > *:not(summary)) {
-        padding: 0 1em 1em 1em;
+        margin: 1em;
     }
 
     .m1 { margin-left: 1em; }
@@ -412,6 +416,14 @@ const prevBlog = blogs[currentIndex + 1];
         .github-edit-button {
             font-size: 0.8rem;
             padding: 0.4rem 0.8rem;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
         }
     }
 </style>
