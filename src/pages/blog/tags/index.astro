@@ -1,78 +1,70 @@
 ---
 import Layout from "@layouts/Layout.astro";
-
 import { sortedblogEntriesList } from "@utils";
 
-const sortedBlogEntries = sortedblogEntriesList;
+const allTags = sortedblogEntriesList.flatMap((blog) => blog.data.tags);
 
-const tags = sortedBlogEntries.map((blog) => blog.data.tags).flat();
+const tagCountMap: Record<string, number> = Object.create(null);
+for (const tag of allTags) {
+  tagCountMap[tag] ??= 0;
+  tagCountMap[tag]++;
+}
 
-// タグの重複を削除した配列を作成
-const tagCountArray: [string, number][] = tags.reduce((acc: [string, number][], tag: string) => {
-    const existingTag = acc.find(([t]) => t === tag);
-    if (existingTag) {
-        existingTag[1] += 1;
-    } else {
-        acc.push([tag, 1]);
-    }
-    return acc;
-}, []);
-
-tagCountArray.sort((a, b) => b[1] - a[1]); // 記事数が多い順にソート
+const sortedTags = Object.entries(tagCountMap).sort((a, b) => b[1] - a[1]);
 ---
 
 <Layout title="タグ一覧 | 情報研究会 CACTUS">
-    <Fragment slot="head">
-        <meta property="og:type" content="article" />
-    </Fragment>
-    
-    <div class="body">
-        <h1>タグ一覧</h1>
-        <div class="tag-container">
-            {
-                tagCountArray.map(([tag, count]) => (
-                    <a href={`/blog/tags/${encodeURIComponent(tag)}`}>
-                        <div class="tag-content">
-                            <p>
-                                #{tag} ({count})
-                            </p>
-                        </div>
-                    </a>
-                ))
-            }
-        </div>
+  <Fragment slot="head">
+    <meta property="og:type" content="article" />
+  </Fragment>
+
+  <div class="body">
+    <h1>タグ一覧</h1>
+    <div class="tag-container">
+      {
+        sortedTags.map(([tag, count]) => (
+          <a href={`/blog/tags/${encodeURIComponent(tag)}`}>
+            <div class="tag-content">
+              <p>
+                #{tag} ({count})
+              </p>
+            </div>
+          </a>
+        ))
+      }
     </div>
+  </div>
 </Layout>
 
 <style>
-    .body {
-        margin: 0 auto;
-        max-width: 800px;
-        padding: 1rem;
-    }
-    .tag-content {
-        margin: 4px;
-        background-color: #ffffff;
-        padding: 0 2rem;
-        border: 2px solid;
-        border-color: #4b8061;
-        border-radius: 40px;
-    }
+  .body {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 1rem;
+  }
+  .tag-content {
+    margin: 4px;
+    background-color: #ffffff;
+    padding: 0 2rem;
+    border: 2px solid;
+    border-color: #4b8061;
+    border-radius: 40px;
+  }
 
-    .tag-content:hover {
-        background-color: #80a492;
-        border-color: #80a492;
-        color: #ffffff;
-    }
+  .tag-content:hover {
+    background-color: #80a492;
+    border-color: #80a492;
+    color: #ffffff;
+  }
 
-    .tag-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
+  .tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-    .tag-container a {
-        text-decoration: none;
-        color: inherit;
-    }
+  .tag-container a {
+    text-decoration: none;
+    color: inherit;
+  }
 </style>

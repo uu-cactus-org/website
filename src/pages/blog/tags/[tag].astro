@@ -5,6 +5,7 @@ import BlogCard from "@components/features/blog/BlogCard.astro";
 
 import type { GetStaticPathsResult } from "astro";
 import type { CollectionEntry } from "astro:content";
+import ReturnButton from "@components/ReturnButton.astro";
 
 interface Props {
   blog: CollectionEntry<"blog">[];
@@ -51,7 +52,6 @@ const { blog, originalTag } = Astro.props;
 
   <div class="body">
     <h1>Blog</h1>
-    <a href="/blog/tags">タグ一覧へ</a>
     <p>#{originalTag} のタグが付いた記事一覧</p>
     <div class="container">
       {
@@ -59,6 +59,10 @@ const { blog, originalTag } = Astro.props;
           <BlogCard slug={blogEntry.slug} blog={blogEntry.data} />
         ))
       }
+    </div>
+
+    <div class="footer">
+      <ReturnButton href="/blog/tags">タグ一覧へ</ReturnButton>
     </div>
   </div>
 </Layout>
@@ -81,5 +85,11 @@ const { blog, originalTag } = Astro.props;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 1rem;
+  }
+
+  .footer {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
   }
 </style>

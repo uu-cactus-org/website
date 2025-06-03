@@ -12,8 +12,8 @@ import '../styles/blog-link-card.css';
 import noimage from '@assets/noimage.png';
 
 interface Props {
-    entry: CollectionEntry<'blog'>;
-    headings: MarkdownHeading[];
+  entry: CollectionEntry<'blog'>;
+  headings: MarkdownHeading[];
 }
 
 const { entry, headings } = Astro.props;
@@ -23,212 +23,217 @@ const description = frontmatter.description ?? generateDescription(body);
 ---
 
 <Layout title={`${frontmatter.title} | 情報研究会 CACTUS`}>
-    <Fragment slot="head">
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:title" content={frontmatter.title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={frontmatter.coverImage?.src ?? noimage.src} />
-    </Fragment>
-    
-    <article>
-        <div class="body" id="top">
-            <BlogHeader {frontmatter} />
-            
-            <div class="content">
-                <slot />
-            </div>
+  <Fragment slot="head">
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content={frontmatter.title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={frontmatter.coverImage?.src ?? noimage.src} />
+  </Fragment>
 
-            <BlogFooter {blogId} />
-        </div>
+  <article>
+    <div class="body" id="top">
+      <BlogHeader {frontmatter} />
 
-        <Sidebar {headings} />
-    </article>
+      <div class="content">
+        <slot />
+      </div>
+
+      <BlogFooter {blogId} />
+    </div>
+
+    <Sidebar {headings} />
+  </article>
 </Layout>
 
 <style>
-    body {
-        background-color: #f6f6f6;
-    }
-    
-    article {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        align-items: flex-start;
-    }
-    
+  body {
+    background-color: #f6f6f6;
+  }
+
+  article {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .body {
+    flex-grow: 1;
+    max-width: 950px;
+    background-color: white;
+    padding: 32px 56px;
+    border-radius: 10px;
+  }
+
+  /* markdownの中身のスタイル */
+  .content :global(p) {
+    line-height: 1.8;
+  }
+
+  .content :global(h1) {
+    margin: 0.8em 0;
+    font-size: 1.65em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #d3d3d3;
+  }
+
+  .content :global(img:not(.rlc-favicon):not(.rlc-image)) {
+    max-width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .content :global(figcaption) {
+    color: #666;
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: -0.5rem;
+  }
+
+  .content :global(a) {
+    color: #0070f3;
+    text-decoration: none;
+  }
+
+  .content :global(a:not(.rlc-container):hover) {
+    text-decoration: underline;
+  }
+
+  /* inline code */
+  .content :global(code:not(pre code)) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+    font-size: 0.9em;
+    background-color: #f1f1f1;
+    padding: 0.3em 0.5em;
+    margin: 0 0.2em;
+    border-radius: 4px;
+  }
+
+  .content :global(blockquote) {
+    padding: 1.3rem;
+    margin: 0;
+    margin-top: 0.6rem;
+    border-radius: 5px;
+    border-left: 4px solid #2fa131;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
+    background-color: #fbfbfb;
+    font-size: 1.05em;
+  }
+
+  .content :global(blockquote:not(blockquote blockquote)) {
+    margin-right: 4px;
+  }
+
+  .content :global(blockquote p) {
+    margin: 0;
+  }
+
+  .content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    border: 1px solid #d5d5d5;
+  }
+
+  .content :global(table th),
+  .content :global(table td) {
+    padding: 0.5em 1em;
+    text-align: left;
+    border-bottom: 1px solid #e2e2e2;
+    border-right: 1px solid #d5d5d5;
+  }
+
+  .content :global(table th) {
+    background-color: #e8e8e8;
+    border-bottom: 2px solid #d5d5d5;
+  }
+
+  .content :global(table td:last-child),
+  .content :global(table th:last-child) {
+    border-right: none;
+  }
+
+  .content :global(table tr:nth-child(even)) {
+    background-color: #f6f6f6;
+  }
+
+  .content :global(details) {
+    margin: 1em 5px;
+    padding: 0;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .content :global(details summary) {
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.8em 1em;
+    margin: 0;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s;
+  }
+
+  .content :global(details summary:hover) {
+    background-color: #e8e8e8;
+  }
+
+  .content :global(details[open] summary) {
+    border-bottom: 1px solid #d0d0d0;
+  }
+
+  .content :global(details p) {
+    margin: 0;
+  }
+
+  .content :global(details > *:not(summary)) {
+    margin: 1em;
+  }
+
+  .m1 {
+    margin-left: 1em;
+  }
+  .m2 {
+    margin-left: 2em;
+  }
+
+  @media (max-width: 1200px) {
     .body {
-        flex-grow: 1;
-        max-width: 950px;
-        background-color: white;
-        padding: 32px 56px;
-        border-radius: 10px;
+      padding: 24px;
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+  }
+
+  @media (max-width: 950px) {
+    body {
+      background-color: inherit;
     }
 
-    /* markdownの中身のスタイル */
-    .content :global(p) {
-        line-height: 1.8;
-    }
-    
-    .content :global(h1) {
-        margin: .8em 0;
-        font-size: 1.65em;
-        padding-bottom: .3em;
-        border-bottom: 1px solid #d3d3d3;
+    article {
+      flex-direction: column;
+      max-width: 100%;
     }
 
-    .content :global(img:not(.rlc-favicon):not(.rlc-image)) {
-        max-width: 100%;
-        height: auto;
-        max-height: 600px;
-        object-fit: contain;
-        display: block;
-        margin: 0 auto;
+    .body {
+      width: 100%;
+      padding: 0;
     }
+  }
 
-    .content :global(figcaption) {
-        color: #666;
-        text-align: center;
-        font-size: 0.8em;
-        margin-top: -0.5rem;
-    }
-
-    .content :global(a) {
-        color: #0070f3;
-        text-decoration: none;
-    }
-
-    .content :global(a:not(.rlc-container):hover) {
-        text-decoration: underline;
-    }
-
-    /* inline code */
-    .content :global(code:not(pre code)) {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-        font-size: 0.9em;
-        background-color: #f1f1f1;
-        padding: 0.3em 0.5em;
-        margin: 0 0.2em;
-        border-radius: 4px;
-    }
-
+  @media (max-width: 768px) {
     .content :global(blockquote) {
-        padding: 1.3rem;
-        margin: 0;
-        margin-top: 0.6rem;
-        border-radius: 5px;
-        border-left: 4px solid #2fa131;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
-        background-color: #fbfbfb;
-        font-size: 1.05em;
+      padding: 0.8rem;
     }
-
-    .content :global(blockquote:not(blockquote blockquote)) {
-        margin-right: 4px;
-    }
-
-    .content :global(blockquote p) {
-        margin: 0;
-    }
-
-    .content :global(table) {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 1em 0;
-        border: 1px solid #d5d5d5;
-    }
-
-    .content :global(table th),
-    .content :global(table td) {
-        padding: 0.5em 1em;
-        text-align: left;
-        border-bottom: 1px solid #e2e2e2;
-        border-right: 1px solid #d5d5d5;
-    }
-
-    .content :global(table th) {
-        background-color: #e8e8e8;
-        border-bottom: 2px solid #d5d5d5;
-    }
-
-    .content :global(table td:last-child),
-    .content :global(table th:last-child) {
-        border-right: none;
-    }
-
-    .content :global(table tr:nth-child(even)) {
-        background-color: #f6f6f6;
-    }
-
-    .content :global(details) {
-        margin: 1em 5px;
-        padding: 0;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-
-    .content :global(details summary) {
-        cursor: pointer;
-        font-weight: 500;
-        padding: 0.8em 1em;
-        margin: 0;
-        background-color: #f0f0f0;
-        border-bottom: 1px solid #e0e0e0;
-        transition: background-color 0.2s;
-    }
-
-    .content :global(details summary:hover) {
-        background-color: #e8e8e8;
-    }
-
-    .content :global(details[open] summary) {
-        border-bottom: 1px solid #d0d0d0;
-    }
-
-    .content :global(details p) {
-        margin: 0;
-    }
-    
-    .content :global(details > *:not(summary)) {
-        margin: 1em;
-    }
-
-    .m1 { margin-left: 1em; }
-    .m2 { margin-left: 2em; }
-
-    @media (max-width: 1200px) {
-        .body {
-            padding: 24px;
-            box-sizing: border-box;
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-    }
-
-    @media (max-width: 950px) {
-        body {
-            background-color: inherit;
-        }
-        
-        article {
-            flex-direction: column;
-            max-width: 100%;
-        }
-
-        .body {
-            width: 100%;
-            padding: 0;
-        }
-    }
-    
-    @media (max-width: 768px) {
-        .content :global(blockquote) {
-            padding: 0.8rem;
-        }
-    }
+  }
 </style>

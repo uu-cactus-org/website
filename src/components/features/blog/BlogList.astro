@@ -2,13 +2,15 @@
 import { queryBlogs, type BlogQueryOptions } from '@utils';
 import BlogCard from './BlogCard.astro';
 
+import type { CollectionEntry } from 'astro:content';
+
 /**
  * Filter the blogs to display with the `filter` prop or use the `blogs` directly.  
  * If no filter is provided, all blogs will be displayed.
  */
 interface Props {
   filter?: BlogQueryOptions;
-  blogs?: Awaited<ReturnType<typeof queryBlogs>>;
+  blogs?: CollectionEntry<'blog'>[];
   size?: 'small' | 'normal';
 }
 
