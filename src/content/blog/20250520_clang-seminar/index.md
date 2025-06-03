@@ -1,7 +1,7 @@
 ---
 title: "初めてC言語を学ぶ人のためのC言語講習会"
 pubdate: 2025-05-20
-authors: ["haru"] 
+authors: ["渡辺"] 
 category: "講習会"
 tags: ["C言語", "プログラミング"] 
 ---
