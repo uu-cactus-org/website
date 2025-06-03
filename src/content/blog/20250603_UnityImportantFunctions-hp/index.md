@@ -2,7 +2,7 @@
 title: Unityでよく使う関数
 pubdate: 2025-06-03
 authors:
-  - K.H.
+  - K_H
 category: 備忘録
 tags:
   - Unity
