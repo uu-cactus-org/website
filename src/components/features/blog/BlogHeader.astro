@@ -41,7 +41,7 @@ const coverImage = frontmatter.coverImage ?? noimage;
   <h1>{frontmatter.title}</h1>
 
   <div class="category-content">
-    <a href={`/blog/categories/${category}`}>
+    <a href={`/blog/categories/${encodeURIComponent(category)}`}>
       {category}
     </a>
   </div>
@@ -60,8 +60,8 @@ const coverImage = frontmatter.coverImage ?? noimage;
 
   <div class="tag-container">
     {
-      tags.map((tag: string) => (
-        <a href={`/blog/tags/${tag}`}>
+      tags.map((tag) => (
+        <a href={`/blog/tags/${encodeURIComponent(tag)}`}>
           <div class="tag-content">#{tag}</div>
         </a>
       ))

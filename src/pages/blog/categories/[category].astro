@@ -1,23 +1,44 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import { sortedblogEntriesList } from '@utils';
-import BlogCard from '@components/features/blog/BlogCard.astro';
+import Layout from "@layouts/Layout.astro";
+import { sortedblogEntriesList } from "@utils";
+import BlogCard from "@components/features/blog/BlogCard.astro";
+
+import type { GetStaticPathsResult } from "astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  blog: CollectionEntry<"blog">[];
+  originalCategory: string;
+}
 
 export async function getStaticPaths() {
-  const uniqueCategories: string[] = [
-    ...new Set(sortedblogEntriesList.map((blog) => blog.data.category)),
-  ];
+  const paths: GetStaticPathsResult = [];
 
-  return uniqueCategories.map((category) => {
+  const uniqueCategories = new Set<string>(
+    sortedblogEntriesList.map((blog) => blog.data.category),
+  );
+
+  for (const category of uniqueCategories) {
     const filteredBlog = sortedblogEntriesList.filter(
-      (blog) => blog.data.category === category
+      (blog) => blog.data.category === category,
     );
-    
-    return {
-      params: { category: category },
-      props: { blog: filteredBlog },
-    };
-  });
+
+    const encodedCategory = encodeURIComponent(category);
+    paths.push({
+      params: { category: encodedCategory },
+      props: { blog: filteredBlog, originalCategory: category },
+    });
+
+    // エンコードされていない場合のpathも生成
+    if (category !== encodedCategory) {
+      paths.push({
+        params: { category },
+        props: { blog: filteredBlog, originalCategory: category },
+      });
+    }
+  }
+
+  return paths;
 }
 
 const { category } = Astro.params;
@@ -28,7 +49,7 @@ const { blog } = Astro.props;
   <Fragment slot="head">
     <meta property="og:type" content="article" />
   </Fragment>
-  
+
   <div class="body">
     <h1>Blog</h1>
     <!-- <a href="/blog/categories">カテゴリ一覧へ</a> -->

@@ -1,33 +1,50 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import { sortedblogEntriesList } from '@utils';
-import BlogCard from '@components/features/blog/BlogCard.astro';
+import Layout from "@layouts/Layout.astro";
+import { sortedblogEntriesList } from "@utils";
+import BlogCard from "@components/features/blog/BlogCard.astro";
 
-export async function getStaticPaths() {
-  const sortedBlogEntries = sortedblogEntriesList;
+import type { GetStaticPathsResult } from "astro";
+import type { CollectionEntry } from "astro:content";
 
-  const uniqueTags: string[] = [
-    ...new Set(sortedBlogEntries.flatMap((blog) => blog.data.tags)),
-  ];
-
-  return uniqueTags.map((tag) => {
-    const filteredBlog = sortedBlogEntries.filter((blog) =>
-      blog.data.tags.includes(tag)
-    );
-    return {
-      params: { tag },
-      props: { blog: filteredBlog },
-    };
-  });
+interface Props {
+  blog: CollectionEntry<"blog">[];
+  originalTag: string;
 }
 
-// 記事の中にタグが含まれていないとから文字列を渡してしまい，エラーになるので，その対策が必要
+export async function getStaticPaths() {
+  const paths: GetStaticPathsResult = [];
 
-const { tag } = Astro.params;
-const { blog } = Astro.props;
+  const uniqueTags = new Set<string>(
+    sortedblogEntriesList.flatMap((blog) => blog.data.tags),
+  );
+
+  for (const tag of uniqueTags) {
+    const filteredBlog = sortedblogEntriesList.filter((blog) =>
+      blog.data.tags.includes(tag),
+    );
+
+    const encodedTag = encodeURIComponent(tag);
+    paths.push({
+      params: { tag: encodedTag },
+      props: { blog: filteredBlog, originalTag: tag },
+    });
+
+    // エンコードされていない場合のpathも生成
+    if (tag !== encodedTag) {
+      paths.push({
+        params: { tag },
+        props: { blog: filteredBlog, originalTag: tag },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { blog, originalTag } = Astro.props;
 ---
 
-<Layout title={`${tag}の記事 | 情報研究会 CACTUS`}>
+<Layout title={`${originalTag}の記事 | 情報研究会 CACTUS`}>
   <Fragment slot="head">
     <meta property="og:type" content="article" />
   </Fragment>
@@ -35,7 +52,7 @@ const { blog } = Astro.props;
   <div class="body">
     <h1>Blog</h1>
     <a href="/blog/tags">タグ一覧へ</a>
-    <p>#{tag} のタグが付いた記事一覧</p>
+    <p>#{originalTag} のタグが付いた記事一覧</p>
     <div class="container">
       {
         blog.map((blogEntry) => (

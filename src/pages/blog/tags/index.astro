@@ -30,11 +30,11 @@ tagCountArray.sort((a, b) => b[1] - a[1]); // 記事数が多い順にソート
         <h1>タグ一覧</h1>
         <div class="tag-container">
             {
-                tagCountArray.map((tag) => (
-                    <a href={`/blog/tags/${tag[0]}`}>
+                tagCountArray.map(([tag, count]) => (
+                    <a href={`/blog/tags/${encodeURIComponent(tag)}`}>
                         <div class="tag-content">
                             <p>
-                                #{tag[0]} ({tag[1]})
+                                #{tag} ({count})
                             </p>
                         </div>
                     </a>
