@@ -1,0 +1,82 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const minHeadingDepth = Math.min(
+  ...Astro.props.headings.map((heading) => heading.depth),
+);
+const headings = Astro.props.headings
+  .filter((heading) => heading.depth <= 3)
+  .map((heading) => ({
+    ...heading,
+    relativeDepth: heading.depth - minHeadingDepth, // ネストの深さを調節
+  }));
+---
+
+<div class="sidebar">
+  <a href="#top">
+    <span>目次</span>
+  </a>
+  <ul>
+    {
+      headings.map((heading) => (
+        <li class={`m${heading.relativeDepth}`}>
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .sidebar {
+    flex: 0 0 250px;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    padding: 32px 16px;
+  }
+
+  .sidebar span {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  .sidebar h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: rgb(68, 68, 68);
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar li {
+    margin-bottom: 4px;
+  }
+
+  .sidebar a {
+    display: block;
+    width: 100%;
+    color: rgb(95, 95, 95);
+    text-decoration: none;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+
+  .sidebar a:hover {
+    background-color: #f0f0f0;
+  }
+
+  @media (max-width: 950px) {
+    .sidebar {
+      display: none;
+    }
+  }
+</style>

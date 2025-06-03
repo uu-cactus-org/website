@@ -1,37 +1,23 @@
 ---
 import Layout from './Layout.astro';
-import BlogHeader from '@components/features/header/BlogHeader.astro';
-import ReturnButton from '@components/ReturnButton.astro';
-import { generateDescription, queryBlogs } from '@utils';
+import { generateDescription } from '@utils';
+import BlogHeader from '@components/features/blog/BlogHeader.astro';
+import BlogFooter from '@components/features/blog/BlogFooter.astro';
+import Sidebar from '@components/features/blog/Sidebar.astro';
 
 import type { MarkdownHeading } from 'astro';
-import type { BlogSchema } from '@config';
+import type { CollectionEntry } from 'astro:content';
 
 import '../styles/blog-link-card.css';
 import noimage from '@assets/noimage.png';
-import githubLogo from '@assets/logos/github_logo.svg';
 
 interface Props {
-    id: string;
-    frontmatter: BlogSchema;
+    entry: CollectionEntry<'blog'>;
     headings: MarkdownHeading[];
-    body: string;
 }
 
-const { frontmatter, id: blogId, body } = Astro.props;
-
-const minHeadingDepth = Math.min(...Astro.props.headings.map((heading) => heading.depth));
-const headings = Astro.props.headings
-    .filter((heading) => heading.depth <= 3)
-    .map((heading) => ({
-        ...heading,
-        relativeDepth: heading.depth - minHeadingDepth, // ネストの深さを調節
-    }));
-
-const blogs = await queryBlogs({ sortBy: 'date' });
-const currentIndex = blogs.findIndex((blog) => blog.id === blogId);
-const nextBlog = blogs[currentIndex - 1];
-const prevBlog = blogs[currentIndex + 1];
+const { entry, headings } = Astro.props;
+const { body, data: frontmatter, id: blogId } = entry;
 
 const description = frontmatter.description ?? generateDescription(body);
 ---
@@ -47,51 +33,16 @@ const description = frontmatter.description ?? generateDescription(body);
     
     <article>
         <div class="body" id="top">
-            <div class="header">
-                <BlogHeader frontmatter={frontmatter} />
-            </div>
+            <BlogHeader {frontmatter} />
             
             <div class="content">
                 <slot />
             </div>
 
-            <div class="footer">
-                <div class="navigation">
-                    {prevBlog && (
-                        <div class="nav-item prev">
-                            <span class="nav-label">前の記事</span>
-                            <a href={`/blog/${prevBlog.slug}`} class="nav-link">{prevBlog.data.title}</a>
-                        </div>
-                    )}
-                    {nextBlog && (
-                        <div class="nav-item next">
-                            <span class="nav-label">次の記事</span>
-                            <a href={`/blog/${nextBlog.slug}`} class="nav-link">{nextBlog.data.title}</a>
-                        </div>
-                    )}
-                </div>
-                <div class="footer-buttons">
-                    <ReturnButton href="/blog">記事一覧へ</ReturnButton>
-                    <a href={`https://github.com/uu-cactus-org/website/edit/main/src/content/blog/${blogId}`} target="_blank" class="github-edit-button">
-                        <img src={githubLogo.src} alt="GitHub Logo" />
-                        GitHubで編集
-                    </a>
-                </div>
-            </div>
+            <BlogFooter {blogId} />
         </div>
 
-        <div class="sidebar">
-            <a href="#top">
-                <span>目次</span>
-            </a>
-            <ul>
-                {headings.map((heading) => (
-                    <li class={`m${heading.relativeDepth}`}>
-                        <a href={`#${heading.slug}`}>{heading.text}</a>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <Sidebar {headings} />
     </article>
 </Layout>
 
@@ -116,136 +67,8 @@ const description = frontmatter.description ?? generateDescription(body);
         padding: 32px 56px;
         border-radius: 10px;
     }
-    
-    .sidebar {
-        flex: 0 0 250px;
-        position: sticky;
-        top: 2rem;
-        height: fit-content;
-        padding: 32px 16px;
-    }
-
-    .sidebar span {
-        font-size: 1.3rem;
-        font-weight: bold;
-    }
-
-    .sidebar h2 {
-        font-size: 1.2rem;
-        margin: 0;
-        color: rgb(68, 68, 68);
-    }
-
-    .sidebar ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .sidebar li {
-        margin-bottom: 4px;
-    }
-    
-    .sidebar a {
-        display: block;
-        width: 100%;
-        color: rgb(95, 95, 95);
-        text-decoration: none;
-        padding: 3px 6px;
-        border-radius: 4px;
-        font-size: 0.9rem;
-    }
-
-    .sidebar a:hover {
-        background-color: #f0f0f0;
-    }
-
-    .header {
-        margin-bottom: 1rem;
-    }
-
-    .footer {
-        margin-top: 3rem;
-        margin-bottom: 1rem;
-    }
-
-    .navigation {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-        margin-top: 4rem;
-        margin-bottom: 3rem;
-        padding: 1.5rem 0;
-        border-top: 1px solid #e0e0e0;
-        border-bottom: 1px solid #e0e0e0;
-    }
-
-    .nav-item {
-        flex: 1;
-        max-width: 45%;
-    }
-
-    .nav-item.next {
-        text-align: right;
-    }
-
-    .nav-label {
-        display: block;
-        font-size: 0.8rem;
-        color: #666;
-        margin-bottom: 0.3rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .nav-link {
-        display: block;
-        color: #0070f3;
-        text-decoration: none;
-        font-weight: 500;
-        line-height: 1.4;
-        transition: color 0.2s;
-    }
-
-    .nav-link:hover {
-        color: #0056b3;
-        text-decoration: underline;
-    }
-
-    .footer-buttons {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-    
-    .github-edit-button {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.4rem 0.8rem;
-        background-color: transparent;
-        border: 1px solid #e1e4e8;
-        border-radius: 4px;
-        color: #6e7781;
-        font-size: 0.85rem;
-        text-decoration: none;
-        transition: all 0.2s;
-    }
-
-    .github-edit-button:hover {
-        background-color: #f0f0f0;
-        color: #24292e;
-    }
-
-    .github-edit-button img {
-        width: 15px;
-        height: 15px;
-        opacity: 0.8;
-    }
 
     /* markdownの中身のスタイル */
-
     .content :global(p) {
         line-height: 1.8;
     }
@@ -401,33 +224,11 @@ const description = frontmatter.description ?? generateDescription(body);
             width: 100%;
             padding: 0;
         }
-
-        .sidebar {
-            display: none;
-        }
     }
     
     @media (max-width: 768px) {
         .content :global(blockquote) {
             padding: 0.8rem;
-        }
-
-        .footer-buttons {
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .github-edit-button {
-            font-size: 0.8rem;
-            padding: 0.4rem 0.8rem;
-        }
-
-        .nav-link {
-            font-size: 0.9rem;
-        }
-
-        .nav-label {
-            font-size: 0.7rem;
         }
     }
 </style>
