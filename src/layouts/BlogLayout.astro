@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import BlogHeader from '@components/features/header/BlogHeader.astro';
 import ReturnButton from '@components/ReturnButton.astro';
+import { generateDescription, queryBlogs } from '@utils';
 
 import type { MarkdownHeading } from 'astro';
 import type { BlogSchema } from '@config';
@@ -9,15 +10,15 @@ import type { BlogSchema } from '@config';
 import '../styles/blog-link-card.css';
 import noimage from '@assets/noimage.png';
 import githubLogo from '@assets/logos/github_logo.svg';
-import { queryBlogs } from '@utils';
 
 interface Props {
     id: string;
     frontmatter: BlogSchema;
     headings: MarkdownHeading[];
+    body: string;
 }
 
-const { frontmatter, id: blogId } = Astro.props;
+const { frontmatter, id: blogId, body } = Astro.props;
 
 const minHeadingDepth = Math.min(...Astro.props.headings.map((heading) => heading.depth));
 const headings = Astro.props.headings
@@ -31,6 +32,8 @@ const blogs = await queryBlogs({ sortBy: 'date' });
 const currentIndex = blogs.findIndex((blog) => blog.id === blogId);
 const nextBlog = blogs[currentIndex - 1];
 const prevBlog = blogs[currentIndex + 1];
+
+const description = frontmatter.description ?? generateDescription(body);
 ---
 
 <Layout title={`${frontmatter.title} | 情報研究会 CACTUS`}>
@@ -38,6 +41,7 @@ const prevBlog = blogs[currentIndex + 1];
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content={frontmatter.title} />
+        <meta property="og:description" content={description} />
         <meta property="og:image" content={frontmatter.coverImage?.src ?? noimage.src} />
     </Fragment>
     

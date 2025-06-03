@@ -59,6 +59,7 @@ coverImage: "./thumbnail.jpg"
 | フィールド名 | 必須 | 説明 |
 | --- | --- | --- |
 | `title` | 〇 | 記事のタイトル |
+| `description` | ✕ | 記事の説明文(ない場合は自動生成されます) |
 | `pubdate` | 〇 | 公開日(YYYY-MM-DD形式) |
 | `authors` | 〇 | 著者名(配列で) |
 | `category` | 〇 | カテゴリ(例: 活動報告) |
