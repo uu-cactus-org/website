@@ -30,6 +30,8 @@ tags:
 この記事では色々な関数を載せておきますが、無理に覚える必要はありません。
 使いながらゆっくり理解していきましょう。
 
+---
+
 ## 物体を動かす時
 <details><summary>Transform.Translate(Vector3 vector)</summary>
 ベクトルで指定した方向に1度進む。<br>
@@ -41,6 +43,8 @@ tags:
 x/y/z それぞれの軸に対して度単位で角度を指定する。
 </details>
 
+---
+
 ## 力を加える時（物理演算関係）
 <details><summary>Rigidbody.AddForce(Vector3 force)</summary>
 オブジェクトに物理的な力を加える関数。<br>
@@ -48,6 +52,8 @@ x/y/z それぞれの軸に対して度単位で角度を指定する。
 <b>第2引数に <code>ForceMode</code> を指定</b>すると、加える力の種類が変わる。<br>
 例：<code>AddForce(force, ForceMode.Impulse)</code> は「瞬間的な力（弾き飛ばす）」を加える。
 </details>
+
+---
 
 ## 入力を処理する時
 便利なInputSystemというものもありますが、
@@ -69,6 +75,8 @@ x/y/z それぞれの軸に対して度単位で角度を指定する。
 "Horizontal" や "Vertical" など、事前に設定された名前を使う。
 </details>
 
+---
+
 ## デバックする時（意外と重要）
 <details><summary>Debug.Log(object message)</summary>
 Unityのコンソールに情報を表示する。<br>
@@ -86,6 +94,8 @@ Unityのコンソールに情報を表示する。<br>
 プレハブや一時的なエフェクトなどの片付けに使われる。
 </details>
 
+---
+
 ## 遅延処理する時
 少し難しい関数なので、
 よくわからない場合は数秒待って実行したいときに使うもんだと思っててください
@@ -98,6 +108,8 @@ Unityのコンソールに情報を表示する。<br>
 一定時間ごとに処理したい、途中で待機させたいときなどに使う関数。<br>
 コルーチンを開始し、yield return で処理を分割できる。
 </details>
+
+---
 
 ## 数値計算系
 <details><summary>Mathf.Abs(float x)</summary>
