@@ -525,3 +525,23 @@ int main() {
     return 0;
 }
 ```
+
+
+option3
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int secret;
+    srand(time(NULL));
+    secret = rand() % 1000 + 1; // 1〜1000のランダムな数
+
+
+    //ここを書く
+
+    
+    return 0;
+}
+```
