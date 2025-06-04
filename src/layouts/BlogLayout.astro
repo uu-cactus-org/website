@@ -166,37 +166,33 @@ const description = frontmatter.description ?? generateDescription(body);
 
   .content :global(details) {
     margin: 1em 5px;
-    padding: 0;
+    padding: 1em; /* 本文に何が入っても動くようにsummaryごとpaddingする */
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     overflow: hidden;
   }
 
-  .content :global(details summary) {
+  .content :global(details > summary) {
     cursor: pointer;
     font-weight: 500;
+    margin: -1em; /* summaryからpaddingの分の空間を消す */
     padding: 0.8em 1em;
-    margin: 0;
     background-color: #f0f0f0;
-    border-bottom: 1px solid #e0e0e0;
     transition: background-color 0.2s;
   }
 
-  .content :global(details summary:hover) {
+  .content :global(details > summary:hover) {
     background-color: #e8e8e8;
   }
 
-  .content :global(details[open] summary) {
+  .content :global(details[open] > summary) {
     border-bottom: 1px solid #d0d0d0;
+    margin-bottom: 1em;
   }
 
-  .content :global(details p) {
-    margin: 0;
-  }
-
-  .content :global(details > *:not(summary)) {
-    margin: 1em;
+  .content :global(details > p:last-child) {
+    margin-bottom: 0;
   }
 
   .m1 {
