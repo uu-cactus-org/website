@@ -8,6 +8,7 @@ tags:
   - Unity
   - C#
   - ゲーム開発
+coverImage: ./thumbnail.png
 ---
 この記事は現在仮設置なのであとでしっかり更新します。
 
