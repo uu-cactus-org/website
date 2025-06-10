@@ -50,8 +50,8 @@ x/y/z それぞれの軸に対して度単位で角度を指定する。
 <details><summary>Rigidbody.AddForce(Vector3 force)</summary>
 オブジェクトに物理的な力を加える関数。<br>
 力の向きと大きさを指定することで、自然な加速・移動を再現できる。<br>
-<b>第2引数に <code>ForceMode</code> を指定</b>すると、加える力の種類が変わる。<br>
-例：<code>AddForce(force, ForceMode.Impulse)</code> は「瞬間的な力（弾き飛ばす）」を加える。
+第2引数に <code>ForceMode</code> を指定すると、加える力の種類が変わる。<br>
+例：AddForce(force, ForceMode.Impulse)は「瞬間的な力（弾き飛ばす）」を加える。
 </details>
 
 ---
@@ -86,8 +86,7 @@ Unityのコンソールに情報を表示する。<br>
 
 ## 物体を生成・消滅させる
 <details><summary>Instantiate(Object obj)</summary>
-指定したオブジェクト（プレハブ）を新しく生成する。<br>
-弾の発射、敵のスポーンなどに頻繁に使われる。
+指定したオブジェクト（プレハブ）を新しく生成する。<br> 弾の発射、敵のスポーンなどに頻繁に使われる。<br> 引数を増やせば、出現するときの位置や回転や大きさが決められる。
 </details>
 
 <details><summary>Destroy(Object obj)</summary>
@@ -100,6 +99,7 @@ Unityのコンソールに情報を表示する。<br>
 ## 遅延処理する時
 少し難しい関数なので、
 よくわからない場合は数秒待って実行したいときに使うもんだと思っててください
+
 <details><summary>Invoke(string methodName, float time)</summary>
 指定した関数を、指定した秒数の後に1回だけ呼び出す。<br>
 時間差でイベントを起こしたいときに使える。
@@ -113,6 +113,8 @@ Unityのコンソールに情報を表示する。<br>
 ---
 
 ## 数値計算系
+案外使わない感じもしますが、たまに使うので。
+
 <details><summary>Mathf.Abs(float x)</summary>
 x の絶対値を返す関数。<br>
 負の値を正に変えるだけで、正の値はそのまま返る。
