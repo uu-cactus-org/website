@@ -3,6 +3,8 @@ import { getCollection, getEntry } from 'astro:content';
 
 import Layout from '@layouts/Layout.astro';
 import ProfileCard from '@components/features/blog/ProfileCard.astro';
+import IconButton from '@components/IconButton.astro';
+import leftArrow from '@assets/icons/caret-left-fill.svg';
 
 export async function getStaticPaths() {
   const authors = await getCollection('authors');
@@ -26,7 +28,7 @@ const author = authorEntry.data;
   <div class="body">
     <ProfileCard {author} />
     <br />
-    <a href="/blog/authors">一覧に戻る</a>
+     <IconButton href='/blog/authors' icon={leftArrow} alt="Back">一覧に戻る</IconButton>
   </div>
 </Layout>
 

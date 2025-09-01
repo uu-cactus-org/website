@@ -1,9 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import { links } from "../header/HeaderNav.astro";
 import Tooltip from "@components/Tooltip.astro";
 
-import { cactusTwitterUrl, cactusGitHubUrl } from "../../../constants";
+import { cactusTwitterUrl, cactusGitHubUrl, links } from "../../../constants";
 import logo from "@assets/logos/cactus/header.webp";
 import github from "@assets/logos/github_logo.svg";
 import twitter from "@assets/logos/x_logo_black.svg";
@@ -48,105 +47,191 @@ import twitter from "@assets/logos/x_logo_black.svg";
 
 <style>
   footer {
-    background-color: var(--color-cactus);
-    display: grid;
-    padding: 30px 50px;
+    background: linear-gradient(135deg, var(--color-cactus), var(--color-cactus-dark));
+    padding: 3rem 2rem 1.5rem 2rem;
+    margin-top: 4rem;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
   }
 
   .content {
     display: grid;
-    grid-template-columns: 20% 20% 20% 40%;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .logo {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    margin: 1rem;
+  }
+
+  .logo a {
+    display: block;
+    padding: 1rem;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
   }
 
   .logo img {
     display: block;
-    width: 280px;
+    width: 250px;
     height: auto;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
   }
 
   .nav {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    grid-column: 4;
+    gap: 2rem;
+    align-items: flex-end;
   }
 
   .links {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
-  .nav a {
+  .links a {
     display: flex;
     justify-content: center;
+    align-items: center;
     text-decoration: none;
-    color: #0c2509;
-    padding: 0.5rem;
-    font-weight: bold;
-    font-size: 1.15rem;
+    color: var(--color-background-white);
+    padding: 0.7rem 1.2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
-  .nav a:hover {
-    background-color: var(--color-cactus-dark);
-    border-radius: 5px;
+  .links a:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   .socials {
-    margin-top: 1.5rem;
-    display: grid;
-    justify-content: center;
+    display: flex;
+    gap: 1rem;
     align-items: center;
-    grid-column: 4;
-    grid-template-columns: repeat(2, 1fr);
+    justify-content: flex-end;
+  }
+
+  .socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .socials a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px) scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .socials img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
   }
 
   .copyright {
-    margin-top: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
   }
 
   .copyright p {
-    text-align: center;
     margin: 0;
+    color: var(--color-background-white);
+    font-size: 0.9rem;
+    opacity: 0.8;
+    font-weight: 500;
   }
 
-  @media (max-width: 1200px) {
-    .logo img {
-      width: 245px;
-      height: auto;
+  @media (max-width: 1000px) {
+    .content {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    .logo {
+      justify-content: center;
+    }
+
+    .nav {
+      align-items: center;
+    }
+
+    .links {
+      justify-content: center;
+    }
+
+    .socials {
+      justify-content: center;
     }
   }
 
   @media (max-width: 768px) {
     footer {
-      display: flex;
-      flex-direction: column;
+      padding: 2rem 1rem 1rem 1rem;
     }
 
-    .content {
-      display: flex;
-      flex-direction: column;
+    .logo img {
+      width: 200px;
     }
 
     .links {
-      grid-column: 1;
-      grid-template-columns: repeat(3, 1fr);
-      margin: 1rem 0;
-      margin-top: 2rem;
+      gap: 1rem;
     }
 
     .links a {
-      font-size: 1rem;
+      font-size: 0.9rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo img {
+      width: 180px;
+    }
+
+    .links {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .socials a {
+      width: 44px;
+      height: 44px;
+    }
+
+    .socials img {
+      width: 20px;
+      height: 20px;
     }
 
     .copyright p {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
     }
   }
 </style>

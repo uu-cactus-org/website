@@ -1,14 +1,16 @@
 ---
 import { Image } from "astro:assets";
 import HeaderNav from "./HeaderNav.astro";
+import Hamburger from "./Hamburger";
 
+import { links } from "../../../constants";
 import logo from "@assets/logos/cactus/header.webp";
 ---
 
 <header>
     <div class="center">
         <div class="logo">
-            <a href="/">
+            <a href="/" tabindex="0" aria-label="CACTUS homepage">
                 <Image
                     src={logo}
                     alt="CACTUS logo"
@@ -19,55 +21,110 @@ import logo from "@assets/logos/cactus/header.webp";
             </a>
         </div>
     </div>
+
     <div class="nav">
-        <HeaderNav />
+        <HeaderNav {links} />
+    </div>
+    <div class="hamburger">
+        <Hamburger {links} client:load />
     </div>
 </header>
 
-<style>
+<style>    
     header {
-        background-color: var(--color-cactus);
-        padding-top: 10px;
-        padding-bottom: 10px;
+        width: 100%;
+        padding: 0.8rem 0;
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: auto 1fr;
+        position: sticky;
+        top: 0;
+        align-items: center;
+        z-index: 1;
+        background: linear-gradient(135deg, rgb(70, 189, 76), rgb(55, 150, 60));
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .center {
+        display: flex;
+        align-items: center;
     }
 
     .logo {
         display: flex;
-        justify-content: left;
+        justify-content: flex-start;
         align-items: center;
-        margin: 7px 0;
-        margin-left: 25px;
+        margin-left: 2rem;
+        transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+        transform: scale(1.05);
     }
 
     .logo a {
         display: flex;
+        border-radius: 12px;
+        padding: 0.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .logo a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
     }
 
     .logo-img {
-        width: 170px;
+        width: 180px;
         height: auto;
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
     }
 
-    .center {
-        text-align: center;
-    }
-
+    /* NAVIGATIONS */
     .nav {
         display: flex;
-        justify-content: right;
+        justify-content: flex-end;
         align-items: center;
+        margin-right: 2rem;
+    }
+
+    .hamburger {
+        display: none;
+        z-index: 1000;
+        justify-content: flex-end;
+        margin-right: 1rem;
     }
 
     @media (max-width: 768px) {
         .logo {
-            margin: 3px 14px;
+            margin-left: 1rem;
         }
 
         .logo-img {
-            width: 130px;
+            width: 140px;
             z-index: 110;
+        }
+
+        .nav {
+            display: none;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .logo {
+            margin-left: 0.5rem;
+        }
+
+        .nav {
+            margin-right: 0.5rem;
+        }
+
+        .logo-img {
+            width: 120px;
         }
     }
 </style>

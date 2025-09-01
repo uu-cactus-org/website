@@ -2,6 +2,8 @@
 import Layout from "@layouts/Layout.astro";
 import { sortedblogEntriesList } from "@utils";
 import BlogCard from "@components/features/blog/BlogCard.astro";
+import IconButton from "@components/IconButton.astro";
+import leftArrow from '@assets/icons/caret-left-fill.svg';
 
 import type { GetStaticPathsResult } from "astro";
 import type { CollectionEntry } from "astro:content";
@@ -42,18 +44,17 @@ export async function getStaticPaths() {
 }
 
 const { category } = Astro.params;
-const { blog } = Astro.props;
+const { blog, originalCategory } = Astro.props;
 ---
 
-<Layout title={`カテゴリ: ${category}の記事 | 情報研究会 CACTUS`}>
+<Layout title={`カテゴリ: ${originalCategory}の記事 | 情報研究会 CACTUS`}>
   <Fragment slot="head">
     <meta property="og:type" content="article" />
   </Fragment>
 
   <div class="body">
     <h1>Blog</h1>
-    <!-- <a href="/blog/categories">カテゴリ一覧へ</a> -->
-    <p>カテゴリ: {category} の記事一覧</p>
+    <p>カテゴリ: {originalCategory} の記事一覧</p>
     <div class="container">
       {
         blog.map((blogEntry) => (
@@ -61,13 +62,34 @@ const { blog } = Astro.props;
         ))
       }
     </div>
+
+    <div class="footer">
+      <IconButton href="/blog" icon={leftArrow} alt="Back">記事一覧へ</IconButton>
+    </div>
   </div>
 </Layout>
 
 <style>
   .body {
     margin: 0 auto;
-    max-width: 950px;
+    max-width: 1100px;
+    padding: 0 1rem;
+  }
+
+  .body h1 {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--color-text-primary);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .body p {
+    font-size: 1.2rem;
+    margin: 0 0 2rem 0;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    text-align: center;
   }
 
   svg {
@@ -80,7 +102,35 @@ const { blog } = Astro.props;
 
   .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    .body {
+      padding: 0 0.5rem;
+    }
+
+    .body h1 {
+      font-size: 2rem;
+    }
+
+    .container {
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

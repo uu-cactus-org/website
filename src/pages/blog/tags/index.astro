@@ -1,5 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import IconButton from "@components/IconButton.astro";
+import leftArrow from '@assets/icons/caret-left-fill.svg';
 import { sortedblogEntriesList } from "@utils";
 
 const allTags = sortedblogEntriesList.flatMap((blog) => blog.data.tags);
@@ -33,38 +35,111 @@ const sortedTags = Object.entries(tagCountMap).sort((a, b) => b[1] - a[1]);
         ))
       }
     </div>
+
+    <div class="footer">
+      <IconButton href="/blog" icon={leftArrow} alt="Back">記事一覧に戻る</IconButton>
+    </div>
   </div>
 </Layout>
 
 <style>
   .body {
     margin: 0 auto;
-    max-width: 800px;
-    padding: 1rem;
-  }
-  .tag-content {
-    margin: 4px;
-    background-color: #ffffff;
-    padding: 0 2rem;
-    border: 2px solid;
-    border-color: #4b8061;
-    border-radius: 40px;
+    max-width: 900px;
+    padding: 2rem 1rem;
   }
 
-  .tag-content:hover {
-    background-color: #80a492;
-    border-color: #80a492;
-    color: #ffffff;
+  .body h1 {
+    font-size: 2.5rem;
+    margin: 0 0 2rem 0;
+    color: var(--color-text-primary);
+    font-weight: 700;
+    text-align: center;
   }
 
   .tag-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 1rem;
+    justify-content: center;
   }
 
   .tag-container a {
     text-decoration: none;
     color: inherit;
+    transition: transform 0.2s ease;
+  }
+
+  .tag-container a:hover {
+    transform: translateY(-2px);
+  }
+
+  .tag-content {
+    background-color: rgba(70, 189, 76, 0.1);
+    padding: 0.8rem 1.5rem;
+    border: 2px solid rgba(70, 189, 76, 0.3);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .tag-content p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-cactus-dark);
+    white-space: nowrap;
+  }
+
+  .tag-content:hover {
+    background-color: var(--color-cactus);
+    border-color: var(--color-cactus);
+    color: white;
+    box-shadow: 0 4px 16px rgba(70, 189, 76, 0.3);
+  }
+
+  .tag-content:hover p {
+    color: white;
+  }
+
+  .footer {
+    margin-top: 5rem;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    .body {
+      padding: 1.5rem 1rem;
+    }
+
+    .body h1 {
+      font-size: 2rem;
+    }
+
+    .tag-container {
+      gap: 0.8rem;
+    }
+
+    .tag-content {
+      padding: 0.6rem 1.2rem;
+    }
+
+    .tag-content p {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tag-container {
+      gap: 0.6rem;
+    }
+
+    .tag-content {
+      padding: 0.5rem 1rem;
+    }
+
+    .tag-content p {
+      font-size: 0.8rem;
+    }
   }
 </style>

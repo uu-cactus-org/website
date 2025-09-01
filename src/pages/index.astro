@@ -3,10 +3,8 @@ import Layout from "@layouts/Layout.astro";
 import Twitter from "@components/Twitter.astro";
 import BasicButton from "@components/BasicButton.astro";
 import BlogList from "@components/features/blog/BlogList.astro";
-import { Image } from "astro:assets";
 
 import ogpImage from "@assets/noimage.png";
-import sinkanImage from "@assets/images/sinkan2025.png"
 ---
 
 <Layout title="情報研究会 CACTUS">
@@ -49,77 +47,139 @@ import sinkanImage from "@assets/images/sinkan2025.png"
 		</div>
 
 		<aside class="sidebar">
-				<Twitter url="https://twitter.com/uu_cactus" />
+			<Twitter url="https://twitter.com/uu_cactus" />
 		</aside>
 	</div>
 </Layout>
 
 <style>
 	.container {
-		width: 100%;
 		display: flex;
 		justify-content: center;
+		gap: 2rem;
+		max-width: 100%;
+		margin: 0 auto;
 	}
 
 	.body {
-		margin-right: 1.2rem;
 		flex: 1;
-		min-width: 600px;
+		min-width: 0; /* flexboxのオーバーフローを防ぐ */
+		max-width: 1000px;
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 3rem;
 	}
 
 	.intro {
 		text-align: center;
+		padding: 2rem 0;
+		background: linear-gradient(135deg, rgba(70, 189, 76, 0.1) 0%, rgba(70, 189, 76, 0.05) 100%);
+		border-radius: 12px;
+		border: 1px solid var(--color-border-light);
 	}
 
 	.intro h1 {
-		font-size: 2rem;
+		font-size: 2.5rem;
+		margin: 0 0 1rem 0;
+		color: var(--color-text-primary);
+		font-weight: 700;
+	}
+
+	.intro p {
+		font-size: 1.2rem;
+		color: var(--color-text-secondary);
+		margin: 0 0 2rem 0;
+	}
+
+	.blogs {
+		background-color: var(--color-background-white);
+		border-radius: 12px;
+		padding: 2rem;
+		border: 1px solid var(--color-border-light);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	}
+
+	.blogs h2 {
+		font-size: 1.6rem;
+		margin: 0 0 1.6rem 0;
 	}
 
 	.blog-container {
 		display: flex;
 		justify-content: center;
-		margin: 1rem;
 	}
 
 	.sidebar {
 		display: flex;
 		justify-content: center;
-		border-left: 1px solid #ccc;
-		padding: 3rem 2rem;
-		width: 400px;
-		text-align: center;
+		align-items: flex-start;
+		border-left: 2px solid var(--color-border-light);
+		padding: 2rem;
+		width: 320px;
+		min-width: 320px;
+		/* background-color: rgba(245, 245, 245, 0.3); */
+		margin-left: 1rem;
 	}
 
 	@media (max-width: 1200px) {
-		.sidebar {
-			width: 250px;
-			padding: 1rem;
+		.container {
+			gap: 1.5rem;
 		}
 
-		.blog-container {
-			padding: 0;
+		.sidebar {
+			width: 280px;
+			min-width: 280px;
+			padding: 1.5rem;
+		}
+
+		.body {
+			gap: 2rem;
 		}
 	}
 
 	@media (max-width: 1000px) {
-		.body {
-			min-width: 0;
-			margin: 0;
-		}
-		
 		.container {
 			flex-direction: column;
-			justify-content: center;
+			gap: 2rem;
+		}
+
+		.body {
+			max-width: 100%;
+		}
+		
+		.sidebar {
+			width: 100%;
+			min-width: auto;
+			border-left: none;
+			border-top: 2px solid var(--color-border-light);
+			margin-left: 0;
+			padding: 2rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.intro {
+			padding: 1.5rem;
+		}
+
+		.intro h1 {
+			font-size: 1.7rem;
+		}
+
+		.intro p {
+			font-size: 1.1rem;
+		}
+
+		.blogs {
+			padding: 1.5rem;
+		}
+
+		.blogs h2 {
+			font-size: 1.4rem;
 		}
 
 		.sidebar {
-			width: 100%;
-			padding: 0;
-			margin: auto 0;
-			border-left: none;
+			padding: 1.5rem;
 		}
 	}
 
@@ -129,5 +189,6 @@ import sinkanImage from "@assets/images/sinkan2025.png"
 		max-height: 500px;
 		object-fit: contain;
 		margin: 0 auto;
+		border-radius: 8px;
 	}
 </style>

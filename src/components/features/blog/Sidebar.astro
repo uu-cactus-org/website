@@ -33,45 +33,77 @@ const headings = Astro.props.headings
 
 <style>
   .sidebar {
-    flex: 0 0 250px;
+    flex: 0 0 280px;
     position: sticky;
     top: 2rem;
     height: fit-content;
-    padding: 32px 16px;
+    padding: 1.5rem;
+    background-color: var(--color-background-white);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-border-light);
   }
 
   .sidebar span {
     font-size: 1.3rem;
-    font-weight: bold;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    display: block;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-border-light);
   }
 
   .sidebar h2 {
     font-size: 1.2rem;
     margin: 0;
-    color: rgb(68, 68, 68);
+    color: var(--color-text-primary);
   }
 
   .sidebar ul {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
 
   .sidebar li {
-    margin-bottom: 4px;
+    margin-bottom: 0.3rem;
   }
 
   .sidebar a {
     display: block;
-    width: 100%;
-    color: rgb(95, 95, 95);
+    color: var(--color-text-secondary);
     text-decoration: none;
-    padding: 3px 6px;
+    padding: 0.5rem 0.8rem;
     border-radius: 4px;
     font-size: 0.9rem;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    margin-left: 0;
+    box-sizing: border-box;
   }
 
   .sidebar a:hover {
-    background-color: #f0f0f0;
+    background-color: rgba(70, 189, 76, 0.08);
+    color: var(--color-cactus);
+    border-left-color: var(--color-cactus);
+  }
+
+  /* 目次のインデント調整 */
+  .m0 a {
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .m1 a {
+    padding-left: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .m2 a {
+    padding-left: 2.2rem;
+    font-size: 0.8rem;
   }
 
   @media (max-width: 950px) {

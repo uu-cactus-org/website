@@ -47,37 +47,54 @@ const description = frontmatter.description ?? generateDescription(body);
 </Layout>
 
 <style>
-  body {
-    background-color: #f6f6f6;
-  }
-
   article {
-    max-width: 1200px;
+    max-width: var(--max-content-width);
     margin: 0 auto;
     display: flex;
     gap: 2rem;
     justify-content: center;
     align-items: flex-start;
+    padding: 0 1rem;
   }
 
   .body {
     flex-grow: 1;
     max-width: 950px;
-    background-color: white;
-    padding: 32px 56px;
-    border-radius: 10px;
+    background-color: var(--color-background-white);
+    padding: 2.5rem 3.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-border-light);
   }
 
   /* markdownの中身のスタイル */
   .content :global(p) {
     line-height: 1.8;
+    color: var(--color-text-primary);
+    margin: 1em 0;
   }
 
   .content :global(h1) {
-    margin: 0.8em 0;
-    font-size: 1.65em;
-    padding-bottom: 0.3em;
-    border-bottom: 1px solid #d3d3d3;
+    margin: 1.2em 0 0.8em 0;
+    font-size: 1.8em;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid var(--color-border-light);
+    color: var(--color-text-primary);
+    font-weight: 700;
+  }
+
+  .content :global(h2) {
+    margin: 1.5em 0 0.8em 0;
+    font-size: 1.5em;
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  .content :global(h3) {
+    margin: 1.3em 0 0.6em 0;
+    font-size: 1.3em;
+    color: var(--color-text-primary);
+    font-weight: 600;
   }
 
   .content :global(img:not(.rlc-favicon):not(.rlc-image)) {
@@ -86,22 +103,28 @@ const description = frontmatter.description ?? generateDescription(body);
     max-height: 600px;
     object-fit: contain;
     display: block;
-    margin: 0 auto;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   .content :global(figcaption) {
-    color: #666;
+    color: var(--color-text-secondary);
     text-align: center;
-    font-size: 0.8em;
-    margin-top: -0.5rem;
+    font-size: 0.85em;
+    margin-top: 0.5rem;
+    font-style: italic;
   }
 
   .content :global(a) {
-    color: #0070f3;
+    color: var(--color-cactus);
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
   }
 
   .content :global(a:not(.rlc-container):hover) {
+    color: var(--color-cactus-dark);
     text-decoration: underline;
   }
 
@@ -110,49 +133,86 @@ const description = frontmatter.description ?? generateDescription(body);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
       "Liberation Mono", "Courier New", monospace;
     font-size: 0.9em;
-    background-color: #f1f1f1;
+    background-color: #f8f9fa;
     padding: 0.3em 0.5em;
     margin: 0 0.2em;
     border-radius: 4px;
+    border: 1px solid #e9ecef;
+  }
+
+  .content :global(pre) {
+    background-color: #f8f9fa;
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    overflow-x: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 
   .content :global(blockquote) {
-    padding: 1.3rem;
-    margin: 0;
-    margin-top: 0.6rem;
-    border-radius: 5px;
-    border-left: 4px solid #2fa131;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
-    background-color: #fbfbfb;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-cactus);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background-color: #f9fffe;
     font-size: 1.05em;
+    border: 1px solid rgba(70, 189, 76, 0.2);
   }
 
   .content :global(blockquote:not(blockquote blockquote)) {
-    margin-right: 4px;
+    margin-right: 0;
   }
 
   .content :global(blockquote p) {
     margin: 0;
+    color: var(--color-text-primary);
   }
 
   .content :global(table) {
     width: 100%;
-    border-collapse: collapse;
-    margin: 1em 0;
-    border: 1px solid #d5d5d5;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5em 0;
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
 
   .content :global(table th),
   .content :global(table td) {
-    padding: 0.5em 1em;
+    padding: 0.8em 1.2em;
     text-align: left;
-    border-bottom: 1px solid #e2e2e2;
-    border-right: 1px solid #d5d5d5;
+    border-bottom: 1px solid var(--color-border-light);
+    border-right: 1px solid var(--color-border-light);
+  }
+
+  .content :global(table th:first-child),
+  .content :global(table td:first-child) {
+    border-left: none;
+  }
+
+  .content :global(table tr:first-child th:first-child) {
+    border-top-left-radius: 7px;
+  }
+
+  .content :global(table tr:first-child th:last-child) {
+    border-top-right-radius: 7px;
+  }
+
+  .content :global(table tr:last-child td:first-child) {
+    border-bottom-left-radius: 7px;
+  }
+
+  .content :global(table tr:last-child td:last-child) {
+    border-bottom-right-radius: 7px;
   }
 
   .content :global(table th) {
-    background-color: #e8e8e8;
-    border-bottom: 2px solid #d5d5d5;
+    background-color: var(--color-background-light);
+    border-bottom: 2px solid var(--color-border-light);
+    font-weight: 600;
+    color: var(--color-text-primary);
   }
 
   .content :global(table td:last-child),
@@ -161,25 +221,27 @@ const description = frontmatter.description ?? generateDescription(body);
   }
 
   .content :global(table tr:nth-child(even)) {
-    background-color: #f6f6f6;
+    background-color: #fafafa;
   }
 
   .content :global(details) {
     margin: 1em 5px;
     padding: 1em; /* 本文に何が入っても動くようにsummaryごとpaddingする */
-    background-color: #f9f9f9;
+    background-color: var(--color-background-white);
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--color-border-light);
     overflow: hidden;
   }
 
   .content :global(details > summary) {
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
     margin: -1em; /* summaryからpaddingの分の空間を消す */
     padding: 0.8em 1em;
-    background-color: #f0f0f0;
-    transition: background-color 0.2s;
+    background-color: var(--color-background-light);
+    transition: background-color 0.2s ease;
+    color: var(--color-text-primary);
   }
 
   .content :global(details > summary:hover) {
@@ -187,12 +249,28 @@ const description = frontmatter.description ?? generateDescription(body);
   }
 
   .content :global(details[open] > summary) {
-    border-bottom: 1px solid #d0d0d0;
+    border-bottom: 1px solid var(--color-border-light);
     margin-bottom: 1em;
+  }
+
+  .content :global(details > *:not(summary)) {
+    padding: 0 1.5rem 1.5rem 1.5rem;
   }
 
   .content :global(details > p:last-child) {
     margin-bottom: 0;
+  }
+
+  .content :global(ul),
+  .content :global(ol) {
+    padding-left: 1.5rem;
+    margin: 1em 0;
+  }
+
+  .content :global(li) {
+    margin: 0.5em 0;
+    line-height: 1.6;
+    color: var(--color-text-primary);
   }
 
   .m1 {
@@ -202,34 +280,81 @@ const description = frontmatter.description ?? generateDescription(body);
     margin-left: 2em;
   }
 
+  @media (max-width: 1400px) {
+    article {
+      margin-left: auto;
+      margin-right: auto;
+      width: calc(100% - 2rem);
+    }
+  }
+
   @media (max-width: 1200px) {
     .body {
-      padding: 24px;
-      box-sizing: border-box;
+      padding: 2rem;
       max-width: 100%;
       overflow-x: hidden;
+    }
+
+    article {
+      gap: 1.5rem;
+      margin-left: auto;
+      margin-right: auto;
+      width: calc(100% - 2rem);
     }
   }
 
   @media (max-width: 950px) {
-    body {
-      background-color: inherit;
-    }
-
     article {
       flex-direction: column;
       max-width: 100%;
+      margin: 0;
+      width: 100%;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     .body {
       width: 100%;
-      padding: 0;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 0;
+      box-sizing: border-box;
     }
   }
 
   @media (max-width: 768px) {
+    article {
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .body {
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
     .content :global(blockquote) {
-      padding: 0.8rem;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .content :global(h1) {
+      font-size: 1.6em;
+    }
+
+    .content :global(h2) {
+      font-size: 1.4em;
+    }
+
+    .content :global(h3) {
+      font-size: 1.2em;
+    }
+
+    .content :global(table th),
+    .content :global(table td) {
+      padding: 0.6em 0.8em;
     }
   }
 </style>
