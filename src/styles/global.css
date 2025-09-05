@@ -5,12 +5,11 @@
   --color-cactus-dark-rgb: 55, 150, 60;
   --color-cactus-dark: rgb(var(--color-cactus-dark-rgb));
 
-  --color-background-light: #f5f5f5;
+  --color-background-light: #f5f6f6;
   --color-background-white: #ffffff;
   --color-border-light: #e0e0e0;
   --color-text-primary: #222222;
   --color-text-secondary: #444444;
 
   --max-content-width: 1300px;
-  --content-padding: 2rem;
 }
