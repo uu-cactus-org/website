@@ -33,11 +33,13 @@ import logo from "@assets/logos/cactus/header.webp";
 <style>    
     header {
         width: 100%;
-        padding: 0.8rem 0;
+        height: var(--header-height-lg);
         display: grid;
         grid-template-columns: auto 1fr;
-        position: sticky;
+        position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
         align-items: center;
         z-index: 1;
         background: linear-gradient(135deg, rgb(70, 189, 76), rgb(55, 150, 60));
@@ -96,6 +98,10 @@ import logo from "@assets/logos/cactus/header.webp";
     }
 
     @media (max-width: 768px) {
+        header {
+            height: var(--header-height-md);
+        }
+        
         .logo {
             margin-left: 1rem;
         }
@@ -115,6 +121,10 @@ import logo from "@assets/logos/cactus/header.webp";
     }
 
     @media (max-width: 480px) {
+        header {
+            height: var(--header-height-sm);
+        }
+        
         .logo {
             margin-left: 0.5rem;
         }

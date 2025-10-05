@@ -31,11 +31,11 @@ const headings = Astro.props.headings
   </ul>
 </div>
 
-<style>
+<style>  
   .sidebar {
     flex: 0 0 280px;
     position: sticky;
-    top: 2rem;
+    top: calc(90px + 2rem); /* headerの高さ + 余白 */
     height: fit-content;
     padding: 1.5rem;
     background-color: var(--color-background-white);

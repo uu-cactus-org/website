@@ -12,4 +12,8 @@
   --color-text-secondary: #444444;
 
   --max-content-width: 1300px;
+
+  --header-height-lg: 93px;
+  --header-height-md: 81px;
+  --header-height-sm: 75px;
 }
