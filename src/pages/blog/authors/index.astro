@@ -1,8 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
 import Layout from '@layouts/Layout.astro';
 import { getProfileImage } from '@utils';
+import IconButton from '@components/IconButton.astro';
+import leftArrow from '@assets/icons/caret-left-fill.svg';
 
 //TODO - ページ分けが必要??
 const authors = await getCollection('authors');
@@ -37,6 +38,10 @@ const authors = await getCollection('authors');
         ))
       }
     </div>
+
+    <div class="footer">
+      <IconButton href='/blog' icon={leftArrow} alt="Back">記事一覧に戻る</IconButton>
+    </div>
   </div>
 </Layout>
 
@@ -46,6 +51,10 @@ const authors = await getCollection('authors');
     max-width: 900px;
     padding: 2em;
     box-sizing: border-box;
+  }
+
+  .footer {
+    margin-top: 4em;
   }
 
   @media screen and (max-width: 768px) {

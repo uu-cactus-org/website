@@ -113,76 +113,104 @@ const profileImage = getProfileImage(author.profileImage);
     display: flex;
     align-items: flex-start;
     width: 100%;
+    gap: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1rem;
   }
 
   .profile-info {
-    border: 1.5px solid;
-    border-radius: 8px;
-    border-color: #c1c1c1;
-    padding: 1.5rem
+    background-color: var(--color-background-white);
+    border: 2px solid var(--color-border-light);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
   }
 
   .profile-info-wrapper {
     width: 400px;
     min-width: 360px;
+    flex-shrink: 0;
   }
 
   .profile-image {
-    width: 100px; /* サイズを小さくする */
-    height: 100px; /* サイズを小さくする */
-    border-radius: 50%; /* 丸くする */
-    border: 2px solid #ccc; /* 外枠 */
-    overflow: hidden; /* コンテンツが丸に収まるようにする */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 影を追加 */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #c1c1c1;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
-    align-items: center; /* 中のコンテンツを中央揃え */
-    background-color: #f9f9f9; /* 背景色 */
+    align-items: center;
+    background-color: var(--color-background-light);
+    margin: 0 auto 1.5rem auto;
+    transition: all 0.3s ease;
   }
 
   .profile-image img {
-    width: 90%; /* 丸い枠に収まるよう調整 */
-    height: 90%; /* 高さも枠にフィット */
-    object-fit: cover; /* 画像を中央で切り抜きながらフィット */
-    border-radius: 50%; /* 画像自体も丸くする */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   .profile-name {
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: 0.5rem;
   }
 
   .profile-id {
-    color: #5f5f5f;
-    margin: 2em 0;
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1rem;
   }
 
   .profile-bio {
-    margin-top: 1em;
-    display: block;
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
   }
 
   .profile-content {
-    margin-left: 2rem;
     flex-grow: 1;
+    min-width: 0;
+  }
+
+  .profile-content h2 {
+    font-size: 2rem;
+    color: var(--color-text-primary);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
   }
 
   .profile-content hr {
-    margin-top: -0.8rem;
-    margin-bottom: 2rem;
+    border: none;
+    height: 3px;
+    background: var(--color-cactus);
+    margin: 0 0 2rem 0;
   }
 
-  .articles-grid {
+  .blogs {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 0.5em;
-    padding: 0 5px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
   }
 
   .socials {
-    justify-content: center;
     display: flex;
-    gap: 1em;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 
   .social-icon-wrapper {
@@ -190,40 +218,94 @@ const profileImage = getProfileImage(author.profileImage);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s, transform 0.2s;
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-background-light);
+    border: 2px solid var(--color-border-light);
     border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
   }
   
   .social-icon-wrapper:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    transform: scale(1.1);
+    background-color: var(--color-cactus);
+    border-color: var(--color-cactus);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .social-icon-wrapper:hover .social-icon {
+    filter: brightness(0) invert(1);
   }
 
   .social-icon {
-    margin: 10px;
+    width: 24px;
+    height: 24px;
+    transition: filter 0.3s ease;
   }
   
   a {
     text-decoration: none;
-    color: black;
+    color: inherit;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     .profile {
       flex-direction: column;
+      gap: 2rem;
     }
 
     .profile-info-wrapper {
       width: 100%;
+      min-width: unset;
     }
 
     .profile-content {
       width: 100%;
-      margin-left: 0; /* PC用の余白をリセット */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .profile {
+      padding: 0 0.5rem;
     }
 
-    .profile-content hr {
-      margin-bottom: 1.5rem;
+    .profile-info {
+      padding: 1.5rem;
+    }
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+    }
+
+    .profile-name {
+      font-size: 1.5rem;
+    }
+
+    .profile-content h2 {
+      font-size: 1.5rem;
+    }
+
+    .blogs {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .blogs {
+      grid-template-columns: 1fr;
+    }
+
+    .social-icon-wrapper {
+      width: 44px;
+      height: 44px;
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
     }
   }
 </style>

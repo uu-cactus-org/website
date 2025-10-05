@@ -93,7 +93,9 @@ const coverImage = frontmatter.coverImage ?? noimage;
 
 <style>
   header {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border-light);
+    padding-bottom: 2rem;
   }
   
   a {
@@ -102,13 +104,16 @@ const coverImage = frontmatter.coverImage ?? noimage;
   }
 
   div {
-    margin: 0.25rem 0;
+    margin: 0.3rem 0;
   }
 
   .cover-image {
-    margin-top: 2rem;
+    margin: 2rem 0;
     position: relative;
     max-width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
 
   .cover-image img {
@@ -116,108 +121,153 @@ const coverImage = frontmatter.coverImage ?? noimage;
     width: 100%;
     height: auto;
     max-height: 400px;
+    display: block;
   }
 
   .cover-image::before {
-    content: ''; /* 疑似要素に必須 */
-    width: 100%; /* 幅いっぱい */
-    height: 100%; /* 高さいっぱい */
-    display: block; /* 高さを指定するためにブロック要素にする */
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
     background: linear-gradient(
       rgba(255, 255, 255, 0) 0,
-      #fff 90%
-    ); /* 徐々に透明にする */
+      rgba(255, 255, 255, 0.1) 90%
+    );
     position: absolute;
     top: 0;
     left: 0;
+    pointer-events: none;
   }
 
   h1 {
     font-size: 1.8rem;
-    font-weight: bold;
-    padding-bottom: 0.3rem;
-    border-bottom: 3px #5ca746 solid;
-    margin-bottom: 1rem;
+    font-weight: 700;
+    padding-bottom: 0.8rem;
+    border-bottom: 3px solid var(--color-cactus);
+    margin-bottom: 1.5rem;
+    color: var(--color-text-primary);
+    line-height: 1.3;
   }
 
   .category-content {
-    background-color: #f0f0f0;
-    border: 2px solid #dddddd;
+    background-color: var(--color-background-light);
+    border: 2px solid var(--color-border-light);
     border-radius: 8px;
     display: inline-block;
     position: relative;
+    transition: all 0.2s ease;
   }
 
   .category-content a {
     display: block;
     padding: 0.4rem 1.2rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
   }
 
   .category-content:hover {
-    background-color: #e5e5e5;
+    background-color: var(--color-cactus);
+    border-color: var(--color-cactus);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  .category-content:hover a {
+    color: white;
   }
 
   .date {
-    font-size: small;
+    font-size: 0.9rem;
     text-align: right;
     float: right;
+    color: var(--color-text-secondary);
   }
   
   time {
     display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
   }
 
   .author-list {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.8rem;
+    flex-wrap: wrap;
   }
 
   .author-content {
-    background-color: #f0f0f0;
-    border: 2px solid #dddddd;
+    background-color: var(--color-background-light);
+    border: 2px solid var(--color-border-light);
     border-radius: 100px;
-    padding: 0.5rem .9rem;
+    padding: 0.6rem 1rem;
     display: flex;
     align-items: center;
+    transition: all 0.2s ease;
   }
 
   .author-content:hover {
-    background-color: #e5e5e5;
+    background-color: var(--color-cactus);
+    border-color: var(--color-cactus);
+    color: white;
+    transform: translateY(-1px);
   }
 
   .author-content img {
     border-radius: 50%;
-    margin-right: 0.5rem;
+    margin-right: 0.6rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .tag-container {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.8rem;
     flex-wrap: wrap;
+    margin: 0.6rem 0;
   }
 
   .tag-content {
-    background-color: #ffffff;
-    padding: 0.3rem 1.0rem;
-    border: 2px solid;
-    border-color: #4b8061;
+    background-color: rgba(70, 189, 76, 0.1);
+    padding: 0.4rem 1rem;
+    border: 2px solid rgba(70, 189, 76, 0.3);
     border-radius: 20px;
-    font-size: small;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-cactus-dark);
+    transition: all 0.2s ease;
   }
 
   .tag-content:hover {
-    background-color: #80a492;
-    border-color: #80a492;
-    color: #ffffff;
+    background-color: var(--color-cactus);
+    border-color: var(--color-cactus);
+    color: white;
+    transform: translateY(-1px);
   }
 
   @media (max-width: 768px) {
+    header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
     h1 {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .cover-image {
+      margin: 1.5rem 0;
     }
 
     .tag-content {
-      padding: 0.2rem 0.8rem;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    .author-content {
+      padding: 0.5rem 0.8rem;
+    }
+
+    .date {
+      font-size: 0.85rem;
     }
   }
 </style>

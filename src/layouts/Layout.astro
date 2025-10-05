@@ -23,8 +23,40 @@ const { title } = Astro.props;
 </Base>
 
 <style>
+	
 	main {
-		min-height: 100vh;
-		padding: 15px;
+		min-height: calc(100vh - 200px);
+		padding: 2rem;
+		max-width: var(--max-content-width);
+		margin: 0 auto;
+		margin-top: calc(var(--header-height-lg) + 1rem);
+		background-color: var(--color-background-white);
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		box-sizing: border-box;
+		width: calc(100% - 2rem);
+		border-radius: 12px;
+	}
+
+	@media (max-width: 1300px) {
+		main {
+			margin: var(--header-height-lg) 0 0 0;
+			width: 100%;
+			box-sizing: border-box;
+			box-shadow: none;
+			border-radius: 0;
+		}
+	}
+
+	@media (max-width: 768px) {
+		main {
+			margin-top: var(--header-height-md);
+			padding: 1rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		main {
+			margin-top: var(--header-height-sm);
+		}
 	}
 </style>

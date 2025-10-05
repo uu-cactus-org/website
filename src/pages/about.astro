@@ -38,10 +38,46 @@ const images: CarouselProps['images'] = Object.entries(
 
 <style>
   .content {
+    /* max-width: 800px; */
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+  
+  .content h1 {
     text-align: center;
+    font-size: 2.5rem;
+    margin: 0 0 2rem 0;
+    color: var(--color-text-primary);
+    font-weight: 700;
+  }
+
+  .content p {
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin: 0 0 1.5rem 0;
   }
 
   .carousel {
     margin-top: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    .content {
+      padding: 1rem 0;
+    }
+
+    .content h1 {
+      font-size: 1.9rem;
+    }
+
+    .content p {
+      font-size: 1rem;
+    }
+
+    .carousel {
+      margin-top: 2rem;
+    }
   }
 </style>

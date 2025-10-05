@@ -1,22 +1,16 @@
 ---
-import Hamburger from './Hamburger';
+interface Props {
+  links: { href: string; label: string }[];
+}
 
-export const links: { href: string, label: string }[] = [
-  { href: '/about', label: 'ABOUT' },
-  { href: '/blog', label: 'BLOG' },
-  { href: '/game', label: 'GAME' },
-];
+const { links } = Astro.props;
 ---
 <div class="nav-container">
-  <div class="hamburger">
-    <Hamburger {links} client:load />
-  </div>
-
-  <nav class="menu">
+  <nav class="menu" role="navigation" aria-label="Main navigation">
     {links.map((link) => (
-      <div class="link">
-        <a href={link.href}>{link.label}</a>
-      </div>
+      <a href={link.href} class="nav-link" tabindex="0">
+        {link.label}
+      </a>
     ))}
   </nav>
 </div>
@@ -24,51 +18,36 @@ export const links: { href: string, label: string }[] = [
 <style>
   .nav-container {
     display: flex;
-    justify-content: space-around;
-    background-color: var(--color-cactus);
-  }
-
-  .hamburger {
-    display: none;
-
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    margin-right: 1.0rem;
+    justify-content: flex-end;
+    align-items: center;
   }
 
   .menu {
     display: flex;
-    gap: 3rem;
-    margin-right: 1.5rem;
+    gap: 1rem;
+    margin-right: 1rem;
   }
 
-  .link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .link a {
+  .nav-link {
+    display: block;
     text-decoration: none;
-    color: #0c2509;
-    font-weight: bold;
-    font-size: 1.25rem;
-    margin: 1rem;
+    color: var(--color-background-white);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    outline: none;
   }
 
-  .header-content:hover {
-    background-color: #369e40;
-    border-radius: 8px;
-  }
-
-  @media (max-width: 768px) {
-    .hamburger {
-      display: flex;
-    }
-
-    .menu {
-      display: none;
-    }
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
   }
 </style>

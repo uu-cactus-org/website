@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  href: string;
+  icon: ImageMetadata;
+  alt?: string;
+  target?: string;
+}
+const { href, icon, alt = "Icon", target } = Astro.props;
+---
+
+<div>
+  <a {href} {target}>
+    <Image src={icon} alt={alt} />
+    <span>
+      <slot />
+    </span>
+  </a>
+</div>
+
+<style>
+  div {
+    display: inline-block;
+    margin: 4px 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--color-text-primary);
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-background-white);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    border: 2px solid var(--color-border-light);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  a:hover {
+    background-color: var(--color-background-light);
+    border-color: var(--color-cactus);
+    color: var(--color-cactus);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  a:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  a img {
+    width: 1.2em;
+    height: 1.2em;
+    transition: transform 0.3s ease;
+    filter: opacity(0.7);
+  }
+
+  a:hover img {
+    filter: opacity(1);
+  }
+
+  span {
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    a {
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+      gap: 0.4rem;
+    }
+
+    a img {
+      width: 1em;
+      height: 1em;
+    }
+  }
+</style>

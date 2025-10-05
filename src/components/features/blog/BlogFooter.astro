@@ -1,6 +1,7 @@
 ---
 import { queryBlogs } from "@utils";
-import ReturnButton from "@components/ReturnButton.astro";
+import IconButton from "@components/IconButton.astro";
+import leftArrow from "@assets/icons/caret-left-fill.svg";
 
 import githubLogo from "@assets/logos/github_logo.svg";
 
@@ -19,40 +20,40 @@ const prevBlog = blogs[currentIndex + 1];
   <div class="navigation">
     {
       prevBlog && (
-        <div class="nav-item prev">
+        <a href={`/blog/${prevBlog.slug}`} class="nav-item prev">
           <span class="nav-label">前の記事</span>
-          <a href={`/blog/${prevBlog.slug}`} class="nav-link">
+          <span class="nav-link">
             {prevBlog.data.title}
-          </a>
-        </div>
+          </span>
+        </a>
       )
     }
     {
       nextBlog && (
-        <div class="nav-item next">
+        <a href={`/blog/${nextBlog.slug}`} class="nav-item next">
           <span class="nav-label">次の記事</span>
-          <a href={`/blog/${nextBlog.slug}`} class="nav-link">
+          <span class="nav-link">
             {nextBlog.data.title}
-          </a>
-        </div>
+          </span>
+        </a>
       )
     }
   </div>
   <div class="footer-buttons">
-    <ReturnButton href="/blog">記事一覧へ</ReturnButton>
-    {blogId && <a
+    <IconButton href="/blog" icon={leftArrow} alt="Back">記事一覧へ</IconButton>
+    {blogId && <IconButton 
       href={`https://github.com/uu-cactus-org/website/edit/main/src/content/blog/${blogId}`}
+      icon={githubLogo}
+      alt="GitHub Logo"
       target="_blank"
-      class="github-edit-button"
     >
-      <img src={githubLogo.src} alt="GitHub Logo" />
       GitHubで編集
-    </a>}
+    </IconButton>}
   </div>
 </footer>
 
 <style>
-  .footer {
+  footer {
     margin-top: 3rem;
     margin-bottom: 1rem;
   }
@@ -60,17 +61,31 @@ const prevBlog = blogs[currentIndex + 1];
   .navigation {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
-    margin-top: 4rem;
+    gap: 1.5rem;
+    margin-top: 3rem;
     margin-bottom: 3rem;
-    padding: 1.5rem 0;
-    border-top: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 2rem 0;
+    border-top: 2px solid var(--color-border-light);
+    border-bottom: 2px solid var(--color-border-light);
   }
 
   .nav-item {
     flex: 1;
     max-width: 45%;
+    padding: 1.2rem;
+    background-color: var(--color-background-white);
+    border-radius: 12px;
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+  }
+
+  .nav-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-cactus);
   }
 
   .nav-item.next {
@@ -80,24 +95,25 @@ const prevBlog = blogs[currentIndex + 1];
   .nav-label {
     display: block;
     font-size: 0.8rem;
-    color: #666;
-    margin-bottom: 0.3rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    font-weight: 600;
   }
 
   .nav-link {
     display: block;
-    color: #0070f3;
+    color: var(--color-cactus);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.4;
-    transition: color 0.2s;
+    transition: color 0.3s ease;
+    font-size: 1rem;
   }
 
   .nav-link:hover {
-    color: #0056b3;
-    text-decoration: underline;
+    color: var(--color-cactus-dark);
   }
 
   .footer-buttons {
@@ -105,51 +121,52 @@ const prevBlog = blogs[currentIndex + 1];
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .github-edit-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    background-color: transparent;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    color: #6e7781;
-    font-size: 0.85rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-
-  .github-edit-button:hover {
-    background-color: #f0f0f0;
-    color: #24292e;
-  }
-
-  .github-edit-button img {
-    width: 15px;
-    height: 15px;
-    opacity: 0.8;
+    gap: 1.5rem;
   }
 
   @media (max-width: 768px) {
-    .footer-buttons {
-      justify-content: space-between;
-      align-items: center;
+    .navigation {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem 0;
     }
 
-    .github-edit-button {
-      font-size: 0.8rem;
-      padding: 0.4rem 0.8rem;
+    .nav-item {
+      max-width: 100%;
+      padding: 1.2rem;
+    }
+
+    .nav-item.next {
+      text-align: left;
+    }
+
+    .footer-buttons {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
     }
 
     .nav-link {
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
 
     .nav-label {
-      font-size: 0.7rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .navigation {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .nav-item {
+      padding: 1rem;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
     }
   }
 </style>
