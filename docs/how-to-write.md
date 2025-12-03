@@ -36,6 +36,10 @@
 `src/contents/blog/` にフォルダを作成しましょう。名前は管理しやすいように `YYYYMMDD_タイトル` のようにしてください。  
 例: `20250430_new-hp`
 
+フォルダの作り方は以下のサイトが参考になります。
+
+[GitHub 上でフォルダ（ディレクトリ）を作成する方法](https://zenn.dev/kazuk_super/articles/setouchi-h-how-to-create-folder-on-github)
+
 作成したフォルダの中に `index.md` という名前のファイルを作れば、あとは記事を書くだけです！   
 
 ### 記事のヘッダーの書き方
