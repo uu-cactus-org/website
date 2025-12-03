@@ -4,8 +4,6 @@ pubdate: 2025-12-03
 authors: ["K_H"] 
 category: "ブログ"
 tags: ["Unity", "ゲーム開発", "グラフィック"] 
-coverImage: "./thumbnail.jpg"
-draft: true
 ---
 
 # ローポリなにそれおいしいの？
