@@ -4,6 +4,7 @@ pubdate: 2025-12-03
 authors: ["K_H"] 
 category: "ブログ"
 tags: ["Unity", "ゲーム開発", "グラフィック"] 
+coverImage: "thumbnail.jpg"
 ---
 
 # ローポリなにそれおいしいの？
@@ -31,7 +32,7 @@ tags: ["Unity", "ゲーム開発", "グラフィック"]
 
 ## 2. DELIVERY MUST COMPLETE
 
-![DeliveryMustComplete](./Game01.png)
+![DeliveryMustComplete](./Game03.png)
 
 同様の表現がこちらの海外(?)の方が開発中の戦闘機ローグライクでも見られます。こちらもパキッとした色合いですが、煙や雲の表現・炎の表現がよくマッチしています。
 
