@@ -22,9 +22,9 @@ tags: ["学祭"]
 　学祭当日はサークルで用意したPCを用いてゲームを遊んでもらいましたが、いくつかのゲームはWeb版を用意しています！
 以下にゲームが遊べるURLを添付いたしますので、ご興味があれば是非遊んでみてください！
 
-[BurstLike]: https://unityroom.com/games/burstlike "BurstLike"
-[UU-JUMP]: https://unityroom.com/games/uu-jump "UU-JUMP"
-[スペーストラベル]: https://unityroom.com/games/spacetraveler_cactus "スペーストラベル"
+[BurstLike](https://unityroom.com/games/burstlike)
+[UU-JUMP](https://unityroom.com/games/uu-jump)
+[スペーストラベル](https://unityroom.com/games/spacetraveler_cactus)
 
 # おわりに
 　今回の展示は大成功で終わったと思います！
