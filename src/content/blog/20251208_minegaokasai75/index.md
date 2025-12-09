@@ -1,10 +1,10 @@
-
 ---
 title: "第75回峰ヶ丘祭に参加しました！"
 pubdate: 2025-12-07
 authors: ["Muko"] 
 category: "活動報告"
 tags: ["学祭"] 
+coverImage: board.jpeg
 ---
 
 # はじめに
