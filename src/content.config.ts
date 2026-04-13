@@ -1,7 +1,9 @@
-import { z, defineCollection, type InferEntrySchema } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
+import { defineCollection, type InferEntrySchema } from 'astro:content';
 
 const blog = defineCollection({
-    type: 'content',
+    loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
     schema: ({ image }) => z.object({
         title: z.string(),
         description: z.optional(z.string().min(1)),
@@ -17,7 +19,7 @@ const blog = defineCollection({
 export type BlogSchema = InferEntrySchema<'blog'>;
 
 const authors = defineCollection({
-    type: 'data',
+    loader: glob({ base: './src/content/authors', pattern: '**/*.json', generateId: (options) => options.data.id as string }),
     schema: ({ image }) => z.object({
         id: z.string(),
         name: z.string(),

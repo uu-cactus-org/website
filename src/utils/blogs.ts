@@ -1,5 +1,5 @@
 import { getCollection } from "astro:content";
-import type { AuthorSchema } from '@config';
+import type { AuthorSchema } from 'src/content.config';
 
 import cactakunNoimage from '@assets/logos/cactus/cactakun_noimage.webp';
 

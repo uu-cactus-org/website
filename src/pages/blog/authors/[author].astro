@@ -10,12 +10,11 @@ export async function getStaticPaths() {
   const authors = await getCollection('authors');
   return authors.map((author) => ({
     params: { author: author.id },
+    props: { author },
   }));
 }
 
-const { author: authorId } = Astro.params;
-const authorEntry = await getEntry('authors', authorId);
-const author = authorEntry.data;
+const author = Astro.props.author.data;
 ---
 
 <Layout title={`${author.name} のプロフィール | 情報研究会 CACTUS`}>

@@ -25,19 +25,10 @@ export async function getStaticPaths() {
       blog.data.tags.includes(tag),
     );
 
-    const encodedTag = encodeURIComponent(tag);
     paths.push({
-      params: { tag: encodedTag },
+      params: { tag },
       props: { blog: filteredBlog, originalTag: tag },
     });
-
-    // エンコードされていない場合のpathも生成
-    if (tag !== encodedTag) {
-      paths.push({
-        params: { tag },
-        props: { blog: filteredBlog, originalTag: tag },
-      });
-    }
   }
 
   return paths;
@@ -57,7 +48,7 @@ const { blog, originalTag } = Astro.props;
     <div class="container">
       {
         blog.map((blogEntry) => (
-          <BlogCard slug={blogEntry.slug} blog={blogEntry.data} />
+          <BlogCard blogId={blogEntry.id} blog={blogEntry.data} />
         ))
       }
     </div>

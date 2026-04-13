@@ -1,23 +1,23 @@
 ---
 import { Image } from 'astro:assets';
-import type { BlogSchema } from '@config';
+import type { BlogSchema } from 'src/content.config';
 import { formatDate } from '@utils';
 
 import noimage from '@assets/noimage.png';
 
 interface Props {
-    slug: string;
+    blogId: string;
     blog: BlogSchema;
 }
 
-const { blog, slug } = Astro.props;
+const { blog, blogId } = Astro.props;
 
 const coverImage = blog.coverImage ?? noimage;
 const date = blog.updated ?? blog.pubdate;
 ---
 
 <div class="card">
-    <a href={`/blog/${slug}`} aria-label={blog.title} class="card-link">
+    <a href={`/blog/${blogId}`} aria-label={blog.title} class="card-link">
         <div class="cover-image">
             <Image src={coverImage} alt="cover image" />
         </div>

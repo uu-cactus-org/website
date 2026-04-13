@@ -58,7 +58,7 @@ const { blog, originalCategory } = Astro.props;
     <div class="container">
       {
         blog.map((blogEntry) => (
-          <BlogCard slug={blogEntry.slug} blog={blogEntry.data} />
+          <BlogCard blogId={blogEntry.id} blog={blogEntry.data} />
         ))
       }
     </div>

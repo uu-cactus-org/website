@@ -25,9 +25,6 @@ export default defineConfig({
         mdx(),
         react(),
     ],
-    legacy: {
-        collections: true
-    },
     markdown: {
         remarkPlugins: [
             [

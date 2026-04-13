@@ -21,7 +21,7 @@ const cardWidth = Astro.props.size === 'small' ? '290px' : '320px';
 <ul>
   {blogs.map((blog) => (
     <li>
-      <BlogCard slug={blog.slug} blog={blog.data} />
+      <BlogCard blogId={blog.id} blog={blog.data} />
     </li>
   ))}
 </ul>
