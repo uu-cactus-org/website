@@ -13,7 +13,7 @@ baseUrl.searchParams.set("maxheight", "500");
 
 const tweet = await fetch(baseUrl.toString())
     .then<{ html: string }>((res) => res.json())
-    .catch((err) => null);
+    .catch(() => null);
 ---
 
 {
