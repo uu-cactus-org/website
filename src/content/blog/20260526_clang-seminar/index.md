@@ -201,6 +201,67 @@ int main() {
 }
 ```
 
+ex1:
+```c
+#include <stdio.h>
+
+int main() {
+  int a, b;
+
+  printf("1つ目(a)のデータを入力してください\n");
+  scanf("%d", &a);
+  
+  printf("1つ目(b)のデータを入力してください\n");
+  scanf("%d", &b);
+
+  // 続きを実装してみよう
+
+  
+  return 0;
+}
+```
+
+ex2:
+```c
+#include <stdio.h>
+
+int main() {
+  int a = 5;
+  int b = 3;
+
+  int inputNum;
+
+  printf("1~4の数値を入力してください\n");
+  scanf("%d", &inputNum);
+
+  // 続きを実装してみよう
+
+  
+  return 0;
+}
+```
+
+ex3:
+```c
+#include <stdio.h>
+
+int main() {
+  int inputNum; // 入力
+  int answer;   // 計算結果
+  int tmp;      // 値の一時保存
+
+  printf("x (整数) を入力してください\n");
+  scanf("%d", &inputNum);
+
+  // 続きを実装してみよう
+
+
+  printf("|x - 5| + |x + 10| = %d\n", answer);
+  
+  return 0;
+}
+```
+
 # 第三回
 
 準備中...
