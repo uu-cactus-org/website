@@ -4,7 +4,7 @@ pubdate: 2026-06-02
 authors: ["K_H"] 
 category: "ブログ"
 tags: ["Notion", "メモアプリ", "便利"] 
-coverImage: "./thumbnail.jpg"
+coverImage: "./doraemon_notion.png"
 ---
 
 # みんな電子メモはどうしてる？
