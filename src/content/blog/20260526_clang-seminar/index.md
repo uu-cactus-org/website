@@ -264,105 +264,105 @@ int main() {
 
 # 第三回
 
-準備中...
-
-<!-- 
-
-3-1 while文
-```c
-#include<stdio.h>
-int main(){
-    int i=1;
-    int n;
-    int sum=0;
-    printf("自然数nを入力してください");
-    scanf("%d",&n);
-    
-    while(i<=n){
-        sum=sum+i;
-        printf("i : %d sum : %d\n", i, sum);
-        i++;//i=i+1;と同じ
-    }
-
-    return 0;
-}
-```
-
-3-2 for文
-```c
-#include<stdio.h>
-int main(){
-    int n;
-    int sum=0;
-    printf("自然数nを入力してください");
-    scanf("%d",&n);
-    for(int i=1;i<=n;i++){
-        sum=sum+i;
-        printf("i : %d sum : %d\n", i, sum);
-    }
-
-    return 0;
-}
-```
-
-
-3-3 continueとbreak文
-```c
-#include<stdio.h>
-int main(){
-    int i=1;
-    int n=10000;
-    int sum=0;
-    printf("n = %d",n);
-    
-    while(i<=n){
-        if(i%2==1){//値が奇数ならば、値を1増やしてwhileを最初からやる
-            i++;
-            continue;
-        }
-        sum=sum+i;
-        printf("i : %d sum : %d\n", i, sum);
-        if(sum>5000)//もし総和が5000より大きくなったらwhile文を抜ける
-            break;
-        i++;
-    }
-    return 0;
-}
-```
-
-3-4 for文とwhile文の動作の違い
+3-1 インクリメントとデクリメント
 ```c
 #include <stdio.h>
 
 int main() {
-    printf("forループで偶数をスキップ:\n");
-    for (int i = 0; i < 10; i++) {
-        if (i % 2 == 0) {
-            continue; //i++って書く必要がないfor(;;)の三つ目の更新式がcontinue時にされる
-        }
-        printf("i = %d\n", i);
+    int i = 1;
+    printf("i = %d\n", i++); // iの値を 出力 → 1増やす
+    printf("i = %d\n", i); // 現在のiの値を出力
+
+    printf("i = %d\n", ++i); // iの値を 1増やす → 出力
+    printf("i = %d\n", i); // 現在のiの値を出力
+
+    return 0;
+}
+```
+
+3-2 while文
+```c
+#include <stdio.h>
+
+int main() {
+    int i = 1;
+    int n;
+    int sum = 0; // 和を保存する変数
+
+    printf("自然数nを入力してください: ");
+    scanf("%d",&n);
+    
+    // iがn以下の間実行
+    while (i <= n) {
+        sum = sum + i;
+        printf("i: %d, sum: %d\n", i, sum);
+
+        i++; // i= i + 1; と同じ
     }
 
-    printf("----------------------\n");
+    printf("1 から %d までの総和は %d です\n", n, sum);
 
-    printf("whileループで偶数をスキップ:\n");
-    int j = 0;
-    while (j < 10) {
-        if (j % 2 == 0) {
-            j++;//値の更新を自分でcontinueする前に行わなければならない
-            continue;
-        }
-        printf("j = %d\n", j);
-        j++;
+    return 0;
+}
+```
+
+3-3 for文
+```c
+#include <stdio.h>
+
+int main() {
+    int n;
+	int sum = 0; // 総和を格納する変数
+
+    printf("自然数nを入力してください: ");
+    scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++) {
+		sum = sum + i; // sumにiを加算していく
+        printf("i: %d, sum: %d\n", i, sum);
+    }
+
+    printf("1 から %d までの総和は %d です\n", n, sum);
+
+    return 0;
+}
+```
+
+3-4 continue文
+```c
+#include <stdio.h>
+
+int main() {
+	for (int i = 0; i < 10; i++) {
+		if (i % 2 == 0) continue; // iが偶数の場合はスキップ
+
+		printf("%d\n", i);
+	}
+
+    return 0;
+}
+```
+
+3-5 break文
+```c
+#include <stdio.h>
+
+int main() {
+	int i = 1;
+	int sum = 0;
+
+	// 無限ループを作る
+	while (1) {
+		if (sum >= 10000) break; // 合計が10000以上でループを脱出
+
+		sum = sum + i; // iをsumに加算
+		printf("i: %d, sum: %d\n", i, sum);
+		i++; // カウンタを1増やす
     }
 
     return 0;
 }
-
 ```
-
--->
-
 
 # 第四回
 
