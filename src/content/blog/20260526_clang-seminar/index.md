@@ -366,29 +366,27 @@ int main() {
 
 # 第四回
 
-準備中...
-
-<!--
-
 4-1 変数の出力書式について
 ```c
-#include<stdio.h>
-int main(){
-    int a,b,c,d,e,f;
-    a=10;
-    b=20;
-    c=30;
-    d=b*c;
-    e=a*c;
-    f=a*b;
+#include <stdio.h>
+int main() {
+    int a, b, c, d, e, f;
+    a = 10;
+    b = 20;
+    c = 30;
+    d = b * c;
+    e = a * c;
+    f = a * b;
 
-    printf("%d %d %d\n",a,b,c);
-    printf("%d %d %d\n",d,e,f);
+    // 普通に出力する場合
+    printf("%d %d %d\n", a, b, c);
+    printf("%d %d %d\n", d, e, f);
 
-    printf("\n\n");
+    printf("\n");
 
-    printf("%3d %3d %3d\n",a,b,c);
-    printf("%2d %3d %3d\n",d,e,f);//最初が2dになってることに注意
+    // 書式指定子を使う場合
+    printf("%3d %3d %3d\n", a, b, c);
+    printf("%2d %3d %3d\n", d, e, f); //最初が2dになってることに注意
 
     return 0;
 }
@@ -396,16 +394,16 @@ int main(){
 
 4-2 配列
 ```c
-#include<stdio.h>
-int main(){
+#include <stdio.h>
+int main() {
     int a[10];
 
-    for(int i=0;i<10;i++){
-        a[i]=i+10;
+    for(int i = 0; i < 10; i++) {
+        a[i] = i + 10;
     }
 
-    for(int i=0;i<10;i++){
-        printf("%3d\n",a[i]);
+    for(int i = 0; i < 10; i++) {
+        printf("%3d\n", a[i]);
     }
 
     return 0;
@@ -414,31 +412,26 @@ int main(){
 
 4-3 多次元配列
 ```c
-#include<stdio.h>
-int main(){
+#include <stdio.h>
+int main() {
     int a[3][5];
-    int c=0;
-    for(int i=0;i<3;i++){
-        for(int j=0;j<5;j++){
-            a[i][j]=c;
-            c++;
+    int c = 0;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            a[i][j] = c++;
         }
     }
 
-    for(int i=0;i<3;i++){
-        for(int j=0;j<5;j++){
-            printf("a[%d][%d] = %2d",i,j,a[i][j]);
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+			printf("%2d ", a[i][j]); // 改行せずにスペースを入れて出力
         }
-        printf("\n");
+		printf("\n"); // 各行の出力が終わったら改行
     }
 
     return 0;
-
 }
 ```
-
--->
-
 
 
 # 第五回
