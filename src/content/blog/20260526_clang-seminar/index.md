@@ -436,68 +436,62 @@ int main() {
 
 # 第五回
 
-準備中...
-
-<!--
-
 5-1 関数の例(1)
 ```c
-#include<stdio.h>
+#include <stdio.h>
 
-int Add(int x,int y);
-
-int main(){
-    int a=5;
-    int b=12;
-    a=Add(a,b);
-
-    printf(" a = %d\n" ,a );
-
-    return 0;
-}
-
-
-int Add(int x,int y){
-    int sum;
-    sum=x+y;
+int Add(int x, int y) {
+    int sum = x + y;
     return sum;
 }
 
+int main() {
+    int a = 5;
+    int b = 12;
+
+    int c = Add(a, b); // 関数Addを呼び出し、結果をcに代入
+
+    printf("c = %d\n" , c);
+
+    return 0;
+}
 ```
 
 5-2 関数の例(2)
 ```c
-#include<stdio.h>
+#include <stdio.h>
 
-int Add(int x,int y){
-    int sum;
-    sum=x+y;
-    return sum;
-}
+int Add(int x, int y);
 
-int main(){
-    int a=5;
-    int b=12;
-    a=Add(a,b);
+int main() {
+    int a = 5;
+    int b = 12;
 
-    printf(" a = %d\n" ,a );
+    int c = Add(a, b);
+
+    printf("c = %d\n", c);
 
     return 0;
+}
+
+int Add(int x, int y) {
+    int sum = x + y;
+    return sum;
 }
 ```
 
 5-3 返り値を持たない関数
 
 ```c
-#include<stdio.h>
+#include <stdio.h>
 
-void Print(int x){
-    printf("あなたの入力した値は%dですね",x);
-    return;
+void Print(int x) {
+    printf("あなたの入力した値は%dですね", x);
+    return; // なにも返していない
 }
 
-int main(){
-    int a=5;
+int main() {
+    int a = 5;
     Print(a);
     return 0;
 }
@@ -505,32 +499,33 @@ int main(){
 
 5-4 再帰関数の例(1)
 ```c
-#include<stdio.h>
-int sum(int x);
+#include <stdio.h>
+int sum(int n);
 
-int main(){
+int main() {
     int num;
     printf("整数を入力してください\n");
-    scanf("%d",&num);
-    printf("1から%dまでの総和は%dです\n",num,sum(num));
+    scanf("%d", &num);
+    printf("1から%dまでの総和は%dです\n", num, sum(num));
     return 0;
 }
 
-int sum(int x){
-    if(x==1)
+int sum(int n) {
+    if (n == 1) {
         return 1;
-    else if(x<=0)
+    }
+    else if (n <= 0) {
         return 0;
-    else
-        return x+sum(x-1);
+    }
+    else {
+        return n + sum(n - 1);
+    }
 }
-
 ```
 
 5-5 再帰関数の例(2)
 ```c
 #include <stdio.h>
-
 
 int factorial(int n) {
     if (n == 0) {
@@ -547,7 +542,6 @@ int main() {
     printf("%dの階乗は %d です。\n", num, factorial(num));
     return 0;
 }
-
 ```
 
 # オプション用
@@ -590,6 +584,3 @@ int main() {
     return 0;
 }
 ```
-
-
--->
