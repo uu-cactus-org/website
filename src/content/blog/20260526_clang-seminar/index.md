@@ -264,131 +264,129 @@ int main() {
 
 # 第三回
 
-準備中...
-
-<!-- 
-
-3-1 while文
-```c
-#include<stdio.h>
-int main(){
-    int i=1;
-    int n;
-    int sum=0;
-    printf("自然数nを入力してください");
-    scanf("%d",&n);
-    
-    while(i<=n){
-        sum=sum+i;
-        printf("i : %d sum : %d\n", i, sum);
-        i++;//i=i+1;と同じ
-    }
-
-    return 0;
-}
-```
-
-3-2 for文
-```c
-#include<stdio.h>
-int main(){
-    int n;
-    int sum=0;
-    printf("自然数nを入力してください");
-    scanf("%d",&n);
-    for(int i=1;i<=n;i++){
-        sum=sum+i;
-        printf("i : %d sum : %d\n", i, sum);
-    }
-
-    return 0;
-}
-```
-
-
-3-3 continueとbreak文
-```c
-#include<stdio.h>
-int main(){
-    int i=1;
-    int n=10000;
-    int sum=0;
-    printf("n = %d",n);
-    
-    while(i<=n){
-        if(i%2==1){//値が奇数ならば、値を1増やしてwhileを最初からやる
-            i++;
-            continue;
-        }
-        sum=sum+i;
-        printf("i : %d sum : %d\n", i, sum);
-        if(sum>5000)//もし総和が5000より大きくなったらwhile文を抜ける
-            break;
-        i++;
-    }
-    return 0;
-}
-```
-
-3-4 for文とwhile文の動作の違い
+3-1 インクリメントとデクリメント
 ```c
 #include <stdio.h>
 
 int main() {
-    printf("forループで偶数をスキップ:\n");
-    for (int i = 0; i < 10; i++) {
-        if (i % 2 == 0) {
-            continue; //i++って書く必要がないfor(;;)の三つ目の更新式がcontinue時にされる
-        }
-        printf("i = %d\n", i);
+    int i = 1;
+    printf("i = %d\n", i++); // iの値を 出力 → 1増やす
+    printf("i = %d\n", i); // 現在のiの値を出力
+
+    printf("i = %d\n", ++i); // iの値を 1増やす → 出力
+    printf("i = %d\n", i); // 現在のiの値を出力
+
+    return 0;
+}
+```
+
+3-2 while文
+```c
+#include <stdio.h>
+
+int main() {
+    int i = 1;
+    int n;
+    int sum = 0; // 和を保存する変数
+
+    printf("自然数nを入力してください: ");
+    scanf("%d",&n);
+    
+    // iがn以下の間実行
+    while (i <= n) {
+        sum = sum + i;
+        printf("i: %d, sum: %d\n", i, sum);
+
+        i++; // i= i + 1; と同じ
     }
 
-    printf("----------------------\n");
+    printf("1 から %d までの総和は %d です\n", n, sum);
 
-    printf("whileループで偶数をスキップ:\n");
-    int j = 0;
-    while (j < 10) {
-        if (j % 2 == 0) {
-            j++;//値の更新を自分でcontinueする前に行わなければならない
-            continue;
-        }
-        printf("j = %d\n", j);
-        j++;
+    return 0;
+}
+```
+
+3-3 for文
+```c
+#include <stdio.h>
+
+int main() {
+    int n;
+	int sum = 0; // 総和を格納する変数
+
+    printf("自然数nを入力してください: ");
+    scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++) {
+		sum = sum + i; // sumにiを加算していく
+        printf("i: %d, sum: %d\n", i, sum);
+    }
+
+    printf("1 から %d までの総和は %d です\n", n, sum);
+
+    return 0;
+}
+```
+
+3-4 continue文
+```c
+#include <stdio.h>
+
+int main() {
+	for (int i = 0; i < 10; i++) {
+		if (i % 2 == 0) continue; // iが偶数の場合はスキップ
+
+		printf("%d\n", i);
+	}
+
+    return 0;
+}
+```
+
+3-5 break文
+```c
+#include <stdio.h>
+
+int main() {
+	int i = 1;
+	int sum = 0;
+
+	// 無限ループを作る
+	while (1) {
+		if (sum >= 10000) break; // 合計が10000以上でループを脱出
+
+		sum = sum + i; // iをsumに加算
+		printf("i: %d, sum: %d\n", i, sum);
+		i++; // カウンタを1増やす
     }
 
     return 0;
 }
-
 ```
-
--->
-
 
 # 第四回
 
-準備中...
-
-<!--
-
 4-1 変数の出力書式について
 ```c
-#include<stdio.h>
-int main(){
-    int a,b,c,d,e,f;
-    a=10;
-    b=20;
-    c=30;
-    d=b*c;
-    e=a*c;
-    f=a*b;
+#include <stdio.h>
+int main() {
+    int a, b, c, d, e, f;
+    a = 10;
+    b = 20;
+    c = 30;
+    d = b * c;
+    e = a * c;
+    f = a * b;
 
-    printf("%d %d %d\n",a,b,c);
-    printf("%d %d %d\n",d,e,f);
+    // 普通に出力する場合
+    printf("%d %d %d\n", a, b, c);
+    printf("%d %d %d\n", d, e, f);
 
-    printf("\n\n");
+    printf("\n");
 
-    printf("%3d %3d %3d\n",a,b,c);
-    printf("%2d %3d %3d\n",d,e,f);//最初が2dになってることに注意
+    // 書式指定子を使う場合
+    printf("%3d %3d %3d\n", a, b, c);
+    printf("%2d %3d %3d\n", d, e, f); //最初が2dになってることに注意
 
     return 0;
 }
@@ -396,16 +394,16 @@ int main(){
 
 4-2 配列
 ```c
-#include<stdio.h>
-int main(){
+#include <stdio.h>
+int main() {
     int a[10];
 
-    for(int i=0;i<10;i++){
-        a[i]=i+10;
+    for(int i = 0; i < 10; i++) {
+        a[i] = i + 10;
     }
 
-    for(int i=0;i<10;i++){
-        printf("%3d\n",a[i]);
+    for(int i = 0; i < 10; i++) {
+        printf("%3d\n", a[i]);
     }
 
     return 0;
@@ -414,97 +412,86 @@ int main(){
 
 4-3 多次元配列
 ```c
-#include<stdio.h>
-int main(){
+#include <stdio.h>
+int main() {
     int a[3][5];
-    int c=0;
-    for(int i=0;i<3;i++){
-        for(int j=0;j<5;j++){
-            a[i][j]=c;
-            c++;
+    int c = 0;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            a[i][j] = c++;
         }
     }
 
-    for(int i=0;i<3;i++){
-        for(int j=0;j<5;j++){
-            printf("a[%d][%d] = %2d",i,j,a[i][j]);
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+			printf("%2d ", a[i][j]); // 改行せずにスペースを入れて出力
         }
-        printf("\n");
+		printf("\n"); // 各行の出力が終わったら改行
     }
 
     return 0;
-
 }
 ```
-
--->
-
 
 
 # 第五回
 
-準備中...
-
-<!--
-
 5-1 関数の例(1)
 ```c
-#include<stdio.h>
+#include <stdio.h>
 
-int Add(int x,int y);
-
-int main(){
-    int a=5;
-    int b=12;
-    a=Add(a,b);
-
-    printf(" a = %d\n" ,a );
-
-    return 0;
-}
-
-
-int Add(int x,int y){
-    int sum;
-    sum=x+y;
+int Add(int x, int y) {
+    int sum = x + y;
     return sum;
 }
 
+int main() {
+    int a = 5;
+    int b = 12;
+
+    int c = Add(a, b); // 関数Addを呼び出し、結果をcに代入
+
+    printf("c = %d\n" , c);
+
+    return 0;
+}
 ```
 
 5-2 関数の例(2)
 ```c
-#include<stdio.h>
+#include <stdio.h>
 
-int Add(int x,int y){
-    int sum;
-    sum=x+y;
-    return sum;
-}
+int Add(int x, int y);
 
-int main(){
-    int a=5;
-    int b=12;
-    a=Add(a,b);
+int main() {
+    int a = 5;
+    int b = 12;
 
-    printf(" a = %d\n" ,a );
+    int c = Add(a, b);
+
+    printf("c = %d\n", c);
 
     return 0;
+}
+
+int Add(int x, int y) {
+    int sum = x + y;
+    return sum;
 }
 ```
 
 5-3 返り値を持たない関数
 
 ```c
-#include<stdio.h>
+#include <stdio.h>
 
-void Print(int x){
-    printf("あなたの入力した値は%dですね",x);
-    return;
+void Print(int x) {
+    printf("あなたの入力した値は%dですね", x);
+    return; // なにも返していない
 }
 
-int main(){
-    int a=5;
+int main() {
+    int a = 5;
     Print(a);
     return 0;
 }
@@ -512,32 +499,33 @@ int main(){
 
 5-4 再帰関数の例(1)
 ```c
-#include<stdio.h>
-int sum(int x);
+#include <stdio.h>
+int sum(int n);
 
-int main(){
+int main() {
     int num;
     printf("整数を入力してください\n");
-    scanf("%d",&num);
-    printf("1から%dまでの総和は%dです\n",num,sum(num));
+    scanf("%d", &num);
+    printf("1から%dまでの総和は%dです\n", num, sum(num));
     return 0;
 }
 
-int sum(int x){
-    if(x==1)
+int sum(int n) {
+    if (n == 1) {
         return 1;
-    else if(x<=0)
+    }
+    else if (n <= 0) {
         return 0;
-    else
-        return x+sum(x-1);
+    }
+    else {
+        return n + sum(n - 1);
+    }
 }
-
 ```
 
 5-5 再帰関数の例(2)
 ```c
 #include <stdio.h>
-
 
 int factorial(int n) {
     if (n == 0) {
@@ -554,7 +542,6 @@ int main() {
     printf("%dの階乗は %d です。\n", num, factorial(num));
     return 0;
 }
-
 ```
 
 # オプション用
@@ -597,6 +584,3 @@ int main() {
     return 0;
 }
 ```
-
-
--->
