@@ -2,11 +2,11 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
+import { unified } from '@astrojs/markdown-remark';
 // @ts-expect-error No types available in this module
 import rlc from 'remark-link-card';
 import rehypeRaw from 'rehype-raw';
 import rehypeExternalLinks from 'rehype-external-links';
-
 import expressiveCode from 'astro-expressive-code';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 
@@ -15,7 +15,7 @@ export default defineConfig({
     integrations: [
         expressiveCode({
             themes: ['github-dark'],
-            plugins:[
+            plugins: [
                 pluginLineNumbers()
             ],
             frames: {
@@ -26,20 +26,14 @@ export default defineConfig({
         react(),
     ],
     markdown: {
-        remarkPlugins: [
-            [
-                rlc,
-                { shortenUrl: true }
+        processor: unified({
+            remarkPlugins: [
+                [rlc, { shortenUrl: true }]
+            ],
+            rehypePlugins: [
+                rehypeRaw,
+                [rehypeExternalLinks, { target: '_blank' }],
             ]
-        ],
-        rehypePlugins: [
-            rehypeRaw,
-            [
-                rehypeExternalLinks,
-                {
-                    target: '_blank',
-                }
-            ]
-        ]
-    }
+        }),
+    },
 });
