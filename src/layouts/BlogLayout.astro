@@ -12,12 +12,12 @@ import '../styles/blog-link-card.css';
 import noimage from '@assets/noimage.png';
 
 interface Props {
-  entry: CollectionEntry<'blog'>;
+  post: CollectionEntry<'blog'>;
   headings: MarkdownHeading[];
 }
 
-const { entry, headings } = Astro.props;
-const { body, data: frontmatter, id: blogId } = entry;
+const { post, headings } = Astro.props;
+const { body = '', data: frontmatter, id: blogId } = post;
 
 const description = frontmatter.description ?? generateDescription(body);
 ---

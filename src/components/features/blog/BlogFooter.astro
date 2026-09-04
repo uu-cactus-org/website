@@ -20,7 +20,7 @@ const prevBlog = blogs[currentIndex + 1];
   <div class="navigation">
     {
       prevBlog && (
-        <a href={`/blog/${prevBlog.slug}`} class="nav-item prev">
+        <a href={`/blog/${prevBlog.id}`} class="nav-item prev">
           <span class="nav-label">前の記事</span>
           <span class="nav-link">
             {prevBlog.data.title}
@@ -30,7 +30,7 @@ const prevBlog = blogs[currentIndex + 1];
     }
     {
       nextBlog && (
-        <a href={`/blog/${nextBlog.slug}`} class="nav-item next">
+        <a href={`/blog/${nextBlog.id}`} class="nav-item next">
           <span class="nav-label">次の記事</span>
           <span class="nav-link">
             {nextBlog.data.title}

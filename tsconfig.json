@@ -10,25 +10,24 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "allowJs": true,
-    "baseUrl": ".",
     "paths": {
       "@components/*": [
-        "src/components/*"
+        "./src/components/*"
       ],
       "@assets/*": [
-        "src/assets/*"
+        "./src/assets/*"
       ],
       "@layouts/*": [
-        "src/layouts/*"
+        "./src/layouts/*"
       ],
       "@utils": [
-        "src/utils/index.ts"
+        "./src/utils/index.ts"
       ],
       "@config": [
-        "src/content/config"
+        "./src/content/config"
       ],
       "@styles/*": [
-        "src/styles/*"
+        "./src/styles/*"
       ]
     },
     "jsx": "react-jsx",
